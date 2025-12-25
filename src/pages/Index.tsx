@@ -184,9 +184,9 @@ export default function Index() {
                 <img 
                   src="https://cdn.poehali.dev/files/-O880h2Gy2CrXb3pJUh9Zc1ZnLY-1920.jpg" 
                   alt="BMW Live Cockpit Professional - Российские карты навигации" 
-                  className="w-full h-full object-contain opacity-90"
+                  className="w-full h-full object-contain"
                   style={{
-                    filter: 'brightness(0.85) contrast(1.1)'
+                    filter: 'brightness(1.15) contrast(1.25) saturate(1.4)'
                   }}
                 />
                 
