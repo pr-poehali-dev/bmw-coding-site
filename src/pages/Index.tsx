@@ -231,7 +231,7 @@ export default function Index() {
                     <span className="text-[#E7222E] text-sm font-light tracking-widest uppercase">Специальное предложение</span>
                   </div>
                   
-                  <h2 className="text-5xl font-light text-white mb-4 leading-tight">
+                  <h2 className="font-light text-white mb-4 leading-tight text-2xl">
                     Российские карты навигации
                   </h2>
                   
@@ -242,10 +242,10 @@ export default function Index() {
                   <div className="flex items-center gap-8 mb-8">
                     <div>
                       <span className="text-white/40 text-sm line-through block mb-2">35 000 ₽</span>
-                      <span className="text-6xl font-light text-[#E7222E]">25 000 ₽</span>
+                      <span className="font-light text-[#E7222E] text-2xl">25000₽ </span>
                     </div>
                     <div 
-                      className="px-8 py-4 rounded-2xl"
+                      className="py-4 rounded-2xl px-[11px]"
                       style={{
                         background: 'linear-gradient(135deg, rgba(231, 34, 46, 0.9), rgba(231, 34, 46, 0.7))',
                         border: '1px solid rgba(231, 34, 46, 0.5)',
