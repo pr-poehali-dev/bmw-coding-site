@@ -148,135 +148,163 @@ export default function Index() {
               <span className="text-white/40 text-xs tracking-[0.3em] uppercase font-light">Чип-тюнинг • Кодирование • Дооснащение</span>
             </div>
             
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 mb-6">
-              <h1 className="text-6xl md:text-8xl font-extralight text-white tracking-tight leading-none lg:flex-shrink-0" style={{ fontFamily: 'BMW Helvetica, sans-serif' }}>
-                REBORN
-                <br />
-                <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                  BMW
-                </span>
-              </h1>
-              
-              {/* Супер оффер - Навигация */}
-              <div 
-                className="relative rounded-3xl overflow-hidden w-full lg:max-w-2xl group cursor-pointer"
-                style={{
-                  border: '1px solid rgba(129, 196, 255, 0.2)',
-                  boxShadow: '0 25px 80px -15px rgba(129, 196, 255, 0.4)'
-                }}
-              >
-                {/* BMW M триколор - тонкая полоска сверху */}
-                <div 
-                  className="absolute top-0 left-0 right-0 h-0.5 z-20"
-                  style={{
-                    background: 'linear-gradient(90deg, #81C4FF 0%, #81C4FF 33.33%, #16588E 33.33%, #16588E 66.66%, #E7222E 66.66%, #E7222E 100%)',
-                    boxShadow: '0 0 20px rgba(129, 196, 255, 0.6)'
-                  }}
+            <h1 className="text-6xl md:text-8xl font-extralight text-white tracking-tight leading-none mb-4" style={{ fontFamily: 'BMW Helvetica, sans-serif' }}>
+              REBORN
+              <br />
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                BMW
+              </span>
+            </h1>
+            
+            <p className="text-xl text-white/50 font-light max-w-2xl mb-12">
+              Профессиональное программирование и активация скрытых функций
+            </p>
+          </div>
+
+          {/* Специальное предложение - Full Width */}
+          <div 
+            className="relative rounded-3xl overflow-hidden mb-16 group cursor-pointer"
+            style={{
+              border: '2px solid rgba(231, 34, 46, 0.3)',
+              boxShadow: '0 25px 80px -15px rgba(231, 34, 46, 0.6), 0 0 60px rgba(231, 34, 46, 0.3)'
+            }}
+          >
+            {/* BMW M триколор - тонкая полоска сверху */}
+            <div 
+              className="absolute top-0 left-0 right-0 h-1 z-20"
+              style={{
+                background: 'linear-gradient(90deg, #81C4FF 0%, #81C4FF 33.33%, #16588E 33.33%, #16588E 66.66%, #E7222E 66.66%, #E7222E 100%)',
+                boxShadow: '0 0 30px rgba(231, 34, 46, 0.8)'
+              }}
+            />
+            
+            <div className="flex flex-col lg:flex-row">
+              {/* Левая часть - Изображение */}
+              <div className="lg:w-1/2 relative h-64 lg:h-96">
+                <img 
+                  src="https://cdn.poehali.dev/files/mgu.jpg" 
+                  alt="Российские карты навигации BMW" 
+                  className="w-full h-full object-cover"
                 />
                 
-                {/* Изображение - полноразмерное с разделением До/После */}
-                <div className="relative h-80">
-                  {/* Фоновое изображение */}
-                  <img 
-                    src="https://cdn.poehali.dev/files/mgu.jpg" 
-                    alt="Российские карты навигации BMW" 
-                    className="w-full h-full object-cover object-center"
-                  />
-                  
-                  {/* Градиентные оверлеи для разделения До/После */}
-                  <div className="absolute inset-0 flex">
-                    {/* Левая половина - До (затемнение) */}
-                    <div 
-                      className="w-1/2 relative"
-                      style={{
-                        background: 'linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 80%, transparent 100%)'
-                      }}
-                    >
-                      <div className="absolute top-6 left-6">
-                        <div className="px-3 py-1 rounded-full bg-red-500/80 backdrop-blur-sm border border-red-400/30">
-                          <span className="text-white text-xs font-medium">До</span>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Правая половина - После (легкое затемнение) */}
-                    <div 
-                      className="w-1/2 relative"
-                      style={{
-                        background: 'linear-gradient(to left, rgba(0, 0, 0, 0.4) 0%, transparent 100%)'
-                      }}
-                    >
-                      <div className="absolute top-6 right-6">
-                        <div className="px-3 py-1 rounded-full bg-emerald-500/80 backdrop-blur-sm border border-emerald-400/30">
-                          <span className="text-white text-xs font-medium">После</span>
-                        </div>
+                {/* Градиентные оверлеи для разделения До/После */}
+                <div className="absolute inset-0 flex">
+                  {/* Левая половина - До */}
+                  <div 
+                    className="w-1/2 relative"
+                    style={{
+                      background: 'linear-gradient(to right, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.4) 80%, transparent 100%)'
+                    }}
+                  >
+                    <div className="absolute top-6 left-6">
+                      <div className="px-4 py-2 rounded-full bg-red-500/90 backdrop-blur-sm border border-red-400/40">
+                        <span className="text-white text-sm font-medium">До</span>
                       </div>
                     </div>
                   </div>
                   
-                  {/* Вертикальная разделительная линия */}
+                  {/* Правая половина - После */}
                   <div 
-                    className="absolute top-0 bottom-0 left-1/2 w-0.5 -translate-x-1/2 z-10"
+                    className="w-1/2 relative"
                     style={{
-                      background: 'linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.8) 20%, rgba(255, 255, 255, 0.8) 80%, transparent 100%)',
-                      boxShadow: '0 0 10px rgba(255, 255, 255, 0.5)'
+                      background: 'linear-gradient(to left, rgba(0, 0, 0, 0.3) 0%, transparent 100%)'
                     }}
-                  />
-                  
-                  {/* Градиент снизу для плавного перехода */}
-                  <div 
-                    className="absolute bottom-0 left-0 right-0 h-32 z-10"
-                    style={{
-                      background: 'linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.9) 100%)'
-                    }}
-                  />
-                </div>
-                
-                {/* Контент - оверлей на изображении */}
-                <div 
-                  className="absolute bottom-0 left-0 right-0 px-8 py-6 z-10"
-                  style={{
-                    background: 'linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, transparent 100%)',
-                    backdropFilter: 'blur(10px)'
-                  }}
-                >
-                  <div className="flex items-center gap-2 mb-3">
-                    <Icon name="Map" className="w-5 h-5 text-[#81C4FF]" />
-                    <span className="text-[#81C4FF] text-xs font-light tracking-widest uppercase">Специальное предложение</span>
-                  </div>
-                  
-                  <h3 className="text-3xl font-light text-white mb-2 leading-tight">
-                    Российские карты
-                  </h3>
-                  
-                  <p className="text-white/70 text-sm font-light mb-4 leading-relaxed">
-                    Смена навигации за 1 час • Настройка включена
-                  </p>
-                  
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <span className="text-white/40 text-xs line-through block mb-1">35 000 ₽</span>
-                      <span className="text-4xl font-light text-[#81C4FF]">25 000 ₽</span>
-                    </div>
-                    <div className="px-5 py-2.5 rounded-xl bg-[#E7222E]/90 border border-[#E7222E]/50 shadow-lg shadow-[#E7222E]/30">
-                      <span className="text-white text-base font-medium">-29%</span>
+                  >
+                    <div className="absolute top-6 right-6">
+                      <div className="px-4 py-2 rounded-full bg-emerald-500/90 backdrop-blur-sm border border-emerald-400/40">
+                        <span className="text-white text-sm font-medium">После</span>
+                      </div>
                     </div>
                   </div>
                 </div>
                 
-                {/* Hover эффект - легкий блик */}
+                {/* Вертикальная разделительная линия */}
                 <div 
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                  className="absolute top-0 bottom-0 left-1/2 w-1 -translate-x-1/2 z-10"
                   style={{
-                    background: 'radial-gradient(circle at center, rgba(129, 196, 255, 0.1), transparent 70%)'
+                    background: 'linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.9) 20%, rgba(255, 255, 255, 0.9) 80%, transparent 100%)',
+                    boxShadow: '0 0 15px rgba(255, 255, 255, 0.6)'
                   }}
                 />
               </div>
+              
+              {/* Правая часть - Контент с красной подсветкой */}
+              <div 
+                className="lg:w-1/2 relative p-12 flex flex-col justify-center"
+                style={{
+                  background: `
+                    radial-gradient(ellipse at right, rgba(231, 34, 46, 0.2) 0%, transparent 70%),
+                    radial-gradient(ellipse at center, rgba(231, 34, 46, 0.15) 0%, transparent 60%),
+                    linear-gradient(135deg, rgba(20, 20, 30, 0.95) 0%, rgba(10, 10, 15, 0.98) 100%)
+                  `,
+                  backdropFilter: 'blur(20px)'
+                }}
+              >
+                {/* Красное свечение по краям */}
+                <div 
+                  className="absolute inset-0 opacity-60 pointer-events-none"
+                  style={{
+                    background: 'radial-gradient(circle at 80% 50%, rgba(231, 34, 46, 0.3), transparent 50%)',
+                    mixBlendMode: 'screen'
+                  }}
+                />
+                
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Icon name="Map" className="w-6 h-6 text-[#E7222E]" />
+                    <span className="text-[#E7222E] text-sm font-light tracking-widest uppercase">Специальное предложение</span>
+                  </div>
+                  
+                  <h2 className="text-5xl font-light text-white mb-4 leading-tight">
+                    Российские карты навигации
+                  </h2>
+                  
+                  <p className="text-white/80 text-lg font-light mb-8 leading-relaxed max-w-xl">
+                    Смена навигации на российские карты за 1 час. Настройка и активация включены в стоимость. Гарантия на установку.
+                  </p>
+                  
+                  <div className="flex items-center gap-8 mb-8">
+                    <div>
+                      <span className="text-white/40 text-sm line-through block mb-2">35 000 ₽</span>
+                      <span className="text-6xl font-light text-[#E7222E]">25 000 ₽</span>
+                    </div>
+                    <div 
+                      className="px-8 py-4 rounded-2xl"
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(231, 34, 46, 0.9), rgba(231, 34, 46, 0.7))',
+                        border: '1px solid rgba(231, 34, 46, 0.5)',
+                        boxShadow: '0 10px 40px rgba(231, 34, 46, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+                      }}
+                    >
+                      <span className="text-white text-2xl font-medium">-29%</span>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-6 text-white/60 text-sm">
+                    <div className="flex items-center gap-2">
+                      <Icon name="Clock" className="w-4 h-4" />
+                      <span>Установка 1 час</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Icon name="Shield" className="w-4 h-4" />
+                      <span>Гарантия</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Icon name="Check" className="w-4 h-4" />
+                      <span>Настройка бесплатно</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             
-            <p className="text-xl text-white/50 font-light max-w-2xl">
-              Профессиональное программирование и активация скрытых функций
-            </p>
+            {/* Hover эффект - красный блик */}
+            <div 
+              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+              style={{
+                background: 'radial-gradient(circle at center, rgba(231, 34, 46, 0.15), transparent 70%)'
+              }}
+            />
           </div>
 
           {/* Services Grid - плавающие карточки как в iDrive 8 */}
