@@ -5,6 +5,13 @@ import Icon from '@/components/ui/icon';
 
 const services = [
   {
+    id: 'chiptuning',
+    title: 'Чип-тюнинг',
+    description: 'Увеличение мощности двигателя и оптимизация АКПП',
+    icon: 'Zap',
+    features: ['Stage 1/2/3 тюнинг', 'Оптимизация АКПП', '+30-100 л.с. мощности', 'Снижение расхода топлива']
+  },
+  {
     id: 'coding',
     title: 'Кодирование',
     description: 'Активация скрытых функций BMW через программное обеспечение',
