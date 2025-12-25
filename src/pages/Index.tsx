@@ -10,7 +10,8 @@ const services = [
     description: 'Увеличение мощности',
     icon: 'Zap',
     price: 'от 25 000 ₽',
-    color: '#FF0040'
+    color: '#FF0040',
+    details: 'Stage 1, Stage 2, Stage 3. Увеличение мощности до +40%, улучшение динамики разгона. Гарантия на работу 2 года. Диагностика перед чип-тюнингом бесплатно.'
   },
   {
     id: 'coding',
@@ -18,7 +19,8 @@ const services = [
     description: 'Активация функций',
     icon: 'Code2',
     price: 'от 8 000 ₽',
-    color: '#00D4FF'
+    color: '#00D4FF',
+    details: 'Активация скрытых функций: видео в движении, складывание зеркал, изменение приветствия, активация камер, отключение Start-Stop и многое другое.'
   },
   {
     id: 'equipment',
@@ -26,7 +28,8 @@ const services = [
     description: 'Установка оборудования',
     icon: 'Settings',
     price: 'от 15 000 ₽',
-    color: '#B4FF00'
+    color: '#B4FF00',
+    details: 'Установка камер заднего вида, парктроников, круиз-контроля, подогрева сидений, охранных систем. Профессиональный монтаж с гарантией.'
   },
   {
     id: 'russian',
@@ -34,7 +37,8 @@ const services = [
     description: 'Локализация интерфейса',
     icon: 'Languages',
     price: 'от 12 000 ₽',
-    color: '#FF00E5'
+    color: '#FF00E5',
+    details: 'Полная русификация меню iDrive, приборной панели, голосовых команд. Замена языковых пакетов на русский или украинский язык.'
   },
   {
     id: 'maps',
@@ -42,7 +46,8 @@ const services = [
     description: 'Обновление карт',
     icon: 'MapPin',
     price: 'от 5 000 ₽',
-    color: '#00FFB3'
+    color: '#00FFB3',
+    details: 'Установка последних карт России, Европы, Азии. Обновление навигационного ПО. Настройка голосового помощника на русском языке.'
   },
   {
     id: 'keys',
@@ -50,7 +55,8 @@ const services = [
     description: 'Изготовление ключей',
     icon: 'KeyRound',
     price: 'от 18 000 ₽',
-    color: '#FFD700'
+    color: '#FFD700',
+    details: 'Изготовление дубликатов ключей BMW с чипом. Программирование новых ключей. Восстановление утерянных ключей. Ремонт корпусов ключей.'
   }
 ];
 
@@ -288,8 +294,7 @@ export default function Index() {
             {services.map((service, index) => (
               <Card
                 key={service.id}
-                className="group relative overflow-hidden cursor-pointer border-0 transition-all duration-500 hover:scale-[1.02]"
-                onClick={() => setSelectedService(selectedService === service.id ? null : service.id)}
+                className="group relative overflow-hidden border-0 transition-all duration-500 hover:scale-[1.02]"
                 style={{
                   background: 'rgba(255, 255, 255, 0.03)',
                   backdropFilter: 'blur(20px)',
@@ -360,6 +365,28 @@ export default function Index() {
                   <p className="text-sm text-white/40 mb-4 font-light">
                     {service.description}
                   </p>
+                  
+                  {/* Развёрнутая информация */}
+                  <div 
+                    className="overflow-hidden transition-all duration-500"
+                    style={{
+                      maxHeight: selectedService === service.id ? '500px' : '0',
+                      opacity: selectedService === service.id ? 1 : 0
+                    }}
+                  >
+                    <div 
+                      className="mb-4 p-4 rounded-xl"
+                      style={{
+                        background: `linear-gradient(135deg, ${service.color}10, ${service.color}05)`,
+                        border: `1px solid ${service.color}20`
+                      }}
+                    >
+                      <p className="text-sm text-white/70 font-light leading-relaxed">
+                        {service.details}
+                      </p>
+                    </div>
+                  </div>
+                  
                   <div className="flex items-center justify-between mb-4">
                     <span 
                       className="text-lg font-light tracking-wide"
@@ -367,10 +394,21 @@ export default function Index() {
                     >
                       {service.price}
                     </span>
-                    <Icon 
-                      name="ChevronRight" 
-                      className="w-5 h-5 text-white/30 transition-all duration-300 group-hover:translate-x-1"
-                    />
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedService(selectedService === service.id ? null : service.id);
+                      }}
+                      className="transition-all duration-300"
+                    >
+                      <Icon 
+                        name="ChevronDown" 
+                        className="w-5 h-5 text-white/30 transition-all duration-300 hover:text-white/60"
+                        style={{
+                          transform: selectedService === service.id ? 'rotate(180deg)' : 'rotate(0deg)'
+                        }}
+                      />
+                    </button>
                   </div>
                   
                   {/* Кнопка связаться в Telegram */}
