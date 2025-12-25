@@ -147,13 +147,58 @@ export default function Index() {
               <div className="h-1 w-12 bg-gradient-to-r from-blue-500 to-transparent rounded-full" />
               <span className="text-white/40 text-xs tracking-[0.3em] uppercase font-light">Чип-тюнинг • Кодирование • Дооснащение</span>
             </div>
-            <h1 className="text-6xl md:text-8xl font-extralight text-white tracking-tight leading-none mb-4" style={{ fontFamily: 'BMW Helvetica, sans-serif' }}>
-              REBORN
-              <br />
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                BMW
-              </span>
-            </h1>
+            
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 mb-6">
+              <h1 className="text-6xl md:text-8xl font-extralight text-white tracking-tight leading-none" style={{ fontFamily: 'BMW Helvetica, sans-serif' }}>
+                REBORN
+                <br />
+                <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                  BMW
+                </span>
+              </h1>
+              
+              {/* Супер оффер */}
+              <div 
+                className="relative px-8 py-6 rounded-2xl border backdrop-blur-xl max-w-md"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(129, 196, 255, 0.15), rgba(22, 88, 142, 0.1))',
+                  border: '1px solid rgba(129, 196, 255, 0.3)',
+                  boxShadow: '0 20px 60px -10px rgba(129, 196, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+                }}
+              >
+                {/* BMW M полоска */}
+                <div 
+                  className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl"
+                  style={{
+                    background: 'linear-gradient(90deg, #81C4FF 0%, #81C4FF 33.33%, #16588E 33.33%, #16588E 66.66%, #E7222E 66.66%, #E7222E 100%)'
+                  }}
+                />
+                
+                <div className="flex items-center gap-2 mb-3">
+                  <Icon name="Zap" className="w-5 h-5 text-[#81C4FF]" />
+                  <span className="text-[#81C4FF] text-xs font-light tracking-widest uppercase">Специальное предложение</span>
+                </div>
+                
+                <h3 className="text-2xl font-light text-white mb-2 leading-tight">
+                  +40 л.с. за 2 часа
+                </h3>
+                
+                <p className="text-white/60 text-sm font-light mb-4 leading-relaxed">
+                  Чип-тюнинг Stage 1 + диагностика бесплатно. Гарантия 2 года.
+                </p>
+                
+                <div className="flex items-center justify-between">
+                  <div>
+                    <span className="text-white/40 text-xs line-through block">35 000 ₽</span>
+                    <span className="text-3xl font-light text-[#81C4FF]">25 000 ₽</span>
+                  </div>
+                  <div className="px-4 py-2 rounded-lg bg-[#E7222E]/20 border border-[#E7222E]/30">
+                    <span className="text-[#E7222E] text-sm font-medium">-29%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
             <p className="text-xl text-white/50 font-light max-w-2xl">
               Профессиональное программирование и активация скрытых функций
             </p>
