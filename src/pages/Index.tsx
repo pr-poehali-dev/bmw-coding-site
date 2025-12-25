@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 
@@ -7,487 +7,278 @@ const services = [
   {
     id: 'chiptuning',
     title: 'Чип-тюнинг',
-    description: 'Увеличение мощности двигателя и оптимизация АКПП',
+    description: 'Увеличение мощности двигателя',
     icon: 'Zap',
-    features: ['Stage 1/2/3 тюнинг', 'Оптимизация АКПП', '+30-100 л.с. мощности', 'Снижение расхода топлива'],
-    gallery: [
-      'https://cdn.poehali.dev/projects/892585f1-24a2-432b-810c-dd69d2686659/files/ebef2432-92c1-446c-b16d-e514bf71df91.jpg',
-      'https://cdn.poehali.dev/projects/892585f1-24a2-432b-810c-dd69d2686659/files/81949a9a-544b-45d6-8c91-6241328f1c0e.jpg',
-      'https://cdn.poehali.dev/projects/892585f1-24a2-432b-810c-dd69d2686659/files/8d53ffc2-e332-4bea-b692-9aea8eeb44d0.jpg'
-    ]
+    price: 'от 25 000 ₽'
   },
   {
     id: 'coding',
     title: 'Кодирование',
-    description: 'Активация скрытых функций BMW через программное обеспечение',
+    description: 'Активация скрытых функций',
     icon: 'Code2',
-    features: ['Складывание зеркал', 'Комфортное открывание', 'Видео в движении', 'Настройка приборной панели'],
-    gallery: [
-      'https://cdn.poehali.dev/projects/892585f1-24a2-432b-810c-dd69d2686659/files/fd133bef-33d1-423f-babc-fe8806e44cce.jpg',
-      'https://cdn.poehali.dev/projects/892585f1-24a2-432b-810c-dd69d2686659/files/81949a9a-544b-45d6-8c91-6241328f1c0e.jpg',
-      'https://cdn.poehali.dev/projects/892585f1-24a2-432b-810c-dd69d2686659/files/8d53ffc2-e332-4bea-b692-9aea8eeb44d0.jpg'
-    ]
+    price: 'от 8 000 ₽'
   },
   {
     id: 'equipment',
     title: 'Дооснащение',
-    description: 'Установка дополнительного оборудования и модернизация',
+    description: 'Установка оборудования',
     icon: 'Cog',
-    features: ['Камеры кругового обзора', 'Парктроники', 'Мультимедиа системы', 'LED оптика'],
-    gallery: [
-      'https://cdn.poehali.dev/projects/892585f1-24a2-432b-810c-dd69d2686659/files/5eaa6841-8a8b-4bd2-bb0b-b24429fd34a9.jpg',
-      'https://cdn.poehali.dev/projects/892585f1-24a2-432b-810c-dd69d2686659/files/8d53ffc2-e332-4bea-b692-9aea8eeb44d0.jpg',
-      'https://cdn.poehali.dev/projects/892585f1-24a2-432b-810c-dd69d2686659/files/81949a9a-544b-45d6-8c91-6241328f1c0e.jpg'
-    ]
+    price: 'от 15 000 ₽'
   },
   {
     id: 'russian',
     title: 'Русификация',
-    description: 'Полная локализация интерфейса на русский язык',
+    description: 'Полная локализация интерфейса',
     icon: 'Languages',
-    features: ['Меню на русском', 'Голосовое управление', 'Навигация', 'Приборная панель'],
-    gallery: [
-      'https://cdn.poehali.dev/projects/892585f1-24a2-432b-810c-dd69d2686659/files/81949a9a-544b-45d6-8c91-6241328f1c0e.jpg',
-      'https://cdn.poehali.dev/projects/892585f1-24a2-432b-810c-dd69d2686659/files/8d53ffc2-e332-4bea-b692-9aea8eeb44d0.jpg',
-      'https://cdn.poehali.dev/projects/892585f1-24a2-432b-810c-dd69d2686659/files/fd133bef-33d1-423f-babc-fe8806e44cce.jpg'
-    ]
+    price: 'от 12 000 ₽'
   },
   {
     id: 'maps',
     title: 'Навигация',
-    description: 'Обновление карт и навигационного ПО до последних версий',
+    description: 'Обновление карт и ПО',
     icon: 'Map',
-    features: ['Актуальные карты РФ', 'Обновление ПО', 'Пробки онлайн', 'Точки интереса'],
-    gallery: [
-      'https://cdn.poehali.dev/projects/892585f1-24a2-432b-810c-dd69d2686659/files/8d53ffc2-e332-4bea-b692-9aea8eeb44d0.jpg',
-      'https://cdn.poehali.dev/projects/892585f1-24a2-432b-810c-dd69d2686659/files/81949a9a-544b-45d6-8c91-6241328f1c0e.jpg',
-      'https://cdn.poehali.dev/projects/892585f1-24a2-432b-810c-dd69d2686659/files/fd133bef-33d1-423f-babc-fe8806e44cce.jpg'
-    ]
+    price: 'от 5 000 ₽'
   },
   {
     id: 'keys',
-    title: 'Изготовление ключей',
-    description: 'Программирование и изготовление дополнительных ключей',
+    title: 'Ключи',
+    description: 'Изготовление ключей',
     icon: 'Key',
-    features: ['Запасной ключ', 'Comfort Access', 'Display Key', 'Восстановление ключей'],
-    gallery: [
-      'https://cdn.poehali.dev/projects/892585f1-24a2-432b-810c-dd69d2686659/files/81949a9a-544b-45d6-8c91-6241328f1c0e.jpg',
-      'https://cdn.poehali.dev/projects/892585f1-24a2-432b-810c-dd69d2686659/files/8d53ffc2-e332-4bea-b692-9aea8eeb44d0.jpg',
-      'https://cdn.poehali.dev/projects/892585f1-24a2-432b-810c-dd69d2686659/files/ebef2432-92c1-446c-b16d-e514bf71df91.jpg'
-    ]
+    price: 'от 18 000 ₽'
   }
 ];
 
 const ambientModes = [
-  { id: 'ice-blue', name: 'Ice Blue', primary: '0, 153, 255', secondary: '0, 153, 255', icon: 'Droplets' },
-  { id: 'orange', name: 'Orange', primary: '255, 120, 60', secondary: '255, 140, 80', icon: 'Flame' },
-  { id: 'purple', name: 'Purple', primary: '165, 100, 255', secondary: '180, 120, 255', icon: 'Sparkles' },
-  { id: 'mint', name: 'Mint', primary: '100, 200, 180', secondary: '120, 220, 200', icon: 'Leaf' },
-  { id: 'red', name: 'Red', primary: '255, 80, 80', secondary: '255, 100, 100', icon: 'Flame' },
-  { id: 'dynamic', name: 'Dynamic', primary: '0, 153, 255', secondary: '255, 120, 60', icon: 'Zap' }
+  { id: 'ice-blue', name: 'Ice Blue', color: '#0099FF', icon: 'Droplets' },
+  { id: 'orange', name: 'Orange', color: '#FF7A3C', icon: 'Flame' },
+  { id: 'purple', name: 'Purple', color: '#A564FF', icon: 'Sparkles' },
+  { id: 'mint', name: 'Mint', color: '#64C8B4', icon: 'Leaf' },
+  { id: 'red', name: 'Red', color: '#FF5050', icon: 'Flame' },
+  { id: 'white', name: 'White', color: '#FFFFFF', icon: 'Circle' }
 ];
 
 export default function Index() {
   const [selectedService, setSelectedService] = useState<string | null>(null);
-  const [ambientMode, setAmbientMode] = useState('dynamic');
-
-  const currentMode = ambientModes.find(m => m.id === ambientMode) || ambientModes[5];
+  const [ambientColor, setAmbientColor] = useState('#0099FF');
 
   return (
-    <div className="min-h-screen bg-background text-foreground relative overflow-hidden perspective-deep">
+    <div 
+      className="min-h-screen relative overflow-hidden"
+      style={{
+        background: 'linear-gradient(180deg, #000000 0%, #0a0a0f 50%, #000000 100%)'
+      }}
+    >
+      {/* Ambient подсветка по краям */}
       <div 
-        className="fixed inset-0 opacity-20"
+        className="fixed top-0 left-0 right-0 h-1 transition-all duration-1000"
         style={{
-          backgroundImage: `url('https://cdn.poehali.dev/projects/892585f1-24a2-432b-810c-dd69d2686659/files/81949a9a-544b-45d6-8c91-6241328f1c0e.jpg')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          filter: 'brightness(0.2) blur(8px)'
-        }}
-      />
-      
-      <div 
-        className="fixed top-0 left-0 right-0 h-2 transition-all duration-1000"
-        style={{
-          background: `linear-gradient(90deg, transparent 0%, rgba(${currentMode.primary}, 0.8) 50%, transparent 100%)`,
-          boxShadow: `0 0 20px rgba(${currentMode.primary}, 0.5)`,
-          animation: 'ambient-flow 5s ease-in-out infinite'
+          background: `linear-gradient(90deg, transparent, ${ambientColor}80, transparent)`,
+          boxShadow: `0 0 40px ${ambientColor}`
         }}
       />
       <div 
-        className="fixed bottom-0 left-0 right-0 h-2 transition-all duration-1000"
+        className="fixed bottom-0 left-0 right-0 h-1 transition-all duration-1000"
         style={{
-          background: `linear-gradient(90deg, transparent 0%, rgba(${currentMode.secondary}, 0.8) 50%, transparent 100%)`,
-          boxShadow: `0 0 20px rgba(${currentMode.secondary}, 0.5)`,
-          animation: 'ambient-flow 5s ease-in-out infinite 2s'
+          background: `linear-gradient(90deg, transparent, ${ambientColor}80, transparent)`,
+          boxShadow: `0 0 40px ${ambientColor}`
         }}
       />
-      <div 
-        className="fixed left-0 top-0 bottom-0 w-2 transition-all duration-1000"
-        style={{
-          background: `linear-gradient(180deg, transparent 0%, rgba(${currentMode.primary}, 0.8) 50%, transparent 100%)`,
-          boxShadow: `0 0 20px rgba(${currentMode.primary}, 0.5)`,
-          animation: 'ambient-flow 5s ease-in-out infinite 1s'
-        }}
-      />
-      <div 
-        className="fixed right-0 top-0 bottom-0 w-2 transition-all duration-1000"
-        style={{
-          background: `linear-gradient(180deg, transparent 0%, rgba(${currentMode.secondary}, 0.8) 50%, transparent 100%)`,
-          boxShadow: `0 0 20px rgba(${currentMode.secondary}, 0.5)`,
-          animation: 'ambient-flow 5s ease-in-out infinite 3s'
-        }}
-      />
-      
-      <div className="fixed top-20 left-20 w-96 h-96 rounded-full blur-3xl floating-3d transition-all duration-1000" style={{ background: `radial-gradient(circle, rgba(${currentMode.primary}, 0.15) 0%, transparent 70%)` }} />
-      <div className="fixed bottom-20 right-20 w-[500px] h-[500px] rounded-full blur-3xl floating-3d transition-all duration-1000" style={{ background: `radial-gradient(circle, rgba(${currentMode.secondary}, 0.12) 0%, transparent 70%)`, animationDelay: '2s', animationDuration: '8s' }} />
-      <div className="fixed top-1/3 right-1/4 w-80 h-80 rounded-full blur-3xl floating-3d transition-all duration-1000" style={{ background: `radial-gradient(circle, rgba(${currentMode.primary}, 0.08) 0%, transparent 70%)`, animationDelay: '3s', animationDuration: '9s' }} />
-      <div className="fixed bottom-1/3 left-1/4 w-[450px] h-[450px] rounded-full blur-3xl floating-3d transition-all duration-1000" style={{ background: `radial-gradient(circle, rgba(${currentMode.secondary}, 0.08) 0%, transparent 70%)`, animationDelay: '5s', animationDuration: '11s' }} />
-      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full blur-3xl floating-3d transition-all duration-1000" style={{ background: `radial-gradient(circle, rgba(${currentMode.primary}, 0.06) 0%, rgba(${currentMode.secondary}, 0.04) 50%, transparent 100%)`, animationDelay: '4s', animationDuration: '12s' }} />
-      
-      <div className="relative z-10">
-        <header className="glass-cockpit nappa-leather rounded-3xl mx-4 mt-4 overflow-hidden cockpit-reflection bmw-3d-panel">
-          <div className="container mx-auto px-6 py-6 flex items-center justify-between">
-            <div className="flex items-center gap-8">
-              <div className="relative group rotate-3d-hover">
-                <div className="absolute inset-0 bg-primary/40 blur-3xl group-hover:bg-primary/60 transition-all duration-500 depth-layer-1" />
-                <img 
-                  src="https://cdn.poehali.dev/files/reborn.jpg" 
-                  alt="Reborn Technologies" 
-                  className="h-24 md:h-32 w-auto object-contain relative z-10 drop-shadow-[0_0_30px_rgba(0,149,255,0.9)] depth-layer-2"
-                />
-              </div>
-              <div className="hidden lg:block border-l-2 border-primary/40 pl-8 h-20 depth-layer-1">
-                <h1 className="text-4xl font-bold text-foreground tracking-tight mb-2 electric-glow">BMW CODING</h1>
-                <p className="text-sm text-primary font-medium tracking-[0.3em]">G-SERIES TECHNOLOGY</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <Button 
-                className="piano-black font-bold rounded-2xl px-6 py-4 hover:scale-105 transition-all duration-500 depth-layer-2 rotate-3d-hover"
-                onClick={() => {
-                  const currentIndex = ambientModes.findIndex(m => m.id === ambientMode);
-                  const nextIndex = (currentIndex + 1) % ambientModes.length;
-                  setAmbientMode(ambientModes[nextIndex].id);
-                }}
-                style={{
-                  border: `2px solid rgba(${currentMode.primary}, 0.5)`,
-                  boxShadow: `0 0 25px rgba(${currentMode.primary}, 0.6), inset 0 2px 8px rgba(${currentMode.primary}, 0.3)`
-                }}
-              >
-                <Icon name={currentMode.icon as any} className="w-5 h-5 transition-all duration-1000" style={{ color: `rgb(${currentMode.primary})` }} />
-              </Button>
-              <Button 
-                className="brushed-aluminum font-bold rounded-2xl px-10 py-7 hover:scale-105 transition-all duration-500 depth-layer-2 rotate-3d-hover text-white"
-                style={{
-                  background: `linear-gradient(135deg, rgba(${currentMode.primary}, 0.9), rgba(${currentMode.secondary}, 0.9))`,
-                  border: `2px solid rgba(${currentMode.primary}, 0.7)`,
-                  boxShadow: `0 0 30px rgba(${currentMode.primary}, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.2)`
-                }}
-              >
-                <Icon name="Phone" className="w-6 h-6 mr-3" />
-                Связаться
-              </Button>
+
+      {/* Главный экран как Curved Display */}
+      <div className="container mx-auto px-4 py-8 relative">
+        
+        {/* Верхняя панель как в BMW */}
+        <div className="flex items-center justify-between mb-8 px-4">
+          <div className="flex items-center gap-4">
+            <img 
+              src="https://cdn.poehali.dev/files/reborn.jpg" 
+              alt="Logo" 
+              className="h-16 w-auto"
+              style={{
+                filter: `drop-shadow(0 0 20px ${ambientColor})`
+              }}
+            />
+            <div>
+              <h1 className="text-2xl font-light tracking-wider" style={{ color: ambientColor }}>BMW CODING</h1>
+              <p className="text-xs text-gray-500 tracking-widest">G-SERIES</p>
             </div>
           </div>
-        </header>
+          <Button 
+            className="px-6 py-3 rounded-full font-medium transition-all duration-300"
+            style={{
+              background: `linear-gradient(135deg, ${ambientColor}20, ${ambientColor}10)`,
+              border: `1px solid ${ambientColor}40`,
+              color: ambientColor,
+              boxShadow: `0 0 20px ${ambientColor}40`
+            }}
+          >
+            <Icon name="Phone" className="w-4 h-4 mr-2" />
+            Связаться
+          </Button>
+        </div>
 
-        <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 glass-cockpit nappa-leather rounded-3xl p-6 cockpit-reflection shadow-2xl bmw-3d-card">
-          <p className="text-xs font-bold mb-4 tracking-[0.3em] text-center" style={{ color: `rgb(${currentMode.primary})` }}>AMBIENT LIGHT</p>
-          <div className="flex items-center gap-3">
+        {/* Ambient контроллер внизу */}
+        <div 
+          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-6 py-4 rounded-full backdrop-blur-xl transition-all duration-300"
+          style={{
+            background: 'linear-gradient(135deg, rgba(10, 10, 15, 0.95), rgba(15, 15, 20, 0.9))',
+            border: `1px solid ${ambientColor}30`,
+            boxShadow: `0 8px 32px rgba(0, 0, 0, 0.6), 0 0 40px ${ambientColor}20, inset 0 1px 0 rgba(255, 255, 255, 0.05)`
+          }}
+        >
+          <div className="flex items-center gap-2">
             {ambientModes.map((mode) => (
               <button
                 key={mode.id}
-                onClick={() => setAmbientMode(mode.id)}
-                className={`relative flex flex-col items-center gap-2 px-5 py-4 rounded-2xl transition-all duration-500 hover:scale-110 group ${
-                  ambientMode === mode.id ? 'piano-black' : 'brushed-aluminum hover:bg-white/5'
-                }`}
+                onClick={() => setAmbientColor(mode.color)}
+                className="w-10 h-10 rounded-full transition-all duration-300 hover:scale-110 relative"
                 style={{
-                  border: ambientMode === mode.id ? `2px solid rgba(${mode.primary}, 0.7)` : '2px solid rgba(255, 255, 255, 0.1)',
-                  boxShadow: ambientMode === mode.id ? `0 0 25px rgba(${mode.primary}, 0.6), inset 0 0 15px rgba(${mode.primary}, 0.2)` : 'inset 0 1px 2px rgba(255, 255, 255, 0.1)'
+                  background: ambientColor === mode.color 
+                    ? `radial-gradient(circle, ${mode.color}40, transparent)`
+                    : 'rgba(255, 255, 255, 0.05)',
+                  border: `2px solid ${ambientColor === mode.color ? mode.color : 'rgba(255, 255, 255, 0.1)'}`,
+                  boxShadow: ambientColor === mode.color ? `0 0 20px ${mode.color}80` : 'none'
                 }}
               >
                 <div 
-                  className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500"
+                  className="absolute inset-1 rounded-full"
                   style={{
-                    background: `radial-gradient(circle, rgba(${mode.primary}, 0.3), rgba(${mode.secondary}, 0.1))`,
-                    boxShadow: ambientMode === mode.id ? `0 0 20px rgba(${mode.primary}, 0.8)` : `0 0 10px rgba(${mode.primary}, 0.3)`
+                    background: mode.color,
+                    opacity: ambientColor === mode.color ? 0.8 : 0.3
                   }}
-                >
-                  <Icon 
-                    name={mode.icon as any} 
-                    className="w-5 h-5 transition-all duration-500" 
-                    style={{ color: `rgb(${mode.primary})` }}
-                  />
-                </div>
-                <span className="text-xs font-medium tracking-wide">{mode.name}</span>
-                {ambientMode === mode.id && (
-                  <div 
-                    className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1/2 h-1 rounded-full"
-                    style={{
-                      background: `linear-gradient(90deg, transparent, rgba(${mode.primary}, 1), transparent)`,
-                      boxShadow: `0 0 10px rgba(${mode.primary}, 0.8)`
-                    }}
-                  />
-                )}
+                />
               </button>
             ))}
           </div>
         </div>
 
-        <section className="container mx-auto px-4 py-32 text-center relative bmw-3d-panel">
-          <div 
-            className="absolute inset-0 rounded-3xl transition-all duration-1000"
+        {/* Заголовок как на iDrive */}
+        <div className="text-center mb-12 mt-12">
+          <h2 
+            className="text-5xl md:text-7xl font-light tracking-tight mb-4 transition-all duration-1000"
             style={{
-              background: `radial-gradient(ellipse at center, rgba(${currentMode.primary}, 0.06) 0%, rgba(${currentMode.secondary}, 0.02) 50%, transparent 100%)`,
-              boxShadow: `0 0 100px rgba(${currentMode.primary}, 0.35), 0 0 60px rgba(${currentMode.secondary}, 0.15), inset 0 0 60px rgba(${currentMode.primary}, 0.12)`
+              color: ambientColor,
+              textShadow: `0 0 40px ${ambientColor}60`
             }}
-          />
-          <div className="animate-slide-in relative">
-            <div className="glass-cockpit inline-block rounded-full px-10 py-4 mb-10 cockpit-reflection nappa-leather depth-layer-1">
-              <p className="text-sm font-bold uppercase tracking-[0.4em] flex items-center gap-3 justify-center transition-all duration-1000" style={{ color: `rgb(${currentMode.primary})` }}>
-                <span 
-                  className="w-2 h-2 rounded-full animate-pulse transition-all duration-1000" 
-                  style={{ 
-                    backgroundColor: `rgb(${currentMode.primary})`,
-                    boxShadow: `0 0 10px rgba(${currentMode.primary}, 0.8)`
-                  }}
-                />
-                Активируем за 1 час то, что BMW скрыл в вашем авто
-              </p>
-            </div>
-            <h2 
-              className="text-7xl md:text-9xl font-bold mb-10 leading-tight depth-layer-2 transition-all duration-1000" 
-              style={{ 
-                transform: 'translateZ(40px)',
-                textShadow: `0 0 20px rgba(${currentMode.primary}, 0.7), 0 0 40px rgba(${currentMode.primary}, 0.4), 0 0 60px rgba(${currentMode.primary}, 0.2)`
-              }}
-            >
-              +10 СКРЫТЫХ ФУНКЦИЙ<br/>БЕЗ ВИЗИТА В ДИЛЕР
-            </h2>
-            <p className="text-2xl md:text-3xl text-muted-foreground mb-12 max-w-5xl mx-auto leading-relaxed depth-layer-1">
-              Складывание зеркал, видео в движении, русское меню — всё это уже есть в вашем BMW. 
-              Просто заблокировано заводом.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-10 justify-center items-center mb-8">
-              <div 
-                className="glass-cockpit flex items-center gap-4 px-8 py-4 rounded-2xl nappa-leather cockpit-reflection rotate-3d-hover depth-layer-2 transition-all duration-1000"
-                style={{ color: `rgb(${currentMode.primary})` }}
-              >
-                <Icon name="CheckCircle2" className="w-7 h-7" />
-                <span className="font-bold text-lg">Гарантия на работу</span>
-              </div>
-              <div 
-                className="glass-cockpit flex items-center gap-4 px-8 py-4 rounded-2xl nappa-leather cockpit-reflection rotate-3d-hover depth-layer-2 transition-all duration-1000"
-                style={{ color: `rgb(${currentMode.secondary})` }}
-              >
-                <Icon name="Shield" className="w-7 h-7" />
-                <span className="font-bold text-lg">Без потери гарантии BMW</span>
-              </div>
-            </div>
-            <div 
-              className="glass-cockpit inline-block px-12 py-6 rounded-2xl nappa-leather depth-layer-3 transition-all duration-1000" 
-              style={{ 
-                transform: 'translateZ(60px)',
-                border: `2px solid rgba(${currentMode.primary}, 0.5)`,
-                boxShadow: `0 0 25px rgba(${currentMode.primary}, 0.6), 0 0 50px rgba(${currentMode.primary}, 0.35), 0 0 75px rgba(${currentMode.primary}, 0.2), 0 0 100px rgba(${currentMode.secondary}, 0.15), inset 0 0 25px rgba(${currentMode.primary}, 0.15)`
-              }}
-            >
-              <p className="text-2xl font-bold transition-all duration-1000" style={{ color: `rgb(${currentMode.primary})` }}>
-                🎁 При заказе сегодня — диагностика всех систем БЕСПЛАТНО (обычно 3000₽)
-              </p>
-            </div>
-          </div>
-        </section>
+          >
+            BMW G-SERIES
+          </h2>
+          <p className="text-gray-400 text-xl font-light tracking-wide">Профессиональное программирование и кодирование</p>
+        </div>
 
-        <section className="container mx-auto px-4 py-20 bmw-3d-panel">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {services.map((service, index) => (
-              <Card
-                key={service.id}
-                className={`glass-cockpit cursor-pointer group relative overflow-hidden bmw-3d-card cockpit-reflection ${
-                  index % 3 === 0 ? 'alcantara' : index % 3 === 1 ? 'nappa-leather' : 'brushed-aluminum'
-                }`}
-                style={{ animationDelay: `${index * 100}ms` }}
-                onClick={() => setSelectedService(selectedService === service.id ? null : service.id)}
-              >
-                <div className="holographic absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                
-                <CardHeader>
-                  <div 
-                    className="w-28 h-28 piano-black rounded-3xl flex items-center justify-center mb-8 mx-auto group-hover:scale-110 transition-transform duration-500 depth-layer-2" 
-                    style={{ 
-                      transform: 'translateZ(30px)',
-                      boxShadow: `0 0 30px rgba(${currentMode.primary}, 0.6), inset 0 2px 8px rgba(${currentMode.primary}, 0.3)`
-                    }}
-                  >
-                    <Icon 
-                      name={service.icon as any} 
-                      className="w-14 h-14 transition-all duration-1000" 
-                      style={{ color: `rgb(${currentMode.primary})` }}
-                    />
-                  </div>
-                  <CardTitle className="text-3xl font-bold text-foreground transition-all text-center mb-3 depth-layer-1">
-                    {service.title}
-                  </CardTitle>
-                  <CardDescription className="text-muted-foreground text-lg text-center leading-relaxed">
-                    {service.description}
-                  </CardDescription>
-                </CardHeader>
-
-                <CardContent>
-                  <div className={`space-y-4 transition-all duration-700 ${selectedService === service.id ? 'max-h-[1000px] opacity-100 mb-6' : 'max-h-0 opacity-0 overflow-hidden'}`}>
-                    <div className="grid grid-cols-3 gap-3 mb-6 perspective-deep">
-                      {service.gallery.map((img, idx) => (
-                        <div 
-                          key={idx}
-                          className="aspect-square rounded-2xl overflow-hidden glass-cockpit cursor-pointer group relative bmw-3d-card"
-                          style={{ animationDelay: `${idx * 100}ms` }}
-                        >
-                          <img 
-                            src={img} 
-                            alt={`${service.title} ${idx + 1}`}
-                            className="w-full h-full object-cover group-hover:scale-125 transition-transform duration-700"
-                          />
-                          <div className="absolute inset-0 gauge-glow opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                        </div>
-                      ))}
-                    </div>
-                    
-                    <p 
-                      className="text-base font-bold mb-4 tracking-wide transition-all duration-1000" 
-                      style={{ color: `rgb(${currentMode.primary})` }}
-                    >
-                      Возможности:
-                    </p>
-                    {service.features.map((feature, idx) => (
-                      <div 
-                        key={idx} 
-                        className="flex items-center gap-4 text-base glass-cockpit p-3 rounded-xl alcantara"
-                      >
-                        <div 
-                          className="w-3 h-3 rounded-full animate-pulse flex-shrink-0 transition-all duration-1000" 
-                          style={{ 
-                            backgroundColor: `rgb(${currentMode.primary})`,
-                            boxShadow: `0 0 10px rgba(${currentMode.primary}, 0.8)`
-                          }}
-                        />
-                        <span className="font-medium">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                  
-                  <Button
-                    variant="outline"
-                    className="w-full piano-black font-bold rounded-2xl py-7 text-lg hover:scale-105 transition-all duration-500"
-                    style={{
-                      border: `2px solid rgba(${currentMode.primary}, 0.5)`,
-                      boxShadow: `0 0 20px rgba(${currentMode.primary}, 0.5), inset 0 2px 8px rgba(${currentMode.primary}, 0.2)`
-                    }}
-                  >
-                    <Icon 
-                      name="ArrowRight" 
-                      className="w-6 h-6 mr-3 transition-all duration-1000" 
-                      style={{ color: `rgb(${currentMode.primary})` }}
-                    />
-                    {selectedService === service.id ? 'Скрыть детали' : 'Подробнее'}
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        <section className="container mx-auto px-4 py-32 bmw-3d-panel">
-          <Card className="glass-cockpit wood-trim relative overflow-hidden cockpit-reflection bmw-3d-card">
-            <div 
-              className="absolute inset-0 transition-all duration-1000"
+        {/* Сетка услуг как плитки iDrive */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
+          {services.map((service) => (
+            <Card
+              key={service.id}
+              className="relative overflow-hidden cursor-pointer group transition-all duration-500 hover:scale-105"
+              onClick={() => setSelectedService(selectedService === service.id ? null : service.id)}
               style={{
-                background: `radial-gradient(ellipse at center, rgba(${currentMode.primary}, 0.06) 0%, rgba(${currentMode.secondary}, 0.02) 50%, transparent 100%)`,
-                boxShadow: `0 0 100px rgba(${currentMode.primary}, 0.35), 0 0 60px rgba(${currentMode.secondary}, 0.15), inset 0 0 60px rgba(${currentMode.primary}, 0.12)`
+                background: 'linear-gradient(135deg, rgba(15, 15, 20, 0.8), rgba(10, 10, 15, 0.9))',
+                border: selectedService === service.id 
+                  ? `2px solid ${ambientColor}` 
+                  : '2px solid rgba(255, 255, 255, 0.05)',
+                boxShadow: selectedService === service.id
+                  ? `0 0 30px ${ambientColor}60, inset 0 0 30px ${ambientColor}10`
+                  : '0 4px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.03)'
               }}
-            />
-            <CardContent className="p-20 text-center relative z-10">
-              <div className="depth-layer-2" style={{ transform: 'translateZ(40px)' }}>
-                <h3 
-                  className="text-6xl md:text-7xl font-bold mb-8 leading-tight transition-all duration-1000"
+            >
+              <CardContent className="p-6">
+                <div 
+                  className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 transition-all duration-500"
                   style={{
-                    textShadow: `0 0 20px rgba(${currentMode.primary}, 0.7), 0 0 40px rgba(${currentMode.primary}, 0.4), 0 0 60px rgba(${currentMode.primary}, 0.2)`
+                    background: `linear-gradient(135deg, ${ambientColor}20, ${ambientColor}05)`,
+                    border: `1px solid ${ambientColor}30`,
+                    boxShadow: `0 0 20px ${ambientColor}20`
                   }}
                 >
-                  ГОТОВЫ МОДЕРНИЗИРОВАТЬ ВАШ BMW?
-                </h3>
-              </div>
-              <p className="text-2xl text-muted-foreground mb-12 max-w-4xl mx-auto leading-relaxed depth-layer-1">
-                Свяжитесь с нами для консультации и записи на обслуживание. 
-                Работаем со всеми моделями BMW G-серии.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-8 justify-center">
-                <Button 
-                  size="lg" 
-                  className="piano-black text-white font-bold text-2xl px-16 py-10 rounded-3xl hover:scale-110 transition-all duration-500 depth-layer-3 rotate-3d-hover"
-                  style={{
-                    background: `linear-gradient(135deg, rgba(${currentMode.primary}, 0.95), rgba(${currentMode.secondary}, 0.95))`,
-                    boxShadow: `0 0 30px rgba(${currentMode.primary}, 0.7), 0 0 60px rgba(${currentMode.primary}, 0.4), inset 0 2px 8px rgba(${currentMode.primary}, 0.4)`,
-                    border: `2px solid rgba(${currentMode.primary}, 0.6)`
-                  }}
+                  <Icon 
+                    name={service.icon as any} 
+                    className="w-8 h-8 transition-all duration-1000" 
+                    style={{ color: ambientColor }}
+                  />
+                </div>
+                <h3 className="text-xl font-medium mb-2 text-white">{service.title}</h3>
+                <p className="text-sm text-gray-400 mb-3">{service.description}</p>
+                <p 
+                  className="text-lg font-medium transition-all duration-1000"
+                  style={{ color: ambientColor }}
                 >
-                  <Icon name="MessageCircle" className="w-8 h-8 mr-4" />
-                  Написать в WhatsApp
-                </Button>
-                <Button 
-                  size="lg" 
-                  className="brushed-aluminum text-foreground font-bold text-2xl px-16 py-10 rounded-3xl hover:scale-110 transition-all duration-500 depth-layer-3 rotate-3d-hover"
-                  style={{
-                    border: `2px solid rgba(${currentMode.primary}, 0.6)`,
-                    boxShadow: `0 0 30px rgba(${currentMode.primary}, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.2)`
-                  }}
-                >
-                  <Icon name="Phone" className="w-8 h-8 mr-4" />
-                  Позвонить
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
+                  {service.price}
+                </p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
 
-        <footer className="glass-cockpit carbon-fiber mt-32 mx-4 mb-24 rounded-3xl overflow-hidden cockpit-reflection relative">
-          <div className="container mx-auto px-6 py-12 text-center">
-            <p className="text-muted-foreground mb-6 text-lg">© 2024 BMW Coding. Профессиональная работа с электроникой BMW G-серии</p>
-            <div className="flex justify-center gap-10">
+        {/* CTA блок */}
+        <div 
+          className="max-w-4xl mx-auto p-12 rounded-3xl text-center backdrop-blur-xl"
+          style={{
+            background: 'linear-gradient(135deg, rgba(10, 10, 15, 0.8), rgba(15, 15, 20, 0.7))',
+            border: `1px solid ${ambientColor}30`,
+            boxShadow: `0 20px 60px rgba(0, 0, 0, 0.6), 0 0 60px ${ambientColor}20, inset 0 1px 0 rgba(255, 255, 255, 0.05)`
+          }}
+        >
+          <h3 
+            className="text-4xl md:text-5xl font-light mb-6 transition-all duration-1000"
+            style={{
+              color: ambientColor,
+              textShadow: `0 0 30px ${ambientColor}60`
+            }}
+          >
+            Модернизация BMW
+          </h3>
+          <p className="text-gray-400 text-lg mb-8 font-light">
+            Активация скрытых функций • Чип-тюнинг • Русификация
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              size="lg"
+              className="px-10 py-6 rounded-full text-lg font-medium transition-all duration-300"
+              style={{
+                background: ambientColor,
+                color: '#000',
+                boxShadow: `0 0 40px ${ambientColor}60`
+              }}
+            >
+              <Icon name="MessageCircle" className="w-5 h-5 mr-2" />
+              WhatsApp
+            </Button>
+            <Button 
+              size="lg"
+              className="px-10 py-6 rounded-full text-lg font-medium transition-all duration-300"
+              style={{
+                background: `linear-gradient(135deg, ${ambientColor}20, ${ambientColor}10)`,
+                border: `1px solid ${ambientColor}40`,
+                color: ambientColor,
+                boxShadow: `0 0 20px ${ambientColor}40`
+              }}
+            >
+              <Icon name="Phone" className="w-5 h-5 mr-2" />
+              Позвонить
+            </Button>
+          </div>
+        </div>
+
+        {/* Футер */}
+        <footer className="mt-20 text-center pb-24">
+          <p className="text-gray-600 text-sm mb-4">© 2024 BMW Coding • G-Series Specialist</p>
+          <div className="flex justify-center gap-6">
+            {['Instagram', 'Youtube', 'Mail'].map((social) => (
               <a 
-                href="#" 
-                className="piano-black p-4 rounded-2xl transition-all duration-500 hover:scale-110 rotate-3d-hover"
+                key={social}
+                href="#"
+                className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
                 style={{
-                  color: `rgb(${currentMode.primary})`,
-                  border: `2px solid rgba(${currentMode.primary}, 0.5)`,
-                  boxShadow: `0 0 25px rgba(${currentMode.primary}, 0.6), inset 0 2px 8px rgba(${currentMode.primary}, 0.3)`
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  color: ambientColor
                 }}
               >
-                <Icon name="Instagram" className="w-7 h-7" />
+                <Icon name={social as any} className="w-5 h-5" />
               </a>
-              <a 
-                href="#" 
-                className="piano-black p-4 rounded-2xl transition-all duration-500 hover:scale-110 rotate-3d-hover"
-                style={{
-                  color: `rgb(${currentMode.primary})`,
-                  border: `2px solid rgba(${currentMode.primary}, 0.5)`,
-                  boxShadow: `0 0 25px rgba(${currentMode.primary}, 0.6), inset 0 2px 8px rgba(${currentMode.primary}, 0.3)`
-                }}
-              >
-                <Icon name="Youtube" className="w-7 h-7" />
-              </a>
-              <a 
-                href="#" 
-                className="piano-black p-4 rounded-2xl transition-all duration-500 hover:scale-110 rotate-3d-hover"
-                style={{
-                  color: `rgb(${currentMode.primary})`,
-                  border: `2px solid rgba(${currentMode.primary}, 0.5)`,
-                  boxShadow: `0 0 25px rgba(${currentMode.primary}, 0.6), inset 0 2px 8px rgba(${currentMode.primary}, 0.3)`
-                }}
-              >
-                <Icon name="Mail" className="w-7 h-7" />
-              </a>
-            </div>
+            ))}
           </div>
         </footer>
       </div>
