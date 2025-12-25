@@ -6,7 +6,7 @@ export default {
 		"./pages/**/*.{ts,tsx}",
 		"./components/**/*.{ts,tsx}",
 		"./app/**/*.{ts,tsx}",
-		"./src/**/*.{ts,tsx}",
+		"./src/**/*.{ts,tsx}"
 	],
 	prefix: "",
 	theme: {
@@ -84,11 +84,26 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'neon-pulse': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.5' }
+				},
+				'slide-in': {
+					from: { transform: 'translateY(20px)', opacity: '0' },
+					to: { transform: 'translateY(0)', opacity: '1' }
+				},
+				'glow': {
+					'0%, 100%': { boxShadow: '0 0 5px hsl(var(--neon-red)), 0 0 10px hsl(var(--neon-red))' },
+					'50%': { boxShadow: '0 0 10px hsl(var(--neon-red)), 0 0 20px hsl(var(--neon-red)), 0 0 30px hsl(var(--neon-red))' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'neon-pulse': 'neon-pulse 2s ease-in-out infinite',
+				'slide-in': 'slide-in 0.5s ease-out',
+				'glow': 'glow 2s ease-in-out infinite'
 			}
 		}
 	},
