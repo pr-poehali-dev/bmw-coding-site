@@ -6,26 +6,26 @@
 
 @layer base {
   :root {
-    --background: 0 0% 3%;
-    --foreground: 0 0% 98%;
+    --background: 220 25% 8%;
+    --foreground: 210 40% 98%;
 
-    --card: 0 0% 8%;
-    --card-foreground: 0 0% 95%;
+    --card: 220 20% 12%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 220 20% 12%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 0 100% 50%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 205 100% 50%;
+    --primary-foreground: 220 25% 8%;
 
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 0 0% 95%;
+    --secondary: 220 15% 18%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 0 0% 20%;
-    --muted-foreground: 0 0% 70%;
+    --muted: 220 15% 25%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 0 0% 85%;
-    --accent-foreground: 0 0% 10%;
+    --accent: 45 95% 55%;
+    --accent-foreground: 220 25% 8%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
@@ -36,9 +36,9 @@
 
     --radius: 0.5rem;
 
-    --neon-red: 0 100% 50%;
-    --neon-cyan: 188 100% 50%;
-    --bmw-red: 0 100% 43%;
+    --electric-blue: 205 100% 50%;
+    --gold-accent: 45 95% 55%;
+    --bmw-blue: 211 100% 50%;
 
     --sidebar-background: 0 0% 98%;
 
@@ -58,26 +58,26 @@
   }
 
   .dark {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 98%;
+    --background: 220 25% 8%;
+    --foreground: 210 40% 98%;
 
-    --card: 0 0% 5%;
-    --card-foreground: 0 0% 95%;
+    --card: 220 20% 12%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 0 0% 5%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 220 20% 12%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 0 100% 43%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 205 100% 50%;
+    --primary-foreground: 220 25% 8%;
 
-    --secondary: 0 0% 10%;
-    --secondary-foreground: 0 0% 95%;
+    --secondary: 220 15% 18%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 220 15% 25%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 188 100% 50%;
-    --accent-foreground: 0 0% 0%;
+    --accent: 45 95% 55%;
+    --accent-foreground: 220 25% 8%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
@@ -127,36 +127,48 @@
 }
 
 @layer utilities {
-  .neon-glow {
+  .electric-glow {
     text-shadow:
-      0 0 10px rgba(220, 0, 0, 0.5),
-      0 0 20px rgba(220, 0, 0, 0.3),
-      0 0 30px rgba(220, 0, 0, 0.2);
+      0 0 20px rgba(0, 149, 255, 0.6),
+      0 0 40px rgba(0, 149, 255, 0.3),
+      0 0 60px rgba(0, 149, 255, 0.2);
   }
 
-  .neon-border {
+  .electric-border {
     box-shadow:
-      0 0 10px rgba(220, 0, 0, 0.3),
-      0 0 20px rgba(220, 0, 0, 0.2),
-      inset 0 0 10px rgba(220, 0, 0, 0.1);
+      0 0 15px rgba(0, 149, 255, 0.4),
+      0 0 30px rgba(0, 149, 255, 0.2),
+      inset 0 0 15px rgba(0, 149, 255, 0.1);
   }
 
   .premium-shadow {
     box-shadow:
-      0 10px 40px rgba(0, 0, 0, 0.5),
-      0 0 20px rgba(220, 0, 0, 0.2);
+      0 20px 60px rgba(0, 0, 0, 0.6),
+      0 0 30px rgba(0, 149, 255, 0.15);
   }
 
-  .cyan-glow {
+  .gold-glow {
     text-shadow:
-      0 0 10px hsl(var(--neon-cyan)),
-      0 0 20px hsl(var(--neon-cyan));
+      0 0 20px rgba(255, 193, 7, 0.5),
+      0 0 40px rgba(255, 193, 7, 0.2);
+  }
+
+  .bmw-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--electric-blue)) 0%,
+      hsl(var(--primary)) 50%,
+      hsl(var(--gold-accent)) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .grid-pattern {
     background-image:
-      linear-gradient(rgba(220, 0, 0, 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(220, 0, 0, 0.1) 1px, transparent 1px);
+      linear-gradient(rgba(0, 149, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 149, 255, 0.05) 1px, transparent 1px);
     background-size: 50px 50px;
   }
 }
