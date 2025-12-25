@@ -149,7 +149,7 @@ export default function Index() {
             </div>
             
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 mb-6">
-              <h1 className="text-6xl md:text-8xl font-extralight text-white tracking-tight leading-none" style={{ fontFamily: 'BMW Helvetica, sans-serif' }}>
+              <h1 className="text-6xl md:text-8xl font-extralight text-white tracking-tight leading-none lg:flex-shrink-0" style={{ fontFamily: 'BMW Helvetica, sans-serif' }}>
                 REBORN
                 <br />
                 <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
@@ -159,7 +159,7 @@ export default function Index() {
               
               {/* Супер оффер - Навигация */}
               <div 
-                className="relative rounded-3xl overflow-hidden max-w-lg group cursor-pointer"
+                className="relative rounded-3xl overflow-hidden w-full lg:max-w-2xl group cursor-pointer"
                 style={{
                   border: '1px solid rgba(129, 196, 255, 0.2)',
                   boxShadow: '0 25px 80px -15px rgba(129, 196, 255, 0.4)'
@@ -175,7 +175,7 @@ export default function Index() {
                 />
                 
                 {/* Изображение - полноразмерное с разделением До/После */}
-                <div className="relative h-72">
+                <div className="relative h-80">
                   {/* Фоновое изображение */}
                   <img 
                     src="https://cdn.poehali.dev/files/mgu.jpg" 
