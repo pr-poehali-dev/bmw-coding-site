@@ -163,20 +163,25 @@ export default function Index() {
             </div>
             <div className="flex items-center gap-4">
               <Button 
-                className="glass-cockpit nappa-leather font-bold rounded-2xl px-6 py-4 gauge-glow hover:scale-105 transition-all duration-500 depth-layer-2 rotate-3d-hover"
+                className="piano-black font-bold rounded-2xl px-6 py-4 hover:scale-105 transition-all duration-500 depth-layer-2 rotate-3d-hover"
                 onClick={() => {
                   const currentIndex = ambientModes.findIndex(m => m.id === ambientMode);
                   const nextIndex = (currentIndex + 1) % ambientModes.length;
                   setAmbientMode(ambientModes[nextIndex].id);
                 }}
+                style={{
+                  border: `2px solid rgba(${currentMode.primary}, 0.5)`,
+                  boxShadow: `0 0 25px rgba(${currentMode.primary}, 0.6), inset 0 2px 8px rgba(${currentMode.primary}, 0.3)`
+                }}
               >
-                <Icon name={currentMode.icon as any} className="w-5 h-5" style={{ color: `rgb(${currentMode.primary})` }} />
+                <Icon name={currentMode.icon as any} className="w-5 h-5 transition-all duration-1000" style={{ color: `rgb(${currentMode.primary})` }} />
               </Button>
               <Button 
-                className="font-bold rounded-2xl px-10 py-7 gauge-glow hover:scale-105 transition-all duration-500 depth-layer-2 rotate-3d-hover"
+                className="brushed-aluminum font-bold rounded-2xl px-10 py-7 hover:scale-105 transition-all duration-500 depth-layer-2 rotate-3d-hover text-white"
                 style={{
-                  background: `linear-gradient(135deg, rgba(${currentMode.primary}, 1), rgba(${currentMode.secondary}, 1))`,
-                  color: 'white'
+                  background: `linear-gradient(135deg, rgba(${currentMode.primary}, 0.9), rgba(${currentMode.secondary}, 0.9))`,
+                  border: `2px solid rgba(${currentMode.primary}, 0.7)`,
+                  boxShadow: `0 0 30px rgba(${currentMode.primary}, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.2)`
                 }}
               >
                 <Icon name="Phone" className="w-6 h-6 mr-3" />
@@ -186,27 +191,44 @@ export default function Index() {
           </div>
         </header>
 
-        <div className="fixed top-24 right-4 z-50 glass-cockpit nappa-leather rounded-2xl p-4 cockpit-reflection">
-          <p className="text-xs font-bold mb-3 tracking-wide" style={{ color: `rgb(${currentMode.primary})` }}>AMBIENT LIGHT</p>
-          <div className="space-y-2">
+        <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 glass-cockpit nappa-leather rounded-3xl p-6 cockpit-reflection shadow-2xl bmw-3d-card">
+          <p className="text-xs font-bold mb-4 tracking-[0.3em] text-center" style={{ color: `rgb(${currentMode.primary})` }}>AMBIENT LIGHT</p>
+          <div className="flex items-center gap-3">
             {ambientModes.map((mode) => (
               <button
                 key={mode.id}
                 onClick={() => setAmbientMode(mode.id)}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-500 hover:scale-105 ${
-                  ambientMode === mode.id ? 'glass-cockpit' : 'hover:bg-white/5'
+                className={`relative flex flex-col items-center gap-2 px-5 py-4 rounded-2xl transition-all duration-500 hover:scale-110 group ${
+                  ambientMode === mode.id ? 'piano-black' : 'brushed-aluminum hover:bg-white/5'
                 }`}
                 style={{
-                  border: ambientMode === mode.id ? `2px solid rgba(${mode.primary}, 0.6)` : '2px solid transparent',
-                  boxShadow: ambientMode === mode.id ? `0 0 20px rgba(${mode.primary}, 0.4)` : 'none'
+                  border: ambientMode === mode.id ? `2px solid rgba(${mode.primary}, 0.7)` : '2px solid rgba(255, 255, 255, 0.1)',
+                  boxShadow: ambientMode === mode.id ? `0 0 25px rgba(${mode.primary}, 0.6), inset 0 0 15px rgba(${mode.primary}, 0.2)` : 'inset 0 1px 2px rgba(255, 255, 255, 0.1)'
                 }}
               >
-                <Icon 
-                  name={mode.icon as any} 
-                  className="w-5 h-5" 
-                  style={{ color: `rgb(${mode.primary})` }}
-                />
-                <span className="text-sm font-medium">{mode.name}</span>
+                <div 
+                  className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500"
+                  style={{
+                    background: `radial-gradient(circle, rgba(${mode.primary}, 0.3), rgba(${mode.secondary}, 0.1))`,
+                    boxShadow: ambientMode === mode.id ? `0 0 20px rgba(${mode.primary}, 0.8)` : `0 0 10px rgba(${mode.primary}, 0.3)`
+                  }}
+                >
+                  <Icon 
+                    name={mode.icon as any} 
+                    className="w-5 h-5 transition-all duration-500" 
+                    style={{ color: `rgb(${mode.primary})` }}
+                  />
+                </div>
+                <span className="text-xs font-medium tracking-wide">{mode.name}</span>
+                {ambientMode === mode.id && (
+                  <div 
+                    className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1/2 h-1 rounded-full"
+                    style={{
+                      background: `linear-gradient(90deg, transparent, rgba(${mode.primary}, 1), transparent)`,
+                      boxShadow: `0 0 10px rgba(${mode.primary}, 0.8)`
+                    }}
+                  />
+                )}
               </button>
             ))}
           </div>
@@ -282,15 +304,27 @@ export default function Index() {
             {services.map((service, index) => (
               <Card
                 key={service.id}
-                className="glass-cockpit nappa-leather cursor-pointer group relative overflow-hidden bmw-3d-card cockpit-reflection"
+                className={`glass-cockpit cursor-pointer group relative overflow-hidden bmw-3d-card cockpit-reflection ${
+                  index % 3 === 0 ? 'alcantara' : index % 3 === 1 ? 'nappa-leather' : 'brushed-aluminum'
+                }`}
                 style={{ animationDelay: `${index * 100}ms` }}
                 onClick={() => setSelectedService(selectedService === service.id ? null : service.id)}
               >
                 <div className="holographic absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 
                 <CardHeader>
-                  <div className="w-28 h-28 bg-gradient-to-br from-primary/40 to-primary/10 rounded-3xl flex items-center justify-center mb-8 gauge-glow mx-auto group-hover:scale-110 transition-transform duration-500 depth-layer-2" style={{ transform: 'translateZ(30px)' }}>
-                    <Icon name={service.icon as any} className="w-14 h-14 text-primary" />
+                  <div 
+                    className="w-28 h-28 piano-black rounded-3xl flex items-center justify-center mb-8 mx-auto group-hover:scale-110 transition-transform duration-500 depth-layer-2" 
+                    style={{ 
+                      transform: 'translateZ(30px)',
+                      boxShadow: `0 0 30px rgba(${currentMode.primary}, 0.6), inset 0 2px 8px rgba(${currentMode.primary}, 0.3)`
+                    }}
+                  >
+                    <Icon 
+                      name={service.icon as any} 
+                      className="w-14 h-14 transition-all duration-1000" 
+                      style={{ color: `rgb(${currentMode.primary})` }}
+                    />
                   </div>
                   <CardTitle className="text-3xl font-bold text-foreground transition-all text-center mb-3 depth-layer-1">
                     {service.title}
@@ -319,10 +353,24 @@ export default function Index() {
                       ))}
                     </div>
                     
-                    <p className="text-base font-bold text-primary mb-4 tracking-wide">Возможности:</p>
+                    <p 
+                      className="text-base font-bold mb-4 tracking-wide transition-all duration-1000" 
+                      style={{ color: `rgb(${currentMode.primary})` }}
+                    >
+                      Возможности:
+                    </p>
                     {service.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-4 text-base glass-cockpit p-3 rounded-xl nappa-leather">
-                        <div className="w-3 h-3 bg-primary rounded-full animate-pulse flex-shrink-0 gauge-glow" />
+                      <div 
+                        key={idx} 
+                        className="flex items-center gap-4 text-base glass-cockpit p-3 rounded-xl alcantara"
+                      >
+                        <div 
+                          className="w-3 h-3 rounded-full animate-pulse flex-shrink-0 transition-all duration-1000" 
+                          style={{ 
+                            backgroundColor: `rgb(${currentMode.primary})`,
+                            boxShadow: `0 0 10px rgba(${currentMode.primary}, 0.8)`
+                          }}
+                        />
                         <span className="font-medium">{feature}</span>
                       </div>
                     ))}
@@ -330,9 +378,17 @@ export default function Index() {
                   
                   <Button
                     variant="outline"
-                    className="w-full glass-cockpit nappa-leather font-bold rounded-2xl py-7 text-lg hover:scale-105 transition-all duration-500 gauge-glow"
+                    className="w-full piano-black font-bold rounded-2xl py-7 text-lg hover:scale-105 transition-all duration-500"
+                    style={{
+                      border: `2px solid rgba(${currentMode.primary}, 0.5)`,
+                      boxShadow: `0 0 20px rgba(${currentMode.primary}, 0.5), inset 0 2px 8px rgba(${currentMode.primary}, 0.2)`
+                    }}
                   >
-                    <Icon name="ArrowRight" className="w-6 h-6 mr-3" />
+                    <Icon 
+                      name="ArrowRight" 
+                      className="w-6 h-6 mr-3 transition-all duration-1000" 
+                      style={{ color: `rgb(${currentMode.primary})` }}
+                    />
                     {selectedService === service.id ? 'Скрыть детали' : 'Подробнее'}
                   </Button>
                 </CardContent>
@@ -342,7 +398,7 @@ export default function Index() {
         </section>
 
         <section className="container mx-auto px-4 py-32 bmw-3d-panel">
-          <Card className="glass-cockpit nappa-leather relative overflow-hidden cockpit-reflection bmw-3d-card">
+          <Card className="glass-cockpit wood-trim relative overflow-hidden cockpit-reflection bmw-3d-card">
             <div 
               className="absolute inset-0 transition-all duration-1000"
               style={{
@@ -368,11 +424,11 @@ export default function Index() {
               <div className="flex flex-col sm:flex-row gap-8 justify-center">
                 <Button 
                   size="lg" 
-                  className="text-white font-bold text-2xl px-16 py-10 rounded-3xl hover:scale-110 transition-all duration-500 depth-layer-3 rotate-3d-hover"
+                  className="piano-black text-white font-bold text-2xl px-16 py-10 rounded-3xl hover:scale-110 transition-all duration-500 depth-layer-3 rotate-3d-hover"
                   style={{
-                    background: `linear-gradient(135deg, rgba(${currentMode.primary}, 1), rgba(${currentMode.secondary}, 1))`,
-                    boxShadow: `0 0 25px rgba(${currentMode.primary}, 0.6), 0 0 50px rgba(${currentMode.primary}, 0.35), 0 0 75px rgba(${currentMode.primary}, 0.2), 0 0 100px rgba(${currentMode.secondary}, 0.15), inset 0 0 25px rgba(${currentMode.primary}, 0.15)`,
-                    border: `2px solid rgba(${currentMode.primary}, 0.5)`
+                    background: `linear-gradient(135deg, rgba(${currentMode.primary}, 0.95), rgba(${currentMode.secondary}, 0.95))`,
+                    boxShadow: `0 0 30px rgba(${currentMode.primary}, 0.7), 0 0 60px rgba(${currentMode.primary}, 0.4), inset 0 2px 8px rgba(${currentMode.primary}, 0.4)`,
+                    border: `2px solid rgba(${currentMode.primary}, 0.6)`
                   }}
                 >
                   <Icon name="MessageCircle" className="w-8 h-8 mr-4" />
@@ -380,10 +436,10 @@ export default function Index() {
                 </Button>
                 <Button 
                   size="lg" 
-                  className="glass-cockpit nappa-leather text-foreground font-bold text-2xl px-16 py-10 rounded-3xl hover:scale-110 transition-all duration-500 depth-layer-3 rotate-3d-hover"
+                  className="brushed-aluminum text-foreground font-bold text-2xl px-16 py-10 rounded-3xl hover:scale-110 transition-all duration-500 depth-layer-3 rotate-3d-hover"
                   style={{
-                    border: `2px solid rgba(${currentMode.primary}, 0.5)`,
-                    boxShadow: `0 0 25px rgba(${currentMode.primary}, 0.6), 0 0 50px rgba(${currentMode.primary}, 0.35), 0 0 75px rgba(${currentMode.primary}, 0.2), 0 0 100px rgba(${currentMode.secondary}, 0.15), inset 0 0 25px rgba(${currentMode.primary}, 0.15)`
+                    border: `2px solid rgba(${currentMode.primary}, 0.6)`,
+                    boxShadow: `0 0 30px rgba(${currentMode.primary}, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.2)`
                   }}
                 >
                   <Icon name="Phone" className="w-8 h-8 mr-4" />
@@ -394,39 +450,39 @@ export default function Index() {
           </Card>
         </section>
 
-        <footer className="glass-cockpit nappa-leather mt-32 mx-4 mb-4 rounded-3xl overflow-hidden cockpit-reflection relative">
+        <footer className="glass-cockpit carbon-fiber mt-32 mx-4 mb-24 rounded-3xl overflow-hidden cockpit-reflection relative">
           <div className="container mx-auto px-6 py-12 text-center">
             <p className="text-muted-foreground mb-6 text-lg">© 2024 BMW Coding. Профессиональная работа с электроникой BMW G-серии</p>
             <div className="flex justify-center gap-10">
               <a 
                 href="#" 
-                className="glass-cockpit p-4 rounded-2xl transition-all duration-500 hover:scale-110 rotate-3d-hover"
+                className="piano-black p-4 rounded-2xl transition-all duration-500 hover:scale-110 rotate-3d-hover"
                 style={{
                   color: `rgb(${currentMode.primary})`,
-                  border: `2px solid rgba(${currentMode.primary}, 0.3)`,
-                  boxShadow: `0 0 20px rgba(${currentMode.primary}, 0.4)`
+                  border: `2px solid rgba(${currentMode.primary}, 0.5)`,
+                  boxShadow: `0 0 25px rgba(${currentMode.primary}, 0.6), inset 0 2px 8px rgba(${currentMode.primary}, 0.3)`
                 }}
               >
                 <Icon name="Instagram" className="w-7 h-7" />
               </a>
               <a 
                 href="#" 
-                className="glass-cockpit p-4 rounded-2xl transition-all duration-500 hover:scale-110 rotate-3d-hover"
+                className="piano-black p-4 rounded-2xl transition-all duration-500 hover:scale-110 rotate-3d-hover"
                 style={{
                   color: `rgb(${currentMode.primary})`,
-                  border: `2px solid rgba(${currentMode.primary}, 0.3)`,
-                  boxShadow: `0 0 20px rgba(${currentMode.primary}, 0.4)`
+                  border: `2px solid rgba(${currentMode.primary}, 0.5)`,
+                  boxShadow: `0 0 25px rgba(${currentMode.primary}, 0.6), inset 0 2px 8px rgba(${currentMode.primary}, 0.3)`
                 }}
               >
                 <Icon name="Youtube" className="w-7 h-7" />
               </a>
               <a 
                 href="#" 
-                className="glass-cockpit p-4 rounded-2xl transition-all duration-500 hover:scale-110 rotate-3d-hover"
+                className="piano-black p-4 rounded-2xl transition-all duration-500 hover:scale-110 rotate-3d-hover"
                 style={{
                   color: `rgb(${currentMode.primary})`,
-                  border: `2px solid rgba(${currentMode.primary}, 0.3)`,
-                  boxShadow: `0 0 20px rgba(${currentMode.primary}, 0.4)`
+                  border: `2px solid rgba(${currentMode.primary}, 0.5)`,
+                  boxShadow: `0 0 25px rgba(${currentMode.primary}, 0.6), inset 0 2px 8px rgba(${currentMode.primary}, 0.3)`
                 }}
               >
                 <Icon name="Mail" className="w-7 h-7" />
