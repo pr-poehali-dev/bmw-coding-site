@@ -165,6 +165,92 @@ export default function Index() {
         </section>
 
         <section className="container mx-auto px-4 py-20">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 electric-glow">
+              МАКСИМАЛЬНАЯ ПРОИЗВОДИТЕЛЬНОСТЬ
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Реальные показатели после нашего чип-тюнинга
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+            <Card className="bg-card/80 backdrop-blur-md border-primary/20 premium-shadow text-center p-8 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />
+              <div className="relative z-10">
+                <Icon name="Gauge" className="w-16 h-16 text-primary mx-auto mb-4" />
+                <div className="text-5xl md:text-6xl font-bold mb-2 bmw-gradient">
+                  +80
+                </div>
+                <div className="text-2xl font-semibold text-primary mb-2">Л.С.</div>
+                <p className="text-muted-foreground">Прирост мощности<br/>Stage 2</p>
+              </div>
+            </Card>
+
+            <Card className="bg-card/80 backdrop-blur-md border-accent/20 premium-shadow text-center p-8 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent" />
+              <div className="relative z-10">
+                <Icon name="Zap" className="w-16 h-16 text-accent mx-auto mb-4" />
+                <div className="text-5xl md:text-6xl font-bold mb-2 gold-glow">
+                  3.9
+                </div>
+                <div className="text-2xl font-semibold text-accent mb-2">СЕК</div>
+                <p className="text-muted-foreground">Разгон 0-100 км/ч<br/>после тюнинга</p>
+              </div>
+            </Card>
+
+            <Card className="bg-card/80 backdrop-blur-md border-primary/20 premium-shadow text-center p-8 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />
+              <div className="relative z-10">
+                <Icon name="TrendingDown" className="w-16 h-16 text-primary mx-auto mb-4" />
+                <div className="text-5xl md:text-6xl font-bold mb-2 bmw-gradient">
+                  -15%
+                </div>
+                <div className="text-2xl font-semibold text-primary mb-2">РАСХОД</div>
+                <p className="text-muted-foreground">Снижение расхода<br/>топлива</p>
+              </div>
+            </Card>
+          </div>
+
+          <div 
+            className="relative rounded-2xl overflow-hidden mb-16 h-96 border border-primary/30"
+            style={{
+              backgroundImage: `url('https://cdn.poehali.dev/projects/892585f1-24a2-432b-810c-dd69d2686659/files/8d53ffc2-e332-4bea-b692-9aea8eeb44d0.jpg')`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-transparent backdrop-blur-sm">
+              <div className="h-full flex items-center px-8 md:px-16">
+                <div className="max-w-xl">
+                  <h3 className="text-3xl md:text-4xl font-bold mb-4 electric-glow">
+                    ТЕХНОЛОГИИ BMW G-СЕРИИ
+                  </h3>
+                  <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                    Работаем с новейшими моделями BMW G-серии. Полная поддержка Live Cockpit, 
+                    Curved Display и Operating System 8.0
+                  </p>
+                  <div className="flex gap-4 flex-wrap">
+                    <div className="flex items-center gap-2 text-primary">
+                      <Icon name="CheckCircle2" className="w-5 h-5" />
+                      <span className="font-semibold">iDrive 8.0</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-primary">
+                      <Icon name="CheckCircle2" className="w-5 h-5" />
+                      <span className="font-semibold">Live Cockpit</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-accent gold-glow">
+                      <Icon name="CheckCircle2" className="w-5 h-5" />
+                      <span className="font-semibold">Laser Light</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="container mx-auto px-4 py-20">
           <Card className="bg-gradient-to-br from-card/90 to-card/70 backdrop-blur-md border-primary/20 premium-shadow">
             <CardContent className="p-12 text-center">
               <h3 className="text-3xl md:text-4xl font-bold mb-4 text-white">
