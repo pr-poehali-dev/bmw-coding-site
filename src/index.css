@@ -224,4 +224,212 @@
         transparent 10px
       );
   }
+
+  /* 3D BMW Interior Styles */
+  .bmw-3d-panel {
+    transform-style: preserve-3d;
+    perspective: 1200px;
+  }
+
+  .bmw-3d-card {
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .bmw-3d-card:hover {
+    transform: translateZ(30px) rotateX(2deg);
+  }
+
+  .glass-cockpit {
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.95) 0%,
+      rgba(10, 10, 15, 0.9) 50%,
+      rgba(0, 0, 0, 0.95) 100%
+    );
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(0, 149, 255, 0.2);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .cockpit-reflection {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cockpit-reflection::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 100%
+    );
+    animation: shine 3s infinite;
+  }
+
+  @keyframes shine {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 200%;
+    }
+  }
+
+  .idrive-screen {
+    background: radial-gradient(
+      ellipse at center,
+      rgba(0, 149, 255, 0.05) 0%,
+      transparent 70%
+    );
+    box-shadow:
+      0 0 80px rgba(0, 149, 255, 0.3),
+      inset 0 0 40px rgba(0, 149, 255, 0.1);
+  }
+
+  .carbon-fiber {
+    background:
+      repeating-linear-gradient(
+        45deg,
+        rgba(30, 30, 30, 1) 0px,
+        rgba(40, 40, 40, 1) 2px,
+        rgba(30, 30, 30, 1) 4px
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        rgba(35, 35, 35, 1) 0px,
+        rgba(45, 45, 45, 1) 2px,
+        rgba(35, 35, 35, 1) 4px
+      );
+    background-blend-mode: multiply;
+  }
+
+  .nappa-leather {
+    background:
+      radial-gradient(
+        ellipse at 20% 30%,
+        rgba(255, 255, 255, 0.05) 0%,
+        transparent 40%
+      ),
+      radial-gradient(
+        ellipse at 80% 70%,
+        rgba(255, 255, 255, 0.03) 0%,
+        transparent 40%
+      ),
+      linear-gradient(135deg, #0a0a0f 0%, #050508 100%);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  }
+
+  .ambient-line {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ambient-line::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(0, 149, 255, 0.8) 50%,
+      transparent 100%
+    );
+    animation: ambient-flow 4s ease-in-out infinite;
+  }
+
+  @keyframes ambient-flow {
+    0%,
+    100% {
+      left: -100%;
+      opacity: 0;
+    }
+    50% {
+      left: 100%;
+      opacity: 1;
+    }
+  }
+
+  .floating-3d {
+    animation: float-3d 6s ease-in-out infinite;
+  }
+
+  @keyframes float-3d {
+    0%,
+    100% {
+      transform: translateY(0) translateZ(0) rotateX(0);
+    }
+    50% {
+      transform: translateY(-20px) translateZ(20px) rotateX(5deg);
+    }
+  }
+
+  .perspective-deep {
+    perspective: 2000px;
+    perspective-origin: center center;
+  }
+
+  .rotate-3d-hover {
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .rotate-3d-hover:hover {
+    transform: rotateY(10deg) rotateX(-5deg) translateZ(40px);
+  }
+
+  .gauge-glow {
+    box-shadow:
+      0 0 20px rgba(0, 149, 255, 0.5),
+      0 0 40px rgba(0, 149, 255, 0.3),
+      0 0 60px rgba(0, 149, 255, 0.2),
+      inset 0 0 20px rgba(0, 149, 255, 0.1);
+    border: 2px solid rgba(0, 149, 255, 0.4);
+  }
+
+  .holographic {
+    background: linear-gradient(
+      135deg,
+      rgba(0, 149, 255, 0.1) 0%,
+      rgba(255, 193, 7, 0.05) 25%,
+      rgba(0, 149, 255, 0.1) 50%,
+      rgba(255, 193, 7, 0.05) 75%,
+      rgba(0, 149, 255, 0.1) 100%
+    );
+    background-size: 200% 200%;
+    animation: holographic-shift 8s ease infinite;
+  }
+
+  @keyframes holographic-shift {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .depth-layer-1 {
+    transform: translateZ(20px);
+  }
+
+  .depth-layer-2 {
+    transform: translateZ(40px);
+  }
+
+  .depth-layer-3 {
+    transform: translateZ(60px);
+  }
 }
