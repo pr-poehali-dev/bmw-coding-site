@@ -80,14 +80,34 @@ export default function Index() {
 
         <section className="container mx-auto px-4 py-20 text-center">
           <div className="animate-slide-in">
-            <h2 className="text-5xl md:text-7xl font-bold mb-6 neon-glow">
-              МАКСИМУМ ОТ ВАШЕГО BMW
+            <div className="inline-block bg-primary/10 border border-primary/30 rounded-full px-6 py-2 mb-6">
+              <p className="text-sm font-semibold text-primary uppercase tracking-wider">
+                ⚡ Активируем за 1 час то, что BMW скрыл в вашем авто
+              </p>
+            </div>
+            <h2 className="text-5xl md:text-7xl font-bold mb-6 neon-glow leading-tight">
+              +30 СКРЫТЫХ ФУНКЦИЙ<br/>БЕЗ ВИЗИТА В ДИЛЕР
             </h2>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-4 max-w-3xl mx-auto">
-              Профессиональное кодирование, дооснащение и обслуживание автомобилей BMW
+            <p className="text-xl md:text-2xl text-muted-foreground mb-6 max-w-3xl mx-auto">
+              Складывание зеркал, видео в движении, русское меню — всё это уже есть в вашем BMW. 
+              Просто заблокировано заводом.
             </p>
-            <p className="text-lg text-accent cyan-glow">
-              Раскройте потенциал вашего автомобиля
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-4">
+              <div className="flex items-center gap-2 text-accent">
+                <Icon name="CheckCircle2" className="w-5 h-5" />
+                <span className="font-semibold">Гарантия на работу</span>
+              </div>
+              <div className="flex items-center gap-2 text-accent">
+                <Icon name="Clock" className="w-5 h-5" />
+                <span className="font-semibold">Выезд к вам за 30 мин</span>
+              </div>
+              <div className="flex items-center gap-2 text-accent">
+                <Icon name="Shield" className="w-5 h-5" />
+                <span className="font-semibold">Без потери гарантии BMW</span>
+              </div>
+            </div>
+            <p className="text-lg text-primary font-bold">
+              🎁 При заказе сегодня — диагностика всех систем БЕСПЛАТНО (обычно 3000₽)
             </p>
           </div>
         </section>
