@@ -78,8 +78,20 @@ const services = [
   }
 ];
 
+const ambientModes = [
+  { id: 'ice-blue', name: 'Ice Blue', primary: '0, 153, 255', secondary: '0, 153, 255', icon: 'Droplets' },
+  { id: 'orange', name: 'Orange', primary: '255, 120, 60', secondary: '255, 140, 80', icon: 'Flame' },
+  { id: 'purple', name: 'Purple', primary: '165, 100, 255', secondary: '180, 120, 255', icon: 'Sparkles' },
+  { id: 'mint', name: 'Mint', primary: '100, 200, 180', secondary: '120, 220, 200', icon: 'Leaf' },
+  { id: 'red', name: 'Red', primary: '255, 80, 80', secondary: '255, 100, 100', icon: 'Flame' },
+  { id: 'dynamic', name: 'Dynamic', primary: '0, 153, 255', secondary: '255, 120, 60', icon: 'Zap' }
+];
+
 export default function Index() {
   const [selectedService, setSelectedService] = useState<string | null>(null);
+  const [ambientMode, setAmbientMode] = useState('dynamic');
+
+  const currentMode = ambientModes.find(m => m.id === ambientMode) || ambientModes[5];
 
   return (
     <div className="min-h-screen bg-background text-foreground relative overflow-hidden perspective-deep">
@@ -93,16 +105,44 @@ export default function Index() {
         }}
       />
       
-      <div className="fixed top-0 left-0 right-0 h-2 ambient-line" />
-      <div className="fixed bottom-0 left-0 right-0 h-2 ambient-line" style={{ animationDelay: '2s' }} />
-      <div className="fixed left-0 top-0 bottom-0 w-2 ambient-line" style={{ animationDelay: '1s' }} />
-      <div className="fixed right-0 top-0 bottom-0 w-2 ambient-line" style={{ animationDelay: '3s' }} />
+      <div 
+        className="fixed top-0 left-0 right-0 h-2 transition-all duration-1000"
+        style={{
+          background: `linear-gradient(90deg, transparent 0%, rgba(${currentMode.primary}, 0.8) 50%, transparent 100%)`,
+          boxShadow: `0 0 20px rgba(${currentMode.primary}, 0.5)`,
+          animation: 'ambient-flow 5s ease-in-out infinite'
+        }}
+      />
+      <div 
+        className="fixed bottom-0 left-0 right-0 h-2 transition-all duration-1000"
+        style={{
+          background: `linear-gradient(90deg, transparent 0%, rgba(${currentMode.secondary}, 0.8) 50%, transparent 100%)`,
+          boxShadow: `0 0 20px rgba(${currentMode.secondary}, 0.5)`,
+          animation: 'ambient-flow 5s ease-in-out infinite 2s'
+        }}
+      />
+      <div 
+        className="fixed left-0 top-0 bottom-0 w-2 transition-all duration-1000"
+        style={{
+          background: `linear-gradient(180deg, transparent 0%, rgba(${currentMode.primary}, 0.8) 50%, transparent 100%)`,
+          boxShadow: `0 0 20px rgba(${currentMode.primary}, 0.5)`,
+          animation: 'ambient-flow 5s ease-in-out infinite 1s'
+        }}
+      />
+      <div 
+        className="fixed right-0 top-0 bottom-0 w-2 transition-all duration-1000"
+        style={{
+          background: `linear-gradient(180deg, transparent 0%, rgba(${currentMode.secondary}, 0.8) 50%, transparent 100%)`,
+          boxShadow: `0 0 20px rgba(${currentMode.secondary}, 0.5)`,
+          animation: 'ambient-flow 5s ease-in-out infinite 3s'
+        }}
+      />
       
-      <div className="fixed top-20 left-20 w-96 h-96 rounded-full blur-3xl floating-3d" style={{ background: 'radial-gradient(circle, rgba(0, 153, 255, 0.15) 0%, transparent 70%)' }} />
-      <div className="fixed bottom-20 right-20 w-[500px] h-[500px] rounded-full blur-3xl floating-3d" style={{ background: 'radial-gradient(circle, rgba(255, 120, 60, 0.12) 0%, transparent 70%)', animationDelay: '2s', animationDuration: '8s' }} />
-      <div className="fixed top-1/3 right-1/4 w-80 h-80 rounded-full blur-3xl floating-3d" style={{ background: 'radial-gradient(circle, rgba(165, 100, 255, 0.08) 0%, transparent 70%)', animationDelay: '3s', animationDuration: '9s' }} />
-      <div className="fixed bottom-1/3 left-1/4 w-[450px] h-[450px] rounded-full blur-3xl floating-3d" style={{ background: 'radial-gradient(circle, rgba(100, 200, 180, 0.08) 0%, transparent 70%)', animationDelay: '5s', animationDuration: '11s' }} />
-      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full blur-3xl floating-3d" style={{ background: 'radial-gradient(circle, rgba(0, 153, 255, 0.06) 0%, rgba(255, 120, 60, 0.04) 50%, transparent 100%)', animationDelay: '4s', animationDuration: '12s' }} />
+      <div className="fixed top-20 left-20 w-96 h-96 rounded-full blur-3xl floating-3d transition-all duration-1000" style={{ background: `radial-gradient(circle, rgba(${currentMode.primary}, 0.15) 0%, transparent 70%)` }} />
+      <div className="fixed bottom-20 right-20 w-[500px] h-[500px] rounded-full blur-3xl floating-3d transition-all duration-1000" style={{ background: `radial-gradient(circle, rgba(${currentMode.secondary}, 0.12) 0%, transparent 70%)`, animationDelay: '2s', animationDuration: '8s' }} />
+      <div className="fixed top-1/3 right-1/4 w-80 h-80 rounded-full blur-3xl floating-3d transition-all duration-1000" style={{ background: `radial-gradient(circle, rgba(${currentMode.primary}, 0.08) 0%, transparent 70%)`, animationDelay: '3s', animationDuration: '9s' }} />
+      <div className="fixed bottom-1/3 left-1/4 w-[450px] h-[450px] rounded-full blur-3xl floating-3d transition-all duration-1000" style={{ background: `radial-gradient(circle, rgba(${currentMode.secondary}, 0.08) 0%, transparent 70%)`, animationDelay: '5s', animationDuration: '11s' }} />
+      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full blur-3xl floating-3d transition-all duration-1000" style={{ background: `radial-gradient(circle, rgba(${currentMode.primary}, 0.06) 0%, rgba(${currentMode.secondary}, 0.04) 50%, transparent 100%)`, animationDelay: '4s', animationDuration: '12s' }} />
       
       <div className="relative z-10">
         <header className="glass-cockpit nappa-leather rounded-3xl mx-4 mt-4 overflow-hidden cockpit-reflection bmw-3d-panel">
@@ -121,23 +161,85 @@ export default function Index() {
                 <p className="text-sm text-primary font-medium tracking-[0.3em]">G-SERIES TECHNOLOGY</p>
               </div>
             </div>
-            <Button className="bg-primary hover:bg-primary text-primary-foreground font-bold rounded-2xl px-10 py-7 gauge-glow hover:scale-105 transition-all duration-500 depth-layer-2 rotate-3d-hover">
-              <Icon name="Phone" className="w-6 h-6 mr-3" />
-              Связаться
-            </Button>
+            <div className="flex items-center gap-4">
+              <Button 
+                className="glass-cockpit nappa-leather font-bold rounded-2xl px-6 py-4 gauge-glow hover:scale-105 transition-all duration-500 depth-layer-2 rotate-3d-hover"
+                onClick={() => {
+                  const currentIndex = ambientModes.findIndex(m => m.id === ambientMode);
+                  const nextIndex = (currentIndex + 1) % ambientModes.length;
+                  setAmbientMode(ambientModes[nextIndex].id);
+                }}
+              >
+                <Icon name={currentMode.icon as any} className="w-5 h-5" style={{ color: `rgb(${currentMode.primary})` }} />
+              </Button>
+              <Button 
+                className="font-bold rounded-2xl px-10 py-7 gauge-glow hover:scale-105 transition-all duration-500 depth-layer-2 rotate-3d-hover"
+                style={{
+                  background: `linear-gradient(135deg, rgba(${currentMode.primary}, 1), rgba(${currentMode.secondary}, 1))`,
+                  color: 'white'
+                }}
+              >
+                <Icon name="Phone" className="w-6 h-6 mr-3" />
+                Связаться
+              </Button>
+            </div>
           </div>
         </header>
 
+        <div className="fixed top-24 right-4 z-50 glass-cockpit nappa-leather rounded-2xl p-4 cockpit-reflection">
+          <p className="text-xs font-bold mb-3 tracking-wide" style={{ color: `rgb(${currentMode.primary})` }}>AMBIENT LIGHT</p>
+          <div className="space-y-2">
+            {ambientModes.map((mode) => (
+              <button
+                key={mode.id}
+                onClick={() => setAmbientMode(mode.id)}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-500 hover:scale-105 ${
+                  ambientMode === mode.id ? 'glass-cockpit' : 'hover:bg-white/5'
+                }`}
+                style={{
+                  border: ambientMode === mode.id ? `2px solid rgba(${mode.primary}, 0.6)` : '2px solid transparent',
+                  boxShadow: ambientMode === mode.id ? `0 0 20px rgba(${mode.primary}, 0.4)` : 'none'
+                }}
+              >
+                <Icon 
+                  name={mode.icon as any} 
+                  className="w-5 h-5" 
+                  style={{ color: `rgb(${mode.primary})` }}
+                />
+                <span className="text-sm font-medium">{mode.name}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
         <section className="container mx-auto px-4 py-32 text-center relative bmw-3d-panel">
-          <div className="idrive-screen absolute inset-0 rounded-3xl" />
+          <div 
+            className="absolute inset-0 rounded-3xl transition-all duration-1000"
+            style={{
+              background: `radial-gradient(ellipse at center, rgba(${currentMode.primary}, 0.06) 0%, rgba(${currentMode.secondary}, 0.02) 50%, transparent 100%)`,
+              boxShadow: `0 0 100px rgba(${currentMode.primary}, 0.35), 0 0 60px rgba(${currentMode.secondary}, 0.15), inset 0 0 60px rgba(${currentMode.primary}, 0.12)`
+            }}
+          />
           <div className="animate-slide-in relative">
             <div className="glass-cockpit inline-block rounded-full px-10 py-4 mb-10 cockpit-reflection nappa-leather depth-layer-1">
-              <p className="text-sm font-bold text-primary uppercase tracking-[0.4em] flex items-center gap-3 justify-center">
-                <span className="w-2 h-2 bg-primary rounded-full animate-pulse gauge-glow" />
+              <p className="text-sm font-bold uppercase tracking-[0.4em] flex items-center gap-3 justify-center transition-all duration-1000" style={{ color: `rgb(${currentMode.primary})` }}>
+                <span 
+                  className="w-2 h-2 rounded-full animate-pulse transition-all duration-1000" 
+                  style={{ 
+                    backgroundColor: `rgb(${currentMode.primary})`,
+                    boxShadow: `0 0 10px rgba(${currentMode.primary}, 0.8)`
+                  }}
+                />
                 Активируем за 1 час то, что BMW скрыл в вашем авто
               </p>
             </div>
-            <h2 className="text-7xl md:text-9xl font-bold mb-10 electric-glow leading-tight depth-layer-2" style={{ transform: 'translateZ(40px)' }}>
+            <h2 
+              className="text-7xl md:text-9xl font-bold mb-10 leading-tight depth-layer-2 transition-all duration-1000" 
+              style={{ 
+                transform: 'translateZ(40px)',
+                textShadow: `0 0 20px rgba(${currentMode.primary}, 0.7), 0 0 40px rgba(${currentMode.primary}, 0.4), 0 0 60px rgba(${currentMode.primary}, 0.2)`
+              }}
+            >
               +10 СКРЫТЫХ ФУНКЦИЙ<br/>БЕЗ ВИЗИТА В ДИЛЕР
             </h2>
             <p className="text-2xl md:text-3xl text-muted-foreground mb-12 max-w-5xl mx-auto leading-relaxed depth-layer-1">
@@ -145,17 +247,30 @@ export default function Index() {
               Просто заблокировано заводом.
             </p>
             <div className="flex flex-col sm:flex-row gap-10 justify-center items-center mb-8">
-              <div className="glass-cockpit flex items-center gap-4 text-primary px-8 py-4 rounded-2xl nappa-leather cockpit-reflection rotate-3d-hover depth-layer-2">
+              <div 
+                className="glass-cockpit flex items-center gap-4 px-8 py-4 rounded-2xl nappa-leather cockpit-reflection rotate-3d-hover depth-layer-2 transition-all duration-1000"
+                style={{ color: `rgb(${currentMode.primary})` }}
+              >
                 <Icon name="CheckCircle2" className="w-7 h-7" />
                 <span className="font-bold text-lg">Гарантия на работу</span>
               </div>
-              <div className="glass-cockpit flex items-center gap-4 text-accent px-8 py-4 rounded-2xl nappa-leather cockpit-reflection rotate-3d-hover depth-layer-2">
+              <div 
+                className="glass-cockpit flex items-center gap-4 px-8 py-4 rounded-2xl nappa-leather cockpit-reflection rotate-3d-hover depth-layer-2 transition-all duration-1000"
+                style={{ color: `rgb(${currentMode.secondary})` }}
+              >
                 <Icon name="Shield" className="w-7 h-7" />
                 <span className="font-bold text-lg">Без потери гарантии BMW</span>
               </div>
             </div>
-            <div className="glass-cockpit inline-block px-12 py-6 rounded-2xl gauge-glow nappa-leather depth-layer-3" style={{ transform: 'translateZ(60px)' }}>
-              <p className="text-2xl text-primary font-bold">
+            <div 
+              className="glass-cockpit inline-block px-12 py-6 rounded-2xl nappa-leather depth-layer-3 transition-all duration-1000" 
+              style={{ 
+                transform: 'translateZ(60px)',
+                border: `2px solid rgba(${currentMode.primary}, 0.5)`,
+                boxShadow: `0 0 25px rgba(${currentMode.primary}, 0.6), 0 0 50px rgba(${currentMode.primary}, 0.35), 0 0 75px rgba(${currentMode.primary}, 0.2), 0 0 100px rgba(${currentMode.secondary}, 0.15), inset 0 0 25px rgba(${currentMode.primary}, 0.15)`
+              }}
+            >
+              <p className="text-2xl font-bold transition-all duration-1000" style={{ color: `rgb(${currentMode.primary})` }}>
                 🎁 При заказе сегодня — диагностика всех систем БЕСПЛАТНО (обычно 3000₽)
               </p>
             </div>
@@ -228,10 +343,21 @@ export default function Index() {
 
         <section className="container mx-auto px-4 py-32 bmw-3d-panel">
           <Card className="glass-cockpit nappa-leather relative overflow-hidden cockpit-reflection bmw-3d-card">
-            <div className="idrive-screen absolute inset-0" />
+            <div 
+              className="absolute inset-0 transition-all duration-1000"
+              style={{
+                background: `radial-gradient(ellipse at center, rgba(${currentMode.primary}, 0.06) 0%, rgba(${currentMode.secondary}, 0.02) 50%, transparent 100%)`,
+                boxShadow: `0 0 100px rgba(${currentMode.primary}, 0.35), 0 0 60px rgba(${currentMode.secondary}, 0.15), inset 0 0 60px rgba(${currentMode.primary}, 0.12)`
+              }}
+            />
             <CardContent className="p-20 text-center relative z-10">
               <div className="depth-layer-2" style={{ transform: 'translateZ(40px)' }}>
-                <h3 className="text-6xl md:text-7xl font-bold mb-8 electric-glow leading-tight">
+                <h3 
+                  className="text-6xl md:text-7xl font-bold mb-8 leading-tight transition-all duration-1000"
+                  style={{
+                    textShadow: `0 0 20px rgba(${currentMode.primary}, 0.7), 0 0 40px rgba(${currentMode.primary}, 0.4), 0 0 60px rgba(${currentMode.primary}, 0.2)`
+                  }}
+                >
                   ГОТОВЫ МОДЕРНИЗИРОВАТЬ ВАШ BMW?
                 </h3>
               </div>
@@ -240,11 +366,26 @@ export default function Index() {
                 Работаем со всеми моделями BMW G-серии.
               </p>
               <div className="flex flex-col sm:flex-row gap-8 justify-center">
-                <Button size="lg" className="bg-primary hover:bg-primary text-primary-foreground font-bold text-2xl px-16 py-10 rounded-3xl gauge-glow hover:scale-110 transition-all duration-500 depth-layer-3 rotate-3d-hover">
+                <Button 
+                  size="lg" 
+                  className="text-white font-bold text-2xl px-16 py-10 rounded-3xl hover:scale-110 transition-all duration-500 depth-layer-3 rotate-3d-hover"
+                  style={{
+                    background: `linear-gradient(135deg, rgba(${currentMode.primary}, 1), rgba(${currentMode.secondary}, 1))`,
+                    boxShadow: `0 0 25px rgba(${currentMode.primary}, 0.6), 0 0 50px rgba(${currentMode.primary}, 0.35), 0 0 75px rgba(${currentMode.primary}, 0.2), 0 0 100px rgba(${currentMode.secondary}, 0.15), inset 0 0 25px rgba(${currentMode.primary}, 0.15)`,
+                    border: `2px solid rgba(${currentMode.primary}, 0.5)`
+                  }}
+                >
                   <Icon name="MessageCircle" className="w-8 h-8 mr-4" />
                   Написать в WhatsApp
                 </Button>
-                <Button size="lg" variant="outline" className="glass-cockpit nappa-leather text-foreground font-bold text-2xl px-16 py-10 rounded-3xl hover:scale-110 transition-all duration-500 depth-layer-3 rotate-3d-hover gauge-glow">
+                <Button 
+                  size="lg" 
+                  className="glass-cockpit nappa-leather text-foreground font-bold text-2xl px-16 py-10 rounded-3xl hover:scale-110 transition-all duration-500 depth-layer-3 rotate-3d-hover"
+                  style={{
+                    border: `2px solid rgba(${currentMode.primary}, 0.5)`,
+                    boxShadow: `0 0 25px rgba(${currentMode.primary}, 0.6), 0 0 50px rgba(${currentMode.primary}, 0.35), 0 0 75px rgba(${currentMode.primary}, 0.2), 0 0 100px rgba(${currentMode.secondary}, 0.15), inset 0 0 25px rgba(${currentMode.primary}, 0.15)`
+                  }}
+                >
                   <Icon name="Phone" className="w-8 h-8 mr-4" />
                   Позвонить
                 </Button>
@@ -257,13 +398,37 @@ export default function Index() {
           <div className="container mx-auto px-6 py-12 text-center">
             <p className="text-muted-foreground mb-6 text-lg">© 2024 BMW Coding. Профессиональная работа с электроникой BMW G-серии</p>
             <div className="flex justify-center gap-10">
-              <a href="#" className="glass-cockpit p-4 rounded-2xl text-primary hover:text-accent transition-all duration-500 gauge-glow hover:scale-110 rotate-3d-hover">
+              <a 
+                href="#" 
+                className="glass-cockpit p-4 rounded-2xl transition-all duration-500 hover:scale-110 rotate-3d-hover"
+                style={{
+                  color: `rgb(${currentMode.primary})`,
+                  border: `2px solid rgba(${currentMode.primary}, 0.3)`,
+                  boxShadow: `0 0 20px rgba(${currentMode.primary}, 0.4)`
+                }}
+              >
                 <Icon name="Instagram" className="w-7 h-7" />
               </a>
-              <a href="#" className="glass-cockpit p-4 rounded-2xl text-primary hover:text-accent transition-all duration-500 gauge-glow hover:scale-110 rotate-3d-hover">
+              <a 
+                href="#" 
+                className="glass-cockpit p-4 rounded-2xl transition-all duration-500 hover:scale-110 rotate-3d-hover"
+                style={{
+                  color: `rgb(${currentMode.primary})`,
+                  border: `2px solid rgba(${currentMode.primary}, 0.3)`,
+                  boxShadow: `0 0 20px rgba(${currentMode.primary}, 0.4)`
+                }}
+              >
                 <Icon name="Youtube" className="w-7 h-7" />
               </a>
-              <a href="#" className="glass-cockpit p-4 rounded-2xl text-primary hover:text-accent transition-all duration-500 gauge-glow hover:scale-110 rotate-3d-hover">
+              <a 
+                href="#" 
+                className="glass-cockpit p-4 rounded-2xl transition-all duration-500 hover:scale-110 rotate-3d-hover"
+                style={{
+                  color: `rgb(${currentMode.primary})`,
+                  border: `2px solid rgba(${currentMode.primary}, 0.3)`,
+                  boxShadow: `0 0 20px rgba(${currentMode.primary}, 0.4)`
+                }}
+              >
                 <Icon name="Mail" className="w-7 h-7" />
               </a>
             </div>
