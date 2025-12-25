@@ -6,39 +6,40 @@
 
 @layer base {
   :root {
-    --background: 220 25% 8%;
-    --foreground: 210 40% 98%;
+    --background: 0 0% 5%;
+    --foreground: 210 30% 96%;
 
-    --card: 220 20% 12%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 8%;
+    --card-foreground: 210 30% 96%;
 
-    --popover: 220 20% 12%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 210 30% 96%;
 
-    --primary: 205 100% 50%;
-    --primary-foreground: 220 25% 8%;
+    --primary: 205 100% 55%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 220 15% 18%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 210 30% 96%;
 
-    --muted: 220 15% 25%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 0 0% 18%;
+    --muted-foreground: 215 15% 60%;
 
-    --accent: 45 95% 55%;
-    --accent-foreground: 220 25% 8%;
+    --accent: 25 100% 60%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 0 100% 50%;
+    --border: 205 50% 20%;
+    --input: 0 0% 10%;
+    --ring: 205 100% 55%;
 
     --radius: 0.5rem;
 
-    --electric-blue: 205 100% 50%;
-    --gold-accent: 45 95% 55%;
+    --electric-blue: 205 100% 55%;
+    --ambient-orange: 25 100% 60%;
     --bmw-blue: 211 100% 50%;
+    --leather-dark: 0 0% 8%;
 
     --sidebar-background: 0 0% 98%;
 
@@ -58,33 +59,33 @@
   }
 
   .dark {
-    --background: 220 25% 8%;
-    --foreground: 210 40% 98%;
+    --background: 0 0% 5%;
+    --foreground: 210 30% 96%;
 
-    --card: 220 20% 12%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 8%;
+    --card-foreground: 210 30% 96%;
 
-    --popover: 220 20% 12%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 210 30% 96%;
 
-    --primary: 205 100% 50%;
-    --primary-foreground: 220 25% 8%;
+    --primary: 205 100% 55%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 220 15% 18%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 210 30% 96%;
 
-    --muted: 220 15% 25%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 0 0% 18%;
+    --muted-foreground: 215 15% 60%;
 
-    --accent: 45 95% 55%;
-    --accent-foreground: 220 25% 8%;
+    --accent: 25 100% 60%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 0 100% 50%;
+    --border: 205 50% 20%;
+    --input: 0 0% 10%;
+    --ring: 205 100% 55%;
     --sidebar-background: 0 0% 5%;
     --sidebar-foreground: 0 0% 95%;
     --sidebar-primary: 0 100% 43%;
@@ -170,5 +171,57 @@
       linear-gradient(rgba(0, 149, 255, 0.05) 1px, transparent 1px),
       linear-gradient(90deg, rgba(0, 149, 255, 0.05) 1px, transparent 1px);
     background-size: 50px 50px;
+  }
+
+  .ambient-glow {
+    box-shadow:
+      0 0 30px rgba(0, 149, 255, 0.4),
+      0 0 60px rgba(0, 149, 255, 0.2),
+      inset 0 0 30px rgba(0, 149, 255, 0.05);
+  }
+
+  .leather-texture {
+    background:
+      radial-gradient(
+        ellipse at top left,
+        rgba(255, 255, 255, 0.03) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse at bottom right,
+        rgba(255, 255, 255, 0.02) 0%,
+        transparent 50%
+      ),
+      linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.95) 100%);
+  }
+
+  .curved-edge {
+    border-radius: 2rem;
+    clip-path: polygon(
+      2% 0,
+      98% 0,
+      100% 2%,
+      100% 98%,
+      98% 100%,
+      2% 100%,
+      0 98%,
+      0 2%
+    );
+  }
+
+  .hexagon-pattern {
+    background-image:
+      repeating-linear-gradient(
+        30deg,
+        rgba(0, 149, 255, 0.03) 0px,
+        transparent 1px,
+        transparent 10px
+      ),
+      repeating-linear-gradient(
+        -30deg,
+        rgba(0, 149, 255, 0.03) 0px,
+        transparent 1px,
+        transparent 10px
+      );
   }
 }
