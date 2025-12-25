@@ -10,7 +10,7 @@ const services = [
     description: 'Увеличение мощности',
     icon: 'Zap',
     price: 'от 25 000 ₽',
-    color: '#FF6B00'
+    color: '#FF0040'
   },
   {
     id: 'coding',
