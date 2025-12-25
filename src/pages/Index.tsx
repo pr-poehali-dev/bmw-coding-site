@@ -157,9 +157,9 @@ export default function Index() {
                 </span>
               </h1>
               
-              {/* Супер оффер */}
+              {/* Супер оффер - Навигация */}
               <div 
-                className="relative px-8 py-6 rounded-2xl border backdrop-blur-xl max-w-md"
+                className="relative rounded-2xl border backdrop-blur-xl max-w-md overflow-hidden"
                 style={{
                   background: 'linear-gradient(135deg, rgba(129, 196, 255, 0.15), rgba(22, 88, 142, 0.1))',
                   border: '1px solid rgba(129, 196, 255, 0.3)',
@@ -168,32 +168,50 @@ export default function Index() {
               >
                 {/* BMW M полоска */}
                 <div 
-                  className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl"
+                  className="absolute top-0 left-0 right-0 h-1 z-10"
                   style={{
                     background: 'linear-gradient(90deg, #81C4FF 0%, #81C4FF 33.33%, #16588E 33.33%, #16588E 66.66%, #E7222E 66.66%, #E7222E 100%)'
                   }}
                 />
                 
-                <div className="flex items-center gap-2 mb-3">
-                  <Icon name="Zap" className="w-5 h-5 text-[#81C4FF]" />
-                  <span className="text-[#81C4FF] text-xs font-light tracking-widest uppercase">Специальное предложение</span>
+                {/* Изображение До/После */}
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src="https://cdn.poehali.dev/files/mgu.jpg" 
+                    alt="Российские карты навигации BMW" 
+                    className="w-full h-full object-cover opacity-80"
+                  />
+                  <div 
+                    className="absolute inset-0"
+                    style={{
+                      background: 'linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 100%)'
+                    }}
+                  />
                 </div>
                 
-                <h3 className="text-2xl font-light text-white mb-2 leading-tight">
-                  +40 л.с. за 2 часа
-                </h3>
-                
-                <p className="text-white/60 text-sm font-light mb-4 leading-relaxed">
-                  Чип-тюнинг Stage 1 + диагностика бесплатно. Гарантия 2 года.
-                </p>
-                
-                <div className="flex items-center justify-between">
-                  <div>
-                    <span className="text-white/40 text-xs line-through block">35 000 ₽</span>
-                    <span className="text-3xl font-light text-[#81C4FF]">25 000 ₽</span>
+                {/* Контент */}
+                <div className="px-8 py-6 relative -mt-12 z-10">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Icon name="Map" className="w-5 h-5 text-[#81C4FF]" />
+                    <span className="text-[#81C4FF] text-xs font-light tracking-widest uppercase">Специальное предложение</span>
                   </div>
-                  <div className="px-4 py-2 rounded-lg bg-[#E7222E]/20 border border-[#E7222E]/30">
-                    <span className="text-[#E7222E] text-sm font-medium">-29%</span>
+                  
+                  <h3 className="text-2xl font-light text-white mb-2 leading-tight">
+                    Российские карты навигации
+                  </h3>
+                  
+                  <p className="text-white/60 text-sm font-light mb-4 leading-relaxed">
+                    Смена карт на русскую навигацию. Установка за 1 час + настройка бесплатно.
+                  </p>
+                  
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="text-white/40 text-xs line-through block">35 000 ₽</span>
+                      <span className="text-3xl font-light text-[#81C4FF]">25 000 ₽</span>
+                    </div>
+                    <div className="px-4 py-2 rounded-lg bg-[#E7222E]/20 border border-[#E7222E]/30">
+                      <span className="text-[#E7222E] text-sm font-medium">-29%</span>
+                    </div>
                   </div>
                 </div>
               </div>
