@@ -167,9 +167,16 @@ export default function Index() {
                 className="group relative overflow-hidden cursor-pointer border-0 transition-all duration-500 hover:scale-[1.02]"
                 onClick={() => setSelectedService(selectedService === service.id ? null : service.id)}
                 style={{
-                  background: selectedService === service.id 
-                    ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02))'
-                    : 'linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01))',
+                  background: `
+                    linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)),
+                    repeating-linear-gradient(
+                      45deg,
+                      rgba(20, 20, 20, 0.8) 0px,
+                      rgba(20, 20, 20, 0.8) 2px,
+                      rgba(30, 30, 30, 0.6) 2px,
+                      rgba(30, 30, 30, 0.6) 4px
+                    )
+                  `,
                   backdropFilter: 'blur(20px)',
                   boxShadow: selectedService === service.id
                     ? `0 20px 60px -10px ${service.color}40, inset 0 1px 0 rgba(255, 255, 255, 0.1)`
@@ -177,6 +184,14 @@ export default function Index() {
                   animationDelay: `${index * 0.1}s`
                 }}
               >
+                {/* BMW M Tricolor на hover */}
+                <div 
+                  className="absolute top-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{
+                    background: 'linear-gradient(90deg, #005eb8 0%, #005eb8 33.33%, #e31e24 33.33%, #e31e24 66.66%, #8b4895 66.66%, #8b4895 100%)',
+                    boxShadow: '0 0 20px rgba(227, 30, 36, 0.5)'
+                  }}
+                />
                 {/* Accent Line */}
                 <div 
                   className="absolute top-0 left-0 right-0 h-[2px] transition-all duration-500"
