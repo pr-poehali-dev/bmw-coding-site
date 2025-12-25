@@ -85,7 +85,7 @@ export default function Index() {
               className="h-10 w-auto opacity-90"
             />
             <div className="h-6 w-px bg-white/20" />
-            <span className="text-white/60 text-sm font-light tracking-wider">BMW CODING</span>
+            <span className="text-white/60 text-sm font-light tracking-wider" style={{ fontFamily: 'BMW Helvetica, sans-serif' }}>REBORN BMW</span>
           </div>
           
           <div className="flex items-center gap-6 text-white/60 text-sm">
@@ -106,13 +106,13 @@ export default function Index() {
           <div className="mb-16 mt-8">
             <div className="flex items-center gap-3 mb-6">
               <div className="h-1 w-12 bg-gradient-to-r from-blue-500 to-transparent rounded-full" />
-              <span className="text-white/40 text-xs tracking-[0.3em] uppercase font-light">G-Series Specialist</span>
+              <span className="text-white/40 text-xs tracking-[0.3em] uppercase font-light">Чип-тюнинг • Кодирование • Дооснащение</span>
             </div>
-            <h1 className="text-6xl md:text-8xl font-extralight text-white tracking-tight leading-none mb-4">
-              BMW
+            <h1 className="text-6xl md:text-8xl font-extralight text-white tracking-tight leading-none mb-4" style={{ fontFamily: 'BMW Helvetica, sans-serif' }}>
+              REBORN
               <br />
               <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                Coding
+                BMW
               </span>
             </h1>
             <p className="text-xl text-white/50 font-light max-w-2xl">
@@ -265,9 +265,9 @@ export default function Index() {
               </div>
               
               <div className="flex items-center gap-3 text-white/40 text-xs">
-                <span className="font-light tracking-wide">© 2024 BMW Coding</span>
+                <span className="font-light tracking-wide" style={{ fontFamily: 'BMW Helvetica, sans-serif' }}>© 2024 REBORN BMW</span>
                 <div className="h-4 w-px bg-white/20" />
-                <span className="font-light">G-Series</span>
+                <span className="font-light">Premium Service</span>
               </div>
             </div>
           </div>
