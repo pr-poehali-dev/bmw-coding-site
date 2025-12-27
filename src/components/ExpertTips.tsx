@@ -77,7 +77,8 @@ export default function ExpertTips() {
             border: '1px solid rgba(255, 215, 0, 0.2)',
             boxShadow: '0 30px 90px -20px rgba(255, 215, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.06)',
             background: 'linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(255, 215, 0, 0.02))',
-            minHeight: '400px'
+            minHeight: '500px',
+            height: '500px'
           }}
         >
           <div 
