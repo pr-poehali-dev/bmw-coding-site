@@ -42,6 +42,30 @@ const offers = [
       { icon: 'Shield', text: 'Гарантия' },
       { icon: 'Check', text: 'Без замены блока' }
     ]
+  },
+  {
+    id: 3,
+    icon: 'Cpu',
+    label: 'Специальное предложение',
+    title: 'Unlock блока двигателя за 3-5 дней',
+    description: 'Разблокировка блока двигателя автомобилей 2020+ года выпуска, для дальнейшего чип тюнинга. У нас свой прямой курьер, который гарантирует сохранность вашего блока двигателя.',
+    oldPrice: '',
+    newPrice: '',
+    discount: '',
+    image: 'https://cdn.poehali.dev/files/MDG1.jpg',
+    imageStyle: {
+      filter: 'brightness(1.35) contrast(1.5) saturate(1.4)',
+      objectPosition: 'center 35%',
+      transform: 'scale(1.5)',
+    },
+    features: [
+      { icon: 'Clock', text: 'Срок 3-5 дней' },
+      { icon: 'Shield', text: 'Гарантия сохранности' },
+      { icon: 'Truck', text: 'Прямой курьер' }
+    ],
+    hasButton: true,
+    buttonText: 'Сделать Unlock',
+    buttonLink: 'https://t.me/your_telegram'
   }
 ];
 
@@ -188,24 +212,28 @@ export default function SpecialOffer() {
                 {offer.description}
               </p>
               
-              <div className="flex items-center gap-8 mb-8">
-                <div>
-                  <span className="text-white/40 text-sm line-through block mb-2">{offer.oldPrice}</span>
-                  <span className="font-light text-[#E7222E] text-2xl">{offer.newPrice}</span>
+              {!offer.hasButton && (
+                <div className="flex items-center gap-8 mb-8">
+                  <div>
+                    <span className="text-white/40 text-sm line-through block mb-2">{offer.oldPrice}</span>
+                    <span className="font-light text-[#E7222E] text-2xl">{offer.newPrice}</span>
+                  </div>
+                  {offer.discount && (
+                    <div 
+                      className="py-4 rounded-2xl px-[11px]"
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(231, 34, 46, 0.9), rgba(231, 34, 46, 0.7))',
+                        border: '1px solid rgba(231, 34, 46, 0.5)',
+                        boxShadow: '0 10px 40px rgba(231, 34, 46, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+                      }}
+                    >
+                      <span className="text-white text-2xl font-medium">{offer.discount}</span>
+                    </div>
+                  )}
                 </div>
-                <div 
-                  className="py-4 rounded-2xl px-[11px]"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(231, 34, 46, 0.9), rgba(231, 34, 46, 0.7))',
-                    border: '1px solid rgba(231, 34, 46, 0.5)',
-                    boxShadow: '0 10px 40px rgba(231, 34, 46, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
-                  }}
-                >
-                  <span className="text-white text-2xl font-medium">{offer.discount}</span>
-                </div>
-              </div>
+              )}
               
-              <div className="flex items-center gap-6 text-sm flex-wrap">
+              <div className="flex items-center gap-6 text-sm flex-wrap mb-8">
                 {offer.features.map((feature, idx) => (
                   <div 
                     key={idx} 
@@ -232,6 +260,23 @@ export default function SpecialOffer() {
                   </div>
                 ))}
               </div>
+
+              {offer.hasButton && (
+                <a 
+                  href={offer.buttonLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-medium text-white transition-all duration-300 hover:scale-105"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(231, 34, 46, 0.9), rgba(231, 34, 46, 0.7))',
+                    border: '1px solid rgba(231, 34, 46, 0.5)',
+                    boxShadow: '0 10px 40px rgba(231, 34, 46, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+                  }}
+                >
+                  <Icon name="Send" className="w-5 h-5" />
+                  <span>{offer.buttonText}</span>
+                </a>
+              )}
             </div>
           </div>
         </div>
