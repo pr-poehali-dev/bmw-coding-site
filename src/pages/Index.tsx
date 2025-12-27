@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Icon from '@/components/ui/icon';
 import HeroSection from '@/components/HeroSection';
 import SpecialOffer from '@/components/SpecialOffer';
+import CodingPackages from '@/components/CodingPackages';
 import ServicesGrid from '@/components/ServicesGrid';
 import Reviews from '@/components/Reviews';
 import QuickActions from '@/components/QuickActions';
@@ -82,6 +83,7 @@ export default function Index() {
         <div className="container mx-auto px-6 pt-24 pb-32">
           <HeroSection />
           <SpecialOffer />
+          <CodingPackages />
           <ServicesGrid />
           <Reviews />
           <QuickActions />
