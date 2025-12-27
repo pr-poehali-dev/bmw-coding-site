@@ -23,13 +23,13 @@ export default function HeroSection() {
           </p>
         </div>
 
-        <div className="flex-shrink-0 mt-8">
-          <div className="bg-gradient-to-br from-blue-500/10 to-cyan-500/5 border border-blue-500/20 rounded-2xl p-6 backdrop-blur-sm">
+        <div className="flex-shrink-0 mt-4">
+          <div className="bg-gradient-to-br from-blue-500/10 to-cyan-500/5 border border-blue-500/20 rounded-xl p-5 backdrop-blur-sm max-w-[280px]">
             <div className="flex items-start gap-3">
-              <Icon name="Shield" className="w-6 h-6 text-blue-400 flex-shrink-0 mt-1" />
+              <Icon name="ShieldCheck" className="w-7 h-7 text-blue-400 flex-shrink-0 mt-0.5" />
               <div>
-                <div className="text-white/90 font-light text-lg mb-1">Без экспериментов</div>
-                <div className="text-white/50 text-sm font-light leading-relaxed max-w-xs">
+                <div className="text-white/90 font-medium text-base mb-1">Без экспериментов</div>
+                <div className="text-white/60 text-sm font-light leading-relaxed">
                   Применяем только рабочие решения
                 </div>
               </div>
