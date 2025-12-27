@@ -154,15 +154,9 @@ export default function CodingPackages() {
           rel="noopener noreferrer"
           className="px-8 py-4 rounded-xl font-medium text-white transition-all duration-300 hover:scale-105"
           style={{
-            background: selectedPackage 
-              ? 'linear-gradient(135deg, #81C4FF, #16588E)'
-              : 'linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))',
-            boxShadow: selectedPackage 
-              ? '0 10px 40px rgba(129, 196, 255, 0.4)'
-              : 'none',
-            border: '1px solid rgba(129, 196, 255, 0.3)',
-            opacity: selectedPackage ? 1 : 0.5,
-            pointerEvents: selectedPackage ? 'auto' : 'none'
+            background: 'linear-gradient(135deg, #81C4FF, #16588E)',
+            boxShadow: '0 10px 40px rgba(129, 196, 255, 0.4)',
+            border: '1px solid rgba(129, 196, 255, 0.3)'
           }}
         >
           Записаться на кодировку
@@ -170,7 +164,9 @@ export default function CodingPackages() {
 
         <div className="flex gap-4">
           <a
-            href="#"
+            href="https://disk.yandex.ru/i/UmJoVZEGPbNOPw"
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-white transition-all duration-300 hover:scale-105"
             style={{
               background: 'linear-gradient(135deg, rgba(129, 196, 255, 0.1), rgba(22, 88, 142, 0.1))',
@@ -183,7 +179,9 @@ export default function CodingPackages() {
           </a>
 
           <a
-            href="#"
+            href="https://disk.yandex.ru/i/Nd0Xi_oEIpiw4g"
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-white transition-all duration-300 hover:scale-105"
             style={{
               background: 'linear-gradient(135deg, rgba(129, 196, 255, 0.1), rgba(22, 88, 142, 0.1))',
