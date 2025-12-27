@@ -147,10 +147,12 @@ export default function CodingPackages() {
         ))}
       </div>
 
-      <div className="mt-8 text-center">
-        <button
-          disabled={!selectedPackage}
-          className="px-8 py-4 rounded-xl font-medium text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+      <div className="mt-8 flex flex-col items-center gap-6">
+        <a
+          href="https://t.me/Bocha_reborn"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-8 py-4 rounded-xl font-medium text-white transition-all duration-300 hover:scale-105"
           style={{
             background: selectedPackage 
               ? 'linear-gradient(135deg, #81C4FF, #16588E)'
@@ -158,11 +160,41 @@ export default function CodingPackages() {
             boxShadow: selectedPackage 
               ? '0 10px 40px rgba(129, 196, 255, 0.4)'
               : 'none',
-            border: '1px solid rgba(129, 196, 255, 0.3)'
+            border: '1px solid rgba(129, 196, 255, 0.3)',
+            opacity: selectedPackage ? 1 : 0.5,
+            pointerEvents: selectedPackage ? 'auto' : 'none'
           }}
         >
           Записаться на кодировку
-        </button>
+        </a>
+
+        <div className="flex gap-4">
+          <a
+            href="#"
+            className="flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-white transition-all duration-300 hover:scale-105"
+            style={{
+              background: 'linear-gradient(135deg, rgba(129, 196, 255, 0.1), rgba(22, 88, 142, 0.1))',
+              border: '1px solid rgba(129, 196, 255, 0.3)',
+              boxShadow: '0 4px 20px rgba(129, 196, 255, 0.2)'
+            }}
+          >
+            <Icon name="Download" className="w-5 h-5" />
+            <span>Кодировки F-series</span>
+          </a>
+
+          <a
+            href="#"
+            className="flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-white transition-all duration-300 hover:scale-105"
+            style={{
+              background: 'linear-gradient(135deg, rgba(129, 196, 255, 0.1), rgba(22, 88, 142, 0.1))',
+              border: '1px solid rgba(129, 196, 255, 0.3)',
+              boxShadow: '0 4px 20px rgba(129, 196, 255, 0.2)'
+            }}
+          >
+            <Icon name="Download" className="w-5 h-5" />
+            <span>Кодировки G-series</span>
+          </a>
+        </div>
       </div>
     </div>
   );

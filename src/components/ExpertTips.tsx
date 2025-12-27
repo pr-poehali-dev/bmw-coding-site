@@ -66,7 +66,7 @@ export default function ExpertTips() {
       <div className="text-center mb-12">
         <div className="flex items-center justify-center gap-3 mb-4">
           <Icon name="Lightbulb" className="w-8 h-8 text-[#FFD700]" />
-          <h2 className="font-light text-white text-3xl">Советы бывалых</h2>
+          <h2 className="font-light text-white text-3xl">Рекомендации экспертов</h2>
         </div>
       </div>
 
