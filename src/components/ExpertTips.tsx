@@ -6,26 +6,26 @@ const tips = [
     id: 1,
     icon: 'Zap',
     title: 'Система Start/Stop и стартер-генератор',
-    description: 'Современные BMW G-серии — это «мягкие гибриды». У них нет классического стартера в привычном понимании; его роль выполняет мощный 48-вольтовый стартер-генератор. С системой Start/Stop данное устройство быстро выходит из строя. Поэтому рекомендуем отключать эту систему.',
+    description: 'Современные BMW G-серии — это «мягкие гибриды». У них нет классического стартера; его роль выполняет мощный 48V стартер-генератор. С системой Start/Stop он быстро выходит из строя.',
     tips: [
-      'Отключайте Start/Stop',
-      '48V стартер-генератор служит дольше',
-      'Экономия на замене дорогого оборудования'
+      'Отключайте Start/Stop для продления срока службы',
+      '48V стартер-генератор прослужит значительно дольше',
+      'Экономия на замене дорогостоящего оборудования'
     ]
   },
   {
     id: 2,
     icon: 'Battery',
     title: 'Критическая просадка аккумулятора',
-    description: 'Электроника BMW G-серии крайне чувствительна к качеству питания. Просадка аккумулятора ниже критической отметки может привести к следующим последствиям:',
+    description: 'Электроника BMW G-серии чувствительна к качеству питания. Просадка аккумулятора ниже критической отметки приводит к проблемам:',
     issues: [
       {
         title: 'Синхронизация ключей',
-        text: 'Может нарушиться связь между блоком BDC (кузовная электроника) и DME (двигатель). Машина «забудет» ключи и откажется заводиться, даже когда вы зарядите АКБ.'
+        text: 'Нарушается связь между BDC (кузовная электроника) и DME (двигатель). Машина «забудет» ключи и откажется заводиться даже после зарядки АКБ.'
       },
       {
         title: 'Сброс инициализации',
-        text: '«Слетают» крайние положения люка, стеклоподъемников, рулевой колонки и датчика угла поворота руля. Потребуется сервисная адаптация через диагностику.'
+        text: '«Слетают» крайние положения люка, стеклоподъемников, рулевой колонки и датчика угла поворота руля. Потребуется адаптация через диагностику.'
       }
     ]
   }
@@ -72,13 +72,13 @@ export default function ExpertTips() {
 
       <div className="relative">
         <div 
-          className="relative rounded-3xl overflow-hidden p-12 md:px-20"
+          className="relative rounded-3xl overflow-hidden p-12 md:px-20 flex items-center"
           style={{
             border: '1px solid rgba(255, 215, 0, 0.2)',
             boxShadow: '0 30px 90px -20px rgba(255, 215, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.06)',
             background: 'linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(255, 215, 0, 0.02))',
-            minHeight: '500px',
-            height: '500px'
+            minHeight: '450px',
+            height: '450px'
           }}
         >
           <div 
@@ -89,51 +89,51 @@ export default function ExpertTips() {
             }}
           />
 
-          <div className="relative z-10">
-            <div className="flex items-center gap-4 mb-6">
+          <div className="relative z-10 w-full">
+            <div className="flex items-center gap-4 mb-5">
               <div 
-                className="p-4 rounded-xl"
+                className="p-3 rounded-xl"
                 style={{
                   background: 'linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.1))',
                   border: '1px solid rgba(255, 215, 0, 0.3)'
                 }}
               >
-                <Icon name={tip.icon as any} className="w-8 h-8 text-[#FFD700]" />
+                <Icon name={tip.icon as any} className="w-7 h-7 text-[#FFD700]" />
               </div>
-              <h3 className="font-light text-white text-2xl">{tip.title}</h3>
+              <h3 className="font-light text-white text-xl">{tip.title}</h3>
             </div>
 
-            <p className="text-white/80 text-lg font-light mb-8 leading-relaxed">
+            <p className="text-white/80 text-base font-light mb-6 leading-relaxed">
               {tip.description}
             </p>
 
             {tip.tips && (
-              <div className="space-y-3">
+              <div className="space-y-2.5">
                 {tip.tips.map((item, idx) => (
                   <div key={idx} className="flex items-start gap-3">
                     <Icon name="Check" className="w-5 h-5 text-[#FFD700] mt-0.5 flex-shrink-0" />
-                    <span className="text-white/70 text-base">{item}</span>
+                    <span className="text-white/70 text-sm">{item}</span>
                   </div>
                 ))}
               </div>
             )}
 
             {tip.issues && (
-              <div className="space-y-6 mt-6">
+              <div className="space-y-4 mt-4">
                 {tip.issues.map((issue, idx) => (
                   <div 
                     key={idx}
-                    className="p-6 rounded-xl"
+                    className="p-4 rounded-xl"
                     style={{
                       background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01))',
                       border: '1px solid rgba(255, 215, 0, 0.2)'
                     }}
                   >
-                    <div className="flex items-center gap-2 mb-3">
-                      <Icon name="AlertTriangle" className="w-5 h-5 text-[#FFD700]" />
-                      <h4 className="text-[#FFD700] font-medium">{issue.title}</h4>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Icon name="AlertTriangle" className="w-4 h-4 text-[#FFD700]" />
+                      <h4 className="text-[#FFD700] font-medium text-sm">{issue.title}</h4>
                     </div>
-                    <p className="text-white/70 text-base leading-relaxed">{issue.text}</p>
+                    <p className="text-white/70 text-sm leading-relaxed">{issue.text}</p>
                   </div>
                 ))}
               </div>
