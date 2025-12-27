@@ -6,43 +6,49 @@ const reviews = [
     id: 1,
     author: 'Дмитрий',
     rating: 5,
-    text: 'Отличный сервис! Профессионально закодировали функции, всё работает идеально. Рекомендую!',
-    date: '2024-11-15'
+    text: 'Саш, ты красавчик! Машина после твоего тюнинга вообще другая стала, прям зверь 🔥 Спасибо большое!',
+    date: '2024-11-15',
+    time: '14:23'
   },
   {
     id: 2,
-    author: 'Александр',
+    author: 'Максим',
     rating: 5,
-    text: 'Сделали русификацию BMW X5. Быстро, качественно, по адекватной цене. Очень доволен результатом!',
-    date: '2024-10-28'
+    text: 'Александр, спасибо что быстро принял! Кодирование сделали на высоте, всё как я хотел. Буду обращаться ещё 👍',
+    date: '2024-10-28',
+    time: '18:45'
   },
   {
     id: 3,
     author: 'Михаил',
     rating: 5,
-    text: 'Чип-тюнинг Stage 2 - машина просто улетает! Прирост мощности ощутим. Спасибо команде!',
-    date: '2024-10-10'
+    text: 'Братан, огонь работа! Stage 1 сделал просто пушка, тачка теперь летит. Друзьям уже рекомендовал 🚀',
+    date: '2024-10-10',
+    time: '20:12'
   },
   {
     id: 4,
     author: 'Сергей',
     rating: 5,
-    text: 'Установили российские карты навигации. Работают отлично, всё настроили как надо.',
-    date: '2024-09-22'
+    text: 'Саня, спасибо за карты! Теперь навигация норм показывает всё, не как раньше. Зачёт!',
+    date: '2024-09-22',
+    time: '16:30'
   },
   {
     id: 5,
     author: 'Владимир',
     rating: 5,
-    text: 'Изготовили дубликат ключа для BMW. Сделали быстро, ключ работает без нареканий.',
-    date: '2024-09-05'
+    text: 'Александр, ключ работает идеально! Сделали за час, молодцы. Цена адекватная, всё честно 👌',
+    date: '2024-09-05',
+    time: '11:50'
   },
   {
     id: 6,
     author: 'Игорь',
     rating: 5,
-    text: 'Профессионалы своего дела! Удалили ошибку экстренного вызова программно, сэкономил на замене блока.',
-    date: '2024-08-18'
+    text: 'Саш, выручил с этой ошибкой! В дилере 50к хотели за замену блока, а ты программно за копейки убрал. Красава! 💪',
+    date: '2024-08-18',
+    time: '19:05'
   }
 ];
 
@@ -93,25 +99,43 @@ export default function Reviews() {
             />
 
             <CardContent className="p-6 relative">
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <h3 className="text-lg font-light text-white mb-1">{review.author}</h3>
-                  <div className="flex items-center gap-1">
-                    {renderStars(review.rating)}
-                  </div>
+              <div className="flex items-center gap-3 mb-4">
+                <div 
+                  className="w-10 h-10 rounded-full flex items-center justify-center text-white font-medium"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(41, 128, 185, 0.3), rgba(52, 152, 219, 0.2))',
+                    border: '1px solid rgba(52, 152, 219, 0.4)'
+                  }}
+                >
+                  {review.author[0]}
                 </div>
-                <span className="text-xs text-white/30">
-                  {new Date(review.date).toLocaleDateString('ru-RU', { 
-                    year: 'numeric', 
-                    month: 'long',
-                    day: 'numeric'
-                  })}
-                </span>
+                <div className="flex-1">
+                  <h3 className="text-base font-light text-white">{review.author}</h3>
+                  <span className="text-xs text-white/30">
+                    {new Date(review.date).toLocaleDateString('ru-RU', { 
+                      day: 'numeric',
+                      month: 'short'
+                    })} в {review.time}
+                  </span>
+                </div>
+                <Icon name="MessageCircle" className="w-4 h-4 text-white/20" />
               </div>
 
-              <p className="text-sm text-white/70 font-light leading-relaxed">
-                {review.text}
-              </p>
+              <div 
+                className="p-4 rounded-2xl rounded-tl-none mb-2"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))',
+                  border: '1px solid rgba(255, 255, 255, 0.1)'
+                }}
+              >
+                <p className="text-sm text-white/80 leading-relaxed">
+                  {review.text}
+                </p>
+              </div>
+
+              <div className="flex items-center gap-1 justify-end">
+                {renderStars(review.rating)}
+              </div>
 
               <div 
                 className="absolute bottom-0 left-0 right-0 h-12 pointer-events-none"
