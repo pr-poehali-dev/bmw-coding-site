@@ -83,8 +83,8 @@ export default function Index() {
         <div className="container mx-auto px-6 pt-24 pb-32">
           <HeroSection />
           <SpecialOffer />
-          <CodingPackages />
           <ServicesGrid />
+          <CodingPackages />
           <Reviews />
           <QuickActions />
         </div>

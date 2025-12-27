@@ -48,20 +48,21 @@ const offers = [
     icon: 'Cpu',
     label: 'Специальное предложение',
     title: 'Unlock блока управления двигателя',
-    description: 'Профессиональная разблокировка ЭБУ двигателя для максимальной производительности. Гарантия качества работы.',
-    oldPrice: '',
+    description: 'Разблокировка блока двигателя для дальнейшего чип тюнинга автомобилей 2020+ года выпуска. Доставка личным курьером для полной сохранности ЭБУ.',
+    oldPrice: '50 000 ₽',
     newPrice: 'от 3 до 5 дней',
     discount: '',
     image: 'https://cdn.poehali.dev/files/MD1.png',
     imageStyle: {
-      filter: 'brightness(1.1) contrast(1.2) saturate(0.9)',
+      filter: 'brightness(1.3) contrast(1.15) saturate(1.05)',
       objectPosition: 'center center',
-      transform: 'scale(1.2)',
+      transform: 'scale(1)',
+      imageRendering: 'crisp-edges'
     },
     features: [
-      { icon: 'Zap', text: 'Быстрая обработка' },
+      { icon: 'Clock', text: 'Срок 3-5 дней' },
       { icon: 'Shield', text: 'Гарантия' },
-      { icon: 'Check', text: 'Профессиональное оборудование' }
+      { icon: 'Truck', text: 'Личный курьер' }
     ]
   }
 ];
