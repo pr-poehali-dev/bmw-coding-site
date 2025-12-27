@@ -19,12 +19,88 @@ const categories = [
 ];
 
 const options: Option[] = [
-  // Комфорт - F series
-  { id: 'f_autostop', name: 'Отключение Start/Stop', category: 'comfort', description: 'Полное отключение системы автостарта', icon: 'Power', series: 'F' },
-  { id: 'f_mirrors', name: 'Сворачивание зеркал', category: 'comfort', description: 'Автоматическое складывание по брелку', icon: 'Maximize2', series: 'F' },
-  { id: 'f_seatbelt', name: 'Настройка ремней безопасности', category: 'comfort', description: 'Отключение напоминаний', icon: 'UserCheck', series: 'F' },
-  { id: 'f_comfort_access', name: 'Comfort Access расширенный', category: 'comfort', description: 'Улучшенная работа бесключевого доступа', icon: 'Key', series: 'F' },
-  { id: 'f_welcome', name: 'Welcome Light', category: 'comfort', description: 'Подсветка при приближении', icon: 'Lightbulb', series: 'F' },
+  // Внешний вид - F series (Осветительные приборы)
+  { id: 'f_fog_flicker', name: 'Отключение мерцания туманок', category: 'exterior', description: 'Убирает эффект опроса ПТФ', icon: 'Lightbulb', series: 'F' },
+  { id: 'f_strobe', name: 'Эффект стробоскопа', category: 'exterior', description: 'ПТФ отключаются при нажатии дальнего света', icon: 'Zap', series: 'F' },
+  { id: 'f_fog_smooth', name: 'Плавное включение туманок', category: 'exterior', description: 'Мягкая активация ПТФ', icon: 'Sun', series: 'F' },
+  { id: 'f_adaptive_fog', name: 'Адаптивное освещение ПТФ', category: 'exterior', description: 'Поворотные противотуманки', icon: 'Navigation', series: 'F' },
+  { id: 'f_headlight_wash', name: 'Омыватель фар', category: 'exterior', description: 'Настройка работы омывателя', icon: 'Droplet', series: 'F' },
+  { id: 'f_rings_bright', name: 'Яркость колец', category: 'exterior', description: 'Изменение яркости Angel Eyes', icon: 'Circle', series: 'F' },
+  { id: 'f_drl_off', name: 'Отключение ДХО', category: 'exterior', description: 'Возможность выключить дневные огни', icon: 'SunOff', series: 'F' },
+  { id: 'f_rear_drl', name: 'Задние габариты в ДХО', category: 'exterior', description: 'Задние фонари в режиме ДХО', icon: 'Lightbulb', series: 'F' },
+  { id: 'f_rear_smooth', name: 'Плавное включение задних фонарей', category: 'exterior', description: 'Мягкая активация стоп-сигналов', icon: 'Sun', series: 'F' },
+  
+  // Производительность - F series (Режимы езды)
+  { id: 'f_auto_handbrake', name: 'Авто снятие с ручника', category: 'performance', description: 'Автоматически на D и R', icon: 'Gauge', series: 'F' },
+  { id: 'f_start_no_brake', name: 'Старт без педали тормоза', category: 'performance', description: 'Запуск двигателя без тормоза', icon: 'Power', series: 'F' },
+  { id: 'f_speed_limit', name: 'Лимит скорости', category: 'performance', description: 'Ограничение максимальной скорости', icon: 'Gauge', series: 'F' },
+  { id: 'f_autostop', name: 'Отключение Start/Stop', category: 'performance', description: 'Деактивация системы Старт/Стоп', icon: 'Power', series: 'F' },
+  { id: 'f_launch', name: 'Launch Control', category: 'performance', description: 'Активация Лаунч-контроля', icon: 'Rocket', series: 'F' },
+  { id: 'f_sport_mode', name: 'Настройка режима Спорт', category: 'performance', description: 'Кастомизация Sport режима', icon: 'Gauge', series: 'F' },
+  { id: 'f_coasting', name: 'Режим наката', category: 'performance', description: 'Движение накатом без торможения', icon: 'Wind', series: 'F' },
+  
+  // Мультимедиа - F series (Панель приборов и Бортовой компьютер)
+  { id: 'f_digital_speed', name: 'Цифровой спидометр', category: 'multimedia', description: 'Отображение скорости цифрами', icon: 'Gauge', series: 'F' },
+  { id: 'f_color_change', name: 'Цвет панели день/ночь', category: 'multimedia', description: 'Изменение цвета приборов', icon: 'Palette', series: 'F' },
+  { id: 'f_auto_brightness', name: 'Авто подсветка без датчика', category: 'multimedia', description: 'Автопереключение без датчика света', icon: 'Sun', series: 'F' },
+  { id: 'f_consumption_limit', name: 'Ограничение расхода', category: 'multimedia', description: 'Изменение шкалы расхода', icon: 'Fuel', series: 'F' },
+  { id: 'f_remove_ed', name: 'Убрать EfficientDynamics', category: 'multimedia', description: 'Удаление надписи ED', icon: 'X', series: 'F' },
+  { id: 'f_m_logo', name: 'Лого M-Performance', category: 'multimedia', description: 'M-лого на приборной панели', icon: 'Star', series: 'F' },
+  { id: 'f_video', name: 'Видео в движении', category: 'multimedia', description: 'Просмотр видео на ходу', icon: 'Play', series: 'F' },
+  { id: 'f_codecs', name: 'Активация кодеков', category: 'multimedia', description: 'Дополнительные форматы видео', icon: 'FileVideo', series: 'F' },
+  { id: 'f_media_off', name: 'Отключение медиа после двери', category: 'multimedia', description: 'Авто выключение при открытии', icon: 'DoorOpen', series: 'F' },
+  { id: 'f_phone_sound', name: 'Телефонный звонок COMBOX', category: 'multimedia', description: 'Трансляция звонков через авто', icon: 'Phone', series: 'F' },
+  { id: 'f_sport_indicators', name: 'Спортивные индикаторы', category: 'multimedia', description: 'Дополнительные показатели', icon: 'Activity', series: 'F' },
+  { id: 'f_tpms_data', name: 'Данные TPMS', category: 'multimedia', description: 'Информация о давлении в шинах', icon: 'Gauge', series: 'F' },
+  { id: 'f_usb_video', name: 'Видео с USB', category: 'multimedia', description: 'Воспроизведение с флешки', icon: 'Usb', series: 'F' },
+  { id: 'f_towbar_cam', name: 'Камера в режим фаркопа', category: 'multimedia', description: 'Установка камеры фаркопа', icon: 'Camera', series: 'F' },
+  { id: 'f_units', name: 'Единицы измерения', category: 'multimedia', description: 'Изменение единиц (км, мили)', icon: 'Ruler', series: 'F' },
+  { id: 'f_comfort_open', name: 'Комфортное открытие', category: 'multimedia', description: 'Настройка опций открытия', icon: 'DoorOpen', series: 'F' },
+  { id: 'f_service_history', name: 'Сервисная история', category: 'multimedia', description: 'Отображение истории ТО', icon: 'History', series: 'F' },
+  { id: 'f_radio_off', name: 'Отключение SDARS', category: 'multimedia', description: 'Деактивация спутникового радио', icon: 'RadioOff', series: 'F' },
+  { id: 'f_ed_menu', name: 'Меню EfficientDynamics', category: 'multimedia', description: 'Информативное меню ED', icon: 'Menu', series: 'F' },
+  { id: 'f_dev_menu', name: 'Меню разработчика', category: 'multimedia', description: 'Доступ к скрытому меню', icon: 'Code', series: 'F' },
+  { id: 'f_hifi', name: 'Stereo в Hi-Fi', category: 'multimedia', description: 'Улучшение звука головного устройства', icon: 'Music', series: 'F' },
+  { id: 'f_xdrive_display', name: 'Состояние xDrive', category: 'multimedia', description: 'Наклон и компас на экране', icon: 'Compass', series: 'F' },
+  { id: 'f_volume_bar', name: 'Полоска громкости', category: 'multimedia', description: 'Визуализация уровня звука', icon: 'Volume2', series: 'F' },
+  { id: 'f_connected', name: 'ConnectedDrive', category: 'multimedia', description: 'Включение сервисов CD', icon: 'Wifi', series: 'F' },
+  { id: 'f_logo_change', name: 'Изменение эмблемы запуска', category: 'multimedia', description: 'Кастомный логотип при старте', icon: 'Image', series: 'F' },
+  { id: 'f_radio_time', name: 'Время отключения магнитолы', category: 'multimedia', description: 'Задержка выключения после зажигания', icon: 'Clock', series: 'F' },
+  
+  // Безопасность - F series
+  { id: 'f_autolock', name: 'Автозакрытие авто', category: 'safety', description: 'Если не открывались двери', icon: 'Lock', series: 'F' },
+  { id: 'f_alarm_key', name: 'Сигнализация при мех. ключе', category: 'safety', description: 'Включение при открытии ключом', icon: 'Key', series: 'F' },
+  { id: 'f_no_belt_gong', name: 'Отключение гонга ремня', category: 'safety', description: 'Без звука при заводе без ремня', icon: 'UserCheck', series: 'F' },
+  { id: 'f_horn_signal', name: 'Звук при постановке на охрану', category: 'safety', description: 'Управление звуковым сигналом', icon: 'Volume2', series: 'F' },
+  
+  // Комфорт - F series (Багажник, Кузов, Салон)
+  { id: 'f_trunk_delay', name: 'Задержка открытия багажника', category: 'comfort', description: 'Настройка времени открытия', icon: 'Package', series: 'F' },
+  { id: 'f_trunk_close', name: 'Закрытие багажника с ключа', category: 'comfort', description: 'Удаленное закрытие', icon: 'Package', series: 'F' },
+  { id: 'f_trunk_smooth_close', name: 'Плавное закрытие багажника', category: 'comfort', description: 'Без удара при закрытии', icon: 'Package', series: 'F' },
+  { id: 'f_trunk_smooth_open', name: 'Плавное открытие багажника', category: 'comfort', description: 'Без удара при открытии', icon: 'Package', series: 'F' },
+  { id: 'f_mirror_tilt', name: 'Наклон зеркала назад', category: 'comfort', description: 'При движении задним ходом', icon: 'Maximize2', series: 'F' },
+  { id: 'f_mirror_dimming', name: 'Чувствительность затемнения', category: 'comfort', description: 'Более чувствительный датчик', icon: 'Sun', series: 'F' },
+  { id: 'f_mirror_heat', name: 'Обогрев зеркал и дворников', category: 'comfort', description: 'Активация подогрева', icon: 'Thermometer', series: 'F' },
+  { id: 'f_mirror_heat_delay', name: 'Убрать задержку подогрева', category: 'comfort', description: 'Мгновенный подогрев зеркал', icon: 'Zap', series: 'F' },
+  { id: 'f_wheel_size', name: 'Размер колес', category: 'comfort', description: 'Настройка размерности дисков', icon: 'Circle', series: 'F' },
+  { id: 'f_window_delay', name: 'Задержка окон с ключа', category: 'comfort', description: 'Открытие/закрытие с брелка', icon: 'Key', series: 'F' },
+  { id: 'f_blinker_count', name: 'Количество миганий поворотника', category: 'comfort', description: 'При касании рычага', icon: 'Navigation', series: 'F' },
+  { id: 'f_handle_light', name: 'Подсветка ручек при R', category: 'comfort', description: 'При включении задней передачи', icon: 'Lightbulb', series: 'F' },
+  { id: 'f_easy_entry', name: 'Комфортная посадка', category: 'comfort', description: 'Отъезжает руль и кресло', icon: 'Armchair', series: 'F' },
+  { id: 'f_air_sensor', name: 'Датчик грязного воздуха', category: 'comfort', description: 'Высокая чувствительность рециркуляции', icon: 'Wind', series: 'F' },
+  { id: 'f_light_sensor', name: 'Датчик света менее чувствительный', category: 'comfort', description: 'Настройка датчика освещения', icon: 'Sun', series: 'F' },
+  { id: 'f_seat_heat_memory', name: 'Память подогрева сидений', category: 'comfort', description: 'Время запоминания после выключения', icon: 'Thermometer', series: 'F' },
+  { id: 'f_wheel_heat_memory', name: 'Память подогрева руля', category: 'comfort', description: 'Время запоминания после выключения', icon: 'Thermometer', series: 'F' },
+  { id: 'f_auto_no_ac', name: 'AUTO без кондиционера', category: 'comfort', description: 'Кнопка AUTO не включает AC', icon: 'Wind', series: 'F' },
+  { id: 'f_recirculation_memory', name: 'Память рециркуляции', category: 'comfort', description: 'Запоминание положения режима', icon: 'RotateCcw', series: 'F' },
+  { id: 'f_gong_sound', name: 'Звук гонга двери', category: 'comfort', description: 'Изменение звука открытой двери и ошибок', icon: 'Volume2', series: 'F' },
+  { id: 'f_brightness_wheel', name: 'Колесико яркости салона', category: 'comfort', description: 'Не меняет яркость подсветки салона', icon: 'Sun', series: 'F' },
+  { id: 'f_seat_memory_sound', name: 'Звук запоминания кресла', category: 'comfort', description: 'Сигнал после сохранения положения', icon: 'Volume2', series: 'F' },
+  { id: 'f_battery_warning', name: 'Напоминание о разряде АКБ', category: 'comfort', description: 'Убрать предупреждение на стоянке', icon: 'Battery', series: 'F' },
+  { id: 'f_recuperation', name: 'Отключить рекуперацию ED', category: 'comfort', description: 'Постоянная зарядка аккумулятора', icon: 'BatteryCharging', series: 'F' },
+  { id: 'f_emergency_brake', name: 'Аварийка при торможении', category: 'comfort', description: 'Отключение при резком торможении', icon: 'AlertTriangle', series: 'F' },
+  { id: 'f_battery_min', name: 'Минимальный заряд АКБ', category: 'comfort', description: 'Увеличение минимального заряда', icon: 'Battery', series: 'F' },
+  { id: 'f_brake_system', name: 'Данные тормозной системы', category: 'comfort', description: 'Изменение информации о тормозах', icon: 'Disc', series: 'F' },
   
   // Комфорт - G series
   { id: 'g_autostop', name: 'Отключение Start/Stop', category: 'comfort', description: 'Полное отключение системы автостарта', icon: 'Power', series: 'G' },
@@ -33,13 +109,6 @@ const options: Option[] = [
   { id: 'g_eco', name: 'Отключение ECO режима', category: 'comfort', description: 'Деактивация экономичного режима', icon: 'Leaf', series: 'G' },
   { id: 'g_gesture', name: 'Управление жестами', category: 'comfort', description: 'Активация управления жестами', icon: 'Hand', series: 'G' },
 
-  // Мультимедиа - F series  
-  { id: 'f_video', name: 'Видео в движении', category: 'multimedia', description: 'Просмотр видео на ходу', icon: 'Play', series: 'F' },
-  { id: 'f_dvb', name: 'DVB-T2 активация', category: 'multimedia', description: 'Включение цифрового ТВ', icon: 'Tv', series: 'F' },
-  { id: 'f_fullscreen', name: 'Полноэкранная карта', category: 'multimedia', description: 'Навигация на весь экран', icon: 'Maximize', series: 'F' },
-  { id: 'f_logo', name: 'Смена логотипа', category: 'multimedia', description: 'Кастомный загрузочный экран', icon: 'Image', series: 'F' },
-  { id: 'f_voice', name: 'Голосовое управление', category: 'multimedia', description: 'Расширенные команды', icon: 'Mic', series: 'F' },
-  
   // Мультимедиа - G series
   { id: 'g_carplay', name: 'Apple CarPlay', category: 'multimedia', description: 'Активация CarPlay', icon: 'Smartphone', series: 'G' },
   { id: 'g_video', name: 'Видео в движении', category: 'multimedia', description: 'Просмотр видео на ходу', icon: 'Play', series: 'G' },
@@ -47,33 +116,17 @@ const options: Option[] = [
   { id: 'g_fullscreen', name: 'Полноэкранный режим', category: 'multimedia', description: 'Увеличение области отображения', icon: 'Maximize', series: 'G' },
   { id: 'g_android', name: 'Android Auto', category: 'multimedia', description: 'Активация Android Auto', icon: 'Smartphone', series: 'G' },
   
-  // Внешний вид - F series
-  { id: 'f_drl', name: 'Режимы DRL', category: 'exterior', description: 'Различные режимы дневных огней', icon: 'Sun', series: 'F' },
-  { id: 'f_cornering', name: 'Подсветка поворотов', category: 'exterior', description: 'Активация противотуманок', icon: 'Navigation', series: 'F' },
-  { id: 'f_angel_eyes', name: 'Настройка Angel Eyes', category: 'exterior', description: 'Яркость ангельских глазок', icon: 'Circle', series: 'F' },
-  { id: 'f_needle', name: 'Цвет стрелок приборов', category: 'exterior', description: 'Изменение подсветки панели', icon: 'Palette', series: 'F' },
-  
   // Внешний вид - G series
   { id: 'g_drl', name: 'Режимы DRL', category: 'exterior', description: 'Различные режимы дневных огней', icon: 'Sun', series: 'G' },
   { id: 'g_welcome_anim', name: 'Приветственная анимация', category: 'exterior', description: 'Световое шоу при открытии', icon: 'Star', series: 'G' },
   { id: 'g_laser', name: 'Лазерный свет', category: 'exterior', description: 'Активация лазерных фар', icon: 'Zap', series: 'G' },
   { id: 'g_ambient', name: 'Ambient свет расширенный', category: 'exterior', description: 'Дополнительные режимы подсветки', icon: 'Lightbulb', series: 'G' },
   
-  // Безопасность - F series
-  { id: 'f_speed', name: 'Снятие ограничения скорости', category: 'safety', description: 'Увеличение до 280 км/ч', icon: 'Gauge', series: 'F' },
-  { id: 'f_camera', name: 'Камеры на ходу', category: 'safety', description: 'Просмотр камер в движении', icon: 'Camera', series: 'F' },
-  { id: 'f_parkassist', name: 'Park Assist расширенный', category: 'safety', description: 'Улучшенная парковка', icon: 'Navigation2', series: 'F' },
-  
   // Безопасность - G series
   { id: 'g_speed', name: 'Снятие ограничения скорости', category: 'safety', description: 'Увеличение до 280 км/ч', icon: 'Gauge', series: 'G' },
   { id: 'g_camera', name: 'Камеры на ходу', category: 'safety', description: 'Просмотр камер в движении', icon: 'Camera', series: 'G' },
   { id: 'g_parking', name: 'Parking Assistant Plus', category: 'safety', description: 'Активация автопарковки', icon: 'Navigation2', series: 'G' },
   { id: 'g_tpms', name: 'Настройка TPMS', category: 'safety', description: 'Калибровка датчиков давления', icon: 'Activity', series: 'G' },
-  
-  // Производительность - F series
-  { id: 'f_sport', name: 'Sport режим по умолчанию', category: 'performance', description: 'Запуск всегда в Sport', icon: 'Gauge', series: 'F' },
-  { id: 'f_xdrive', name: 'Настройка xDrive', category: 'performance', description: 'Калибровка полного привода', icon: 'Settings2', series: 'F' },
-  { id: 'f_dsc', name: 'Полное отключение DSC', category: 'performance', description: 'Деактивация стабилизации', icon: 'RotateCcw', series: 'F' },
   
   // Производительность - G series
   { id: 'g_sport', name: 'Sport режим по умолчанию', category: 'performance', description: 'Запуск всегда в Sport', icon: 'Gauge', series: 'G' },
