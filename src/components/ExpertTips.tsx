@@ -8,7 +8,7 @@ const tips = [
     title: 'Система Start/Stop и стартер-генератор',
     description: 'Современные BMW G-серии — это «мягкие гибриды». У них нет классического стартера в привычном понимании; его роль выполняет мощный 48-вольтовый стартер-генератор. С системой Start/Stop данное устройство быстро выходит из строя. Поэтому рекомендуем отключать эту систему.',
     tips: [
-      'Отключайте Start/Stop через меню',
+      'Отключайте Start/Stop',
       '48V стартер-генератор служит дольше',
       'Экономия на замене дорогого оборудования'
     ]
@@ -72,7 +72,7 @@ export default function ExpertTips() {
 
       <div className="relative">
         <div 
-          className="relative rounded-3xl overflow-hidden p-12"
+          className="relative rounded-3xl overflow-hidden p-12 md:px-20"
           style={{
             border: '1px solid rgba(255, 215, 0, 0.2)',
             boxShadow: '0 30px 90px -20px rgba(255, 215, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.06)',
@@ -142,7 +142,7 @@ export default function ExpertTips() {
 
         <button
           onClick={handlePrev}
-          className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 z-30"
+          className="absolute -left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 z-30"
           style={{
             background: 'linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.15))',
             border: '1px solid rgba(255, 215, 0, 0.3)',
@@ -154,7 +154,7 @@ export default function ExpertTips() {
 
         <button
           onClick={handleNext}
-          className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 z-30"
+          className="absolute -right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 z-30"
           style={{
             background: 'linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.15))',
             border: '1px solid rgba(255, 215, 0, 0.3)',
