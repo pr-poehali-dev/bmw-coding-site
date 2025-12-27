@@ -22,39 +22,51 @@ export default function SpecialOffer() {
         <div className="lg:w-1/2 relative overflow-hidden bg-black">
           <img 
             src="https://cdn.poehali.dev/files/mgu1.jpg" 
-            alt="BMW Live Cockpit Professional с российскими картами МКАД" 
+            alt="BMW Live Cockpit Professional с российскими картами" 
             className="w-full h-full object-cover"
             style={{
-              filter: 'brightness(1.25) contrast(1.4) saturate(1.3) blur(0.3px)',
-              objectPosition: 'center 30%',
-              transform: 'scale(1.3)',
+              filter: 'brightness(1.35) contrast(1.5) saturate(1.4)',
+              objectPosition: 'center 35%',
+              transform: 'scale(1.5)',
               imageRendering: 'crisp-edges'
             }}
           />
           
-          {/* Эффект стекла поверх картинки */}
+          {/* Глянцевое покрытие */}
           <div 
             className="absolute inset-0 pointer-events-none"
             style={{
               background: `
-                linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
-                linear-gradient(to bottom, rgba(0, 150, 255, 0.08) 0%, transparent 40%, transparent 70%, rgba(0, 0, 0, 0.6) 85%, rgba(0, 0, 0, 0.95) 100%)
+                linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.08) 30%, transparent 60%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, transparent 40%),
+                linear-gradient(to bottom, transparent 70%, rgba(0, 0, 0, 0.5) 90%, rgba(0, 0, 0, 0.9) 100%)
               `,
-              backdropFilter: 'blur(0.5px)',
               mixBlendMode: 'normal'
             }}
           />
           
-          {/* Сглаживающий слой для плавных цветов */}
+          {/* Блики как на глянцевом экране */}
           <div 
             className="absolute inset-0 pointer-events-none"
             style={{
               background: `
-                radial-gradient(ellipse at 50% 40%, rgba(255, 100, 80, 0.12), transparent 60%),
-                radial-gradient(ellipse at 30% 60%, rgba(255, 150, 100, 0.08), transparent 50%)
+                radial-gradient(ellipse 600px 200px at 30% 20%, rgba(255, 255, 255, 0.3), transparent 50%),
+                radial-gradient(ellipse 400px 150px at 70% 30%, rgba(255, 255, 255, 0.2), transparent 50%)
               `,
-              mixBlendMode: 'overlay',
-              opacity: 0.6
+              mixBlendMode: 'overlay'
+            }}
+          />
+          
+          {/* Цветные блики от панели */}
+          <div 
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: `
+                radial-gradient(ellipse at 50% 40%, rgba(231, 34, 46, 0.15), transparent 60%),
+                radial-gradient(ellipse at 30% 60%, rgba(255, 120, 80, 0.1), transparent 50%)
+              `,
+              mixBlendMode: 'screen',
+              opacity: 0.7
             }}
           />
         </div>
