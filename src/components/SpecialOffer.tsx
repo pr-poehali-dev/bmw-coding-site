@@ -94,8 +94,8 @@ export default function SpecialOffer() {
           }}
         />
         
-        <div className="flex flex-col lg:flex-row">
-          <div className="lg:w-1/2 relative overflow-hidden bg-black">
+        <div className="flex flex-col lg:flex-row h-full">
+          <div className="lg:w-1/2 relative overflow-hidden bg-black" style={{ minHeight: '500px' }}>
             <img 
               src={offer.image}
               alt={offer.title}
@@ -145,6 +145,7 @@ export default function SpecialOffer() {
           <div 
             className="lg:w-1/2 relative p-12 flex flex-col justify-center"
             style={{
+              minHeight: '500px',
               background: `
                 radial-gradient(ellipse at right, rgba(231, 34, 46, 0.15) 0%, transparent 70%),
                 radial-gradient(ellipse at center, rgba(231, 34, 46, 0.1) 0%, transparent 60%),
