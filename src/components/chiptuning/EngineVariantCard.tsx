@@ -120,14 +120,14 @@ export default function EngineVariantCard({ variant, engineType, color, index }:
           href="https://t.me/Bocha_reborn"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-black transition-all duration-300 hover:scale-105"
+          className="flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-white transition-all duration-300 hover:scale-105"
           style={{
-            background: `linear-gradient(135deg, ${color}, ${color}CC)`,
-            boxShadow: `0 8px 24px ${color}40`
+            background: 'linear-gradient(135deg, #E7222E, #C51D26)',
+            boxShadow: '0 8px 24px rgba(231, 34, 46, 0.4)'
           }}
         >
-          <Icon name="MessageCircle" className="w-4 h-4" />
-          <span>Заказать</span>
+          <Icon name="Gauge" className="w-4 h-4" />
+          <span>Начать тюнинг</span>
         </a>
       </div>
     </div>
