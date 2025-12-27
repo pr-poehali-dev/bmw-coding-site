@@ -23,7 +23,7 @@ export const engineGroups: EngineGroup[] = [
     description: 'F-серия (2011-2015)',
     variants: [
       { 
-        name: '20i => 30i', 
+        name: '20i => 28i', 
         powerBefore: 184, 
         powerAfter: 260, 
         torqueBefore: 270, 
