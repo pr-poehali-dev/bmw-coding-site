@@ -65,7 +65,7 @@ const offers = [
     ],
     hasButton: true,
     buttonText: 'Сделать Unlock',
-    buttonLink: 'https://t.me/your_telegram'
+    buttonLink: 'https://t.me/Bocha_reborn'
   }
 ];
 
