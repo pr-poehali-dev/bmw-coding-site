@@ -3,6 +3,7 @@ import Icon from '@/components/ui/icon';
 import HeroSection from '@/components/HeroSection';
 import SpecialOffer from '@/components/SpecialOffer';
 import ServicesGrid from '@/components/ServicesGrid';
+import Reviews from '@/components/Reviews';
 import QuickActions from '@/components/QuickActions';
 
 export default function Index() {
@@ -82,6 +83,7 @@ export default function Index() {
           <HeroSection />
           <SpecialOffer />
           <ServicesGrid />
+          <Reviews />
           <QuickActions />
         </div>
       </div>
