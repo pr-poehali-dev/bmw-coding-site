@@ -34,6 +34,7 @@ const tips = [
 export default function ExpertTips() {
   const [currentTip, setCurrentTip] = useState(0);
   const [autoPlay, setAutoPlay] = useState(true);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const tip = tips[currentTip];
 
   useEffect(() => {
@@ -48,17 +49,30 @@ export default function ExpertTips() {
 
   const handlePrev = () => {
     setAutoPlay(false);
-    setCurrentTip((prev) => (prev === 0 ? tips.length - 1 : prev - 1));
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentTip((prev) => (prev === 0 ? tips.length - 1 : prev - 1));
+      setIsTransitioning(false);
+    }, 300);
   };
 
   const handleNext = () => {
     setAutoPlay(false);
-    setCurrentTip((prev) => (prev + 1) % tips.length);
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentTip((prev) => (prev + 1) % tips.length);
+      setIsTransitioning(false);
+    }, 300);
   };
 
   const handleDotClick = (idx: number) => {
+    if (idx === currentTip) return;
     setAutoPlay(false);
-    setCurrentTip(idx);
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentTip(idx);
+      setIsTransitioning(false);
+    }, 300);
   };
 
   return (
@@ -89,7 +103,7 @@ export default function ExpertTips() {
             }}
           />
 
-          <div className="relative z-10 w-full">
+          <div className="relative z-10 w-full transition-all duration-500" style={{ opacity: isTransitioning ? 0.3 : 1 }}>
             <div className="flex items-center gap-4 mb-5">
               <div 
                 className="p-3 rounded-xl"

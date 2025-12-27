@@ -75,8 +75,8 @@ export default function OptionsList({
         ))}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-        {filteredOptions.map((option) => {
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8 transition-all duration-500">
+        {filteredOptions.map((option, index) => {
           const isSelected = selectedOptions.has(option.id);
           return (
             <button
@@ -92,7 +92,8 @@ export default function OptionsList({
                   : '1px solid rgba(255, 255, 255, 0.1)',
                 boxShadow: isSelected
                   ? '0 8px 32px rgba(129, 196, 255, 0.2)'
-                  : 'none'
+                  : 'none',
+                animationDelay: `${index * 30}ms`
               }}
             >
               <div className="flex items-start justify-between mb-3">

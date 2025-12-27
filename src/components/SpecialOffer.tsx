@@ -72,6 +72,7 @@ const offers = [
 export default function SpecialOffer() {
   const [currentOffer, setCurrentOffer] = useState(0);
   const [autoPlay, setAutoPlay] = useState(true);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const offer = offers[currentOffer];
 
   useEffect(() => {
@@ -86,17 +87,30 @@ export default function SpecialOffer() {
 
   const handlePrev = () => {
     setAutoPlay(false);
-    setCurrentOffer((prev) => (prev === 0 ? offers.length - 1 : prev - 1));
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentOffer((prev) => (prev === 0 ? offers.length - 1 : prev - 1));
+      setIsTransitioning(false);
+    }, 300);
   };
 
   const handleNext = () => {
     setAutoPlay(false);
-    setCurrentOffer((prev) => (prev + 1) % offers.length);
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentOffer((prev) => (prev + 1) % offers.length);
+      setIsTransitioning(false);
+    }, 300);
   };
 
   const handleDotClick = (idx: number) => {
+    if (idx === currentOffer) return;
     setAutoPlay(false);
-    setCurrentOffer(idx);
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentOffer(idx);
+      setIsTransitioning(false);
+    }, 300);
   };
 
   return (
@@ -123,10 +137,11 @@ export default function SpecialOffer() {
             <img 
               src={offer.image}
               alt={offer.title}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover transition-all duration-500"
               style={{
                 ...offer.imageStyle,
-                imageRendering: 'crisp-edges'
+                imageRendering: 'crisp-edges',
+                opacity: isTransitioning ? 0.3 : 1
               }}
             />
             
@@ -167,7 +182,7 @@ export default function SpecialOffer() {
           </div>
           
           <div 
-            className="lg:w-1/2 relative p-12 flex flex-col justify-center"
+            className="lg:w-1/2 relative p-12 flex flex-col justify-center transition-all duration-500"
             style={{
               minHeight: '500px',
               background: `
@@ -175,7 +190,8 @@ export default function SpecialOffer() {
                 radial-gradient(ellipse at center, rgba(231, 34, 46, 0.1) 0%, transparent 60%),
                 linear-gradient(135deg, rgba(20, 20, 30, 0.92) 0%, rgba(10, 10, 15, 0.96) 100%)
               `,
-              backdropFilter: 'blur(24px) saturate(180%)'
+              backdropFilter: 'blur(24px) saturate(180%)',
+              opacity: isTransitioning ? 0.3 : 1
             }}
           >
             <div 
