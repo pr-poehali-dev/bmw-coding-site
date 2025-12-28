@@ -1,3 +1,4 @@
+import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 import { EngineGroup, getGainPercentage, getTypeColor } from './chipTuningData';
 
@@ -12,47 +13,73 @@ export default function EngineGroupCard({ group, index, onSelect }: EngineGroupC
   const totalModels = group.variants.reduce((sum, v) => sum + v.models.length, 0);
 
   return (
-    <button
+    <Card
       onClick={onSelect}
-      className="p-8 rounded-2xl transition-all duration-500 hover:scale-105 group text-left animate-fade-in hover:shadow-[0_0_40px_rgba(231,34,46,0.6)]"
+      className="group relative overflow-hidden border-0 transition-all duration-500 hover:scale-[1.02] cursor-pointer"
       style={{
-        background: `linear-gradient(135deg, ${color}12, ${color}05)`,
-        border: `1px solid ${color}40`,
-        boxShadow: `0 8px 32px ${color}20`,
-        animationDelay: `${index * 100}ms`,
-        backdropFilter: 'blur(10px)'
+        background: `
+          linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+          linear-gradient(135deg, ${color}08, ${color}03)
+        `,
+        backdropFilter: 'blur(40px)',
+        boxShadow: `
+          0 30px 80px -20px rgba(0, 0, 0, 0.6), 
+          inset 0 1px 0 rgba(255, 255, 255, 0.1),
+          0 0 0 1px ${color}15
+        `,
+        animationDelay: `${index * 50}ms`
       }}
     >
-      <div className="flex items-start justify-between mb-4">
-        <div>
-          <div className="text-2xl font-light text-white mb-2 group-hover:text-[#E7222E] transition-colors duration-300">
-            {group.name}
-          </div>
-          <div className="flex items-center gap-2 mb-1">
-            <Icon name={group.type === 'petrol' ? 'Flame' : 'Fuel'} className="w-4 h-4" style={{ color }} />
-            <span className="text-sm" style={{ color }}>{group.type === 'petrol' ? 'Бензин' : 'Дизель'}</span>
-          </div>
-          <div className="text-white/40 text-xs">{group.description}</div>
-        </div>
-      </div>
+      <div 
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        style={{
+          background: `radial-gradient(circle at center, ${color}15, transparent 70%)`,
+          mixBlendMode: 'screen'
+        }}
+      />
 
-      <div className="mb-3">
-        <div className="text-white/40 text-xs mb-2">Подходящие модели:</div>
-        <div className="flex flex-wrap gap-2">
-          {group.variants.flatMap(v => v.models).map((model, i) => (
-            <span 
-              key={i}
-              className="px-2 py-1 rounded-lg text-xs text-white/70"
-              style={{
-                background: `linear-gradient(135deg, ${color}15, ${color}08)`,
-                border: `1px solid ${color}25`
-              }}
-            >
-              {model}
-            </span>
-          ))}
+      <div 
+        className="absolute top-0 left-0 right-0 h-px"
+        style={{
+          background: `linear-gradient(90deg, transparent, ${color}40, transparent)`,
+          boxShadow: `0 0 20px ${color}30`
+        }}
+      />
+      
+      <CardContent className="p-8 relative z-10">
+        <div className="mb-6">
+          <Icon 
+            name={group.type === 'petrol' ? 'Flame' : 'Fuel'}
+            className="w-12 h-12 transition-all duration-300 group-hover:scale-110"
+            style={{ color }}
+          />
         </div>
-      </div>
-    </button>
+        
+        <h3 className="text-2xl font-light text-white mb-2 tracking-tight">
+          {group.name}
+        </h3>
+        <p className="text-sm text-white/40 mb-4 font-light">
+          {group.description}
+        </p>
+
+        <div className="mb-4">
+          <div className="text-white/40 text-xs mb-2">Подходящие модели:</div>
+          <div className="flex flex-wrap gap-2">
+            {group.variants.flatMap(v => v.models).slice(0, 6).map((model, i) => (
+              <span 
+                key={i}
+                className="px-2 py-1 rounded-lg text-xs text-white/70"
+                style={{
+                  background: `linear-gradient(135deg, ${color}15, ${color}08)`,
+                  border: `1px solid ${color}25`
+                }}
+              >
+                {model}
+              </span>
+            ))}
+          </div>
+        </div>
+      </CardContent>
+    </Card>
   );
 }
