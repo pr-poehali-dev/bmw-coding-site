@@ -55,23 +55,23 @@ export default function EngineGroupCard({ group, index, onSelect }: EngineGroupC
           />
         </div>
         
-        <h3 className="text-2xl font-light text-white mb-2 tracking-tight">
+        <h3 className="text-2xl font-medium text-white mb-2 tracking-tight">
           {group.name}
         </h3>
-        <p className="text-sm text-white/40 mb-4 font-light">
+        <p className="text-sm text-white/70 mb-4 font-medium">
           {group.description}
         </p>
 
         <div className="mb-4">
-          <div className="text-white/40 text-xs mb-2">Подходящие модели:</div>
+          <div className="text-white/60 text-xs mb-2 font-medium">Подходящие модели:</div>
           <div className="flex flex-wrap gap-2">
             {group.variants.flatMap(v => v.models).slice(0, 6).map((model, i) => (
               <span 
                 key={i}
-                className="px-2 py-1 rounded-lg text-xs text-white/70"
+                className="px-2 py-1 rounded-lg text-xs text-white/90 font-medium"
                 style={{
-                  background: `linear-gradient(135deg, ${color}15, ${color}08)`,
-                  border: `1px solid ${color}25`
+                  background: `linear-gradient(135deg, ${color}20, ${color}12)`,
+                  border: `1px solid ${color}35`
                 }}
               >
                 {model}

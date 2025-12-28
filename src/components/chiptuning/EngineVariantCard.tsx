@@ -16,18 +16,19 @@ export default function EngineVariantCard({ variant, engineType, color, index }:
     <div
       className="relative p-8 rounded-2xl transition-all duration-300 hover:scale-[1.02] animate-fade-in"
       style={{
-        background: `linear-gradient(135deg, ${color}0D, ${color}05)`,
-        border: `1px solid ${color}30`,
-        boxShadow: `0 8px 32px ${color}20`,
+        background: `linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)), linear-gradient(135deg, ${color}12, ${color}06)`,
+        border: `1px solid ${color}40`,
+        boxShadow: `0 8px 32px ${color}30, inset 0 1px 0 rgba(255, 255, 255, 0.1)`,
+        backdropFilter: 'blur(20px)',
         animationDelay: `${index * 50}ms`
       }}
     >
       <div className="flex items-start justify-between mb-6">
         <div>
-          <h3 className="text-2xl font-light text-white mb-2">{variant.name}</h3>
+          <h3 className="text-2xl font-medium text-white mb-2">{variant.name}</h3>
           <div className="flex items-center gap-2">
             <Icon name={engineType === 'petrol' ? 'Flame' : 'Fuel'} className="w-4 h-4" style={{ color }} />
-            <span className="text-white/60 text-sm">{engineType === 'petrol' ? 'Бензиновый' : 'Дизельный'}</span>
+            <span className="text-white/80 text-sm font-medium">{engineType === 'petrol' ? 'Бензиновый' : 'Дизельный'}</span>
           </div>
         </div>
         <div 
@@ -43,12 +44,12 @@ export default function EngineVariantCard({ variant, engineType, color, index }:
 
       <div className="grid grid-cols-2 gap-6 mb-6">
         <div>
-          <div className="text-white/40 text-xs mb-2 flex items-center gap-1">
+          <div className="text-white/60 text-xs mb-2 flex items-center gap-1 font-medium">
             <Icon name="Gauge" className="w-3 h-3" />
             Мощность
           </div>
           <div className="flex items-center gap-3 mb-2">
-            <span className="text-white/60 text-lg">{variant.powerBefore}</span>
+            <span className="text-white/80 text-lg font-medium">{variant.powerBefore}</span>
             <Icon name="ArrowRight" className="w-4 h-4" style={{ color }} />
             <span className="text-2xl font-light" style={{ color }}>{variant.powerAfter}</span>
             <span className="text-white/40 text-sm">л.с.</span>
@@ -57,12 +58,12 @@ export default function EngineVariantCard({ variant, engineType, color, index }:
         </div>
 
         <div>
-          <div className="text-white/40 text-xs mb-2 flex items-center gap-1">
+          <div className="text-white/60 text-xs mb-2 flex items-center gap-1 font-medium">
             <Icon name="Zap" className="w-3 h-3" />
             Крутящий момент
           </div>
           <div className="flex items-center gap-3 mb-2">
-            <span className="text-white/60 text-lg">{variant.torqueBefore}</span>
+            <span className="text-white/80 text-lg font-medium">{variant.torqueBefore}</span>
             <Icon name="ArrowRight" className="w-4 h-4" style={{ color }} />
             <span className="text-2xl font-light" style={{ color }}>{variant.torqueAfter}</span>
             <span className="text-white/40 text-sm">Нм</span>
@@ -86,7 +87,7 @@ export default function EngineVariantCard({ variant, engineType, color, index }:
           border: `1px solid ${color}20`
         }}
       >
-        <div className="text-white/40 text-xs mb-2 flex items-center gap-1">
+        <div className="text-white/60 text-xs mb-2 flex items-center gap-1 font-medium">
           <Icon name="Car" className="w-3 h-3" />
           Подходящие модели:
         </div>
@@ -94,10 +95,10 @@ export default function EngineVariantCard({ variant, engineType, color, index }:
           {variant.models.map((model, i) => (
             <span 
               key={i}
-              className="px-3 py-1 rounded-lg text-xs text-white/70"
+              className="px-3 py-1 rounded-lg text-xs text-white/90 font-medium"
               style={{
-                background: `linear-gradient(135deg, ${color}15, ${color}08)`,
-                border: `1px solid ${color}25`
+                background: `linear-gradient(135deg, ${color}20, ${color}12)`,
+                border: `1px solid ${color}35`
               }}
             >
               {model}
@@ -111,8 +112,8 @@ export default function EngineVariantCard({ variant, engineType, color, index }:
         style={{ borderColor: `${color}20` }}
       >
         <div>
-          <div className="text-white/40 text-xs mb-1">Стоимость Stage 1</div>
-          <div className="text-xl font-light" style={{ color }}>
+          <div className="text-white/60 text-xs mb-1 font-medium">Стоимость Stage 1</div>
+          <div className="text-xl font-medium" style={{ color }}>
             {variant.price.toLocaleString('ru-RU')} ₽
           </div>
         </div>
