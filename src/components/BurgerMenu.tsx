@@ -9,6 +9,7 @@ const menuItems = [
   { id: 'offers', label: 'Акции', icon: 'Tag' },
   { id: 'reviews', label: 'Отзывы', icon: 'Star' },
   { id: 'packages', label: 'Пакеты', icon: 'Package' },
+  { id: 'api', label: 'API Интеграция', icon: 'Code' },
   { id: 'contact', label: 'Контакты', icon: 'MapPin' },
 ];
 

@@ -7,6 +7,7 @@ import ServicesGrid from '@/components/ServicesGrid';
 import ExpertTips from '@/components/ExpertTips';
 import Reviews from '@/components/Reviews';
 import QuickActions from '@/components/QuickActions';
+import ApiIntegration from '@/components/ApiIntegration';
 
 export default function Index() {
   return (
@@ -29,6 +30,9 @@ export default function Index() {
       </div>
       <div id="reviews">
         <Reviews />
+      </div>
+      <div id="api">
+        <ApiIntegration />
       </div>
       <div id="contact">
         <QuickActions />
