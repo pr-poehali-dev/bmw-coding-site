@@ -1,6 +1,7 @@
 import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
-import { EngineGroup, getGainPercentage, getTypeColor } from './chipTuningData';
+import { Adaptive } from '@/components/ui/responsive';
+import { EngineGroup, getTypeColor } from './chipTuningData';
 
 interface EngineGroupCardProps {
   group: EngineGroup;
@@ -8,9 +9,75 @@ interface EngineGroupCardProps {
   onSelect: () => void;
 }
 
-export default function EngineGroupCard({ group, index, onSelect }: EngineGroupCardProps) {
+function EngineGroupCardMobile({ group, index, onSelect }: EngineGroupCardProps) {
   const color = getTypeColor(group.type);
-  const totalModels = group.variants.reduce((sum, v) => sum + v.models.length, 0);
+
+  return (
+    <Card
+      onClick={onSelect}
+      className="group relative overflow-hidden border-0 transition-all duration-300 cursor-pointer"
+      style={{
+        background: `
+          linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+          linear-gradient(135deg, ${color}08, ${color}03)
+        `,
+        backdropFilter: 'blur(40px)',
+        boxShadow: `
+          0 20px 50px -15px rgba(0, 0, 0, 0.5), 
+          inset 0 1px 0 rgba(255, 255, 255, 0.1),
+          0 0 0 1px ${color}15
+        `,
+        animationDelay: `${index * 50}ms`
+      }}
+    >
+      <div 
+        className="absolute top-0 left-0 right-0 h-px"
+        style={{
+          background: `linear-gradient(90deg, transparent, ${color}40, transparent)`,
+          boxShadow: `0 0 20px ${color}30`
+        }}
+      />
+      
+      <CardContent className="p-5 relative z-10">
+        <div className="mb-4">
+          <Icon 
+            name={group.type === 'petrol' ? 'Flame' : 'Fuel'}
+            className="w-9 h-9 transition-all duration-300"
+            style={{ color }}
+          />
+        </div>
+        
+        <h3 className="text-xl font-medium text-white mb-2 tracking-tight">
+          {group.name}
+        </h3>
+        <p className="text-xs text-white/70 mb-3 font-medium">
+          {group.description}
+        </p>
+
+        <div className="mb-3">
+          <div className="text-white/60 text-[10px] mb-2 font-medium">Подходящие модели:</div>
+          <div className="flex flex-wrap gap-1.5">
+            {group.variants.flatMap(v => v.models).slice(0, 4).map((model, i) => (
+              <span 
+                key={i}
+                className="px-2 py-0.5 rounded-md text-[10px] text-white/90 font-medium"
+                style={{
+                  background: `linear-gradient(135deg, ${color}20, ${color}12)`,
+                  border: `1px solid ${color}35`
+                }}
+              >
+                {model}
+              </span>
+            ))}
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+function EngineGroupCardDesktop({ group, index, onSelect }: EngineGroupCardProps) {
+  const color = getTypeColor(group.type);
 
   return (
     <Card
@@ -81,5 +148,14 @@ export default function EngineGroupCard({ group, index, onSelect }: EngineGroupC
         </div>
       </CardContent>
     </Card>
+  );
+}
+
+export default function EngineGroupCard(props: EngineGroupCardProps) {
+  return (
+    <Adaptive
+      mobile={<EngineGroupCardMobile {...props} />}
+      desktop={<EngineGroupCardDesktop {...props} />}
+    />
   );
 }

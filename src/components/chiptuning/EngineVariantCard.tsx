@@ -1,4 +1,5 @@
 import Icon from '@/components/ui/icon';
+import { Adaptive } from '@/components/ui/responsive';
 import { EngineVariant, getGainPercentage } from './chipTuningData';
 
 interface EngineVariantCardProps {
@@ -8,7 +9,134 @@ interface EngineVariantCardProps {
   index: number;
 }
 
-export default function EngineVariantCard({ variant, engineType, color, index }: EngineVariantCardProps) {
+function EngineVariantCardMobile({ variant, engineType, color, index }: EngineVariantCardProps) {
+  const powerGain = getGainPercentage(variant.powerBefore, variant.powerAfter);
+  const torqueGain = getGainPercentage(variant.torqueBefore, variant.torqueAfter);
+
+  return (
+    <div
+      className="relative p-5 rounded-xl transition-all duration-300 animate-fade-in"
+      style={{
+        background: `linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)), linear-gradient(135deg, ${color}12, ${color}06)`,
+        border: `1px solid ${color}40`,
+        boxShadow: `0 8px 32px ${color}30, inset 0 1px 0 rgba(255, 255, 255, 0.1)`,
+        backdropFilter: 'blur(20px)',
+        animationDelay: `${index * 50}ms`
+      }}
+    >
+      <div className="flex items-start justify-between mb-4">
+        <div>
+          <h3 className="text-lg font-medium text-white mb-1">{variant.name}</h3>
+          <div className="flex items-center gap-1.5">
+            <Icon name={engineType === 'petrol' ? 'Flame' : 'Fuel'} className="w-3 h-3" style={{ color }} />
+            <span className="text-white/80 text-xs font-medium">{engineType === 'petrol' ? 'Бензиновый' : 'Дизельный'}</span>
+          </div>
+        </div>
+        <div 
+          className="px-2.5 py-1 rounded-lg"
+          style={{
+            background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.1))',
+            border: '1px solid rgba(34, 197, 94, 0.3)'
+          }}
+        >
+          <span className="text-green-400 text-xs font-medium">+{powerGain}%</span>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-4 mb-4">
+        <div>
+          <div className="text-white/60 text-[10px] mb-1.5 flex items-center gap-1 font-medium">
+            <Icon name="Gauge" className="w-2.5 h-2.5" />
+            Мощность
+          </div>
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-white/80 text-sm font-medium">{variant.powerBefore}</span>
+            <Icon name="ArrowRight" className="w-3 h-3" style={{ color }} />
+            <span className="text-lg font-light" style={{ color }}>{variant.powerAfter}</span>
+            <span className="text-white/40 text-[10px]">л.с.</span>
+          </div>
+          <div className="text-green-400 text-[10px]">+{variant.powerAfter - variant.powerBefore} л.с.</div>
+        </div>
+
+        <div>
+          <div className="text-white/60 text-[10px] mb-1.5 flex items-center gap-1 font-medium">
+            <Icon name="Zap" className="w-2.5 h-2.5" />
+            Кр. момент
+          </div>
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-white/80 text-sm font-medium">{variant.torqueBefore}</span>
+            <Icon name="ArrowRight" className="w-3 h-3" style={{ color }} />
+            <span className="text-lg font-light" style={{ color }}>{variant.torqueAfter}</span>
+            <span className="text-white/40 text-[10px]">Нм</span>
+          </div>
+          <div 
+            className="px-2 py-0.5 rounded inline-block"
+            style={{
+              background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(34, 197, 94, 0.05))',
+              border: '1px solid rgba(34, 197, 94, 0.2)'
+            }}
+          >
+            <span className="text-green-400 text-[10px]">+{torqueGain}%</span>
+          </div>
+        </div>
+      </div>
+
+      <div 
+        className="mb-4 p-3 rounded-lg"
+        style={{
+          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01))',
+          border: `1px solid ${color}20`
+        }}
+      >
+        <div className="text-white/60 text-[10px] mb-1.5 flex items-center gap-1 font-medium">
+          <Icon name="Car" className="w-2.5 h-2.5" />
+          Подходящие модели:
+        </div>
+        <div className="flex flex-wrap gap-1.5">
+          {variant.models.map((model, i) => (
+            <span 
+              key={i}
+              className="px-2 py-0.5 rounded text-[10px] text-white/90 font-medium"
+              style={{
+                background: `linear-gradient(135deg, ${color}20, ${color}12)`,
+                border: `1px solid ${color}35`
+              }}
+            >
+              {model}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div 
+        className="pt-4 border-t flex items-center justify-between"
+        style={{ borderColor: `${color}20` }}
+      >
+        <div>
+          <div className="text-white/60 text-[10px] mb-0.5 font-medium">Стоимость Stage 1</div>
+          <div className="text-lg font-medium" style={{ color }}>
+            {variant.price.toLocaleString('ru-RU')} ₽
+          </div>
+        </div>
+        <a
+          href="https://t.me/Bocha_reborn"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 px-4 py-2 rounded-lg font-medium text-white text-xs transition-all duration-300"
+          style={{
+            background: 'linear-gradient(135deg, #E7222E, #C51D26)',
+            boxShadow: '0 8px 24px rgba(231, 34, 46, 0.4)'
+          }}
+        >
+          <Icon name="Gauge" className="w-3 h-3" />
+          <span>Тюнинг</span>
+        </a>
+      </div>
+    </div>
+  );
+}
+
+function EngineVariantCardDesktop({ variant, engineType, color, index }: EngineVariantCardProps) {
   const powerGain = getGainPercentage(variant.powerBefore, variant.powerAfter);
   const torqueGain = getGainPercentage(variant.torqueBefore, variant.torqueAfter);
 
@@ -132,5 +260,14 @@ export default function EngineVariantCard({ variant, engineType, color, index }:
         </a>
       </div>
     </div>
+  );
+}
+
+export default function EngineVariantCard(props: EngineVariantCardProps) {
+  return (
+    <Adaptive
+      mobile={<EngineVariantCardMobile {...props} />}
+      desktop={<EngineVariantCardDesktop {...props} />}
+    />
   );
 }

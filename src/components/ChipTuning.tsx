@@ -1,11 +1,108 @@
 import { useState } from 'react';
 import Icon from '@/components/ui/icon';
+import { Adaptive } from '@/components/ui/responsive';
 import { EngineGroup, engineGroups, getTypeColor } from './chiptuning/chipTuningData';
 import ChipTuningFilters from './chiptuning/ChipTuningFilters';
 import EngineGroupCard from './chiptuning/EngineGroupCard';
 import EngineVariantCard from './chiptuning/EngineVariantCard';
 
-export default function ChipTuning() {
+function ChipTuningMobile() {
+  const [selectedGroup, setSelectedGroup] = useState<EngineGroup | null>(null);
+  const [generationFilter, setGenerationFilter] = useState<'all' | 'F' | 'G'>('all');
+  const [typeFilter, setTypeFilter] = useState<'all' | 'petrol' | 'diesel'>('all');
+
+  const filteredGroups = engineGroups.filter(g => {
+    const typeMatch = typeFilter === 'all' || g.type === typeFilter;
+    const genMatch = generationFilter === 'all' || g.variants.some(v => v.generation === generationFilter);
+    return typeMatch && genMatch;
+  });
+
+  return (
+    <div className="mb-12 px-4">
+      <div className="text-center mb-8">
+        <div className="flex items-center justify-center gap-2 mb-3">
+          <Icon name="Gauge" className="w-6 h-6 text-[#FF0040]" />
+          <h2 className="font-light text-white text-xl">Какая у вас модель BMW?</h2>
+        </div>
+        <p className="text-white/60 text-xs">Цены включают полную диагностику перед работами</p>
+      </div>
+
+      <ChipTuningFilters
+        generationFilter={generationFilter}
+        typeFilter={typeFilter}
+        onGenerationChange={setGenerationFilter}
+        onTypeChange={setTypeFilter}
+      />
+
+      {!selectedGroup ? (
+        <div className="grid grid-cols-1 gap-4">
+          {filteredGroups.map((group, idx) => (
+            <EngineGroupCard
+              key={group.name}
+              group={group}
+              index={idx}
+              onSelect={() => setSelectedGroup(group)}
+            />
+          ))}
+        </div>
+      ) : (
+        <>
+          <div className="flex flex-col gap-3 mb-6">
+            <div 
+              className="px-4 py-2.5 rounded-lg flex items-center justify-between"
+              style={{
+                background: `linear-gradient(135deg, ${getTypeColor(selectedGroup.type)}, ${getTypeColor(selectedGroup.type)}CC)`,
+                boxShadow: `0 8px 32px ${getTypeColor(selectedGroup.type)}40`
+              }}
+            >
+              <div className="flex items-center gap-2">
+                <Icon name={selectedGroup.type === 'petrol' ? 'Flame' : 'Fuel'} className="w-4 h-4 text-black" />
+                <span className="text-black font-medium text-sm">{selectedGroup.name}</span>
+              </div>
+              <button
+                onClick={() => setSelectedGroup(null)}
+                className="text-black/70 text-xs underline"
+              >
+                Изменить
+              </button>
+            </div>
+            <div className="text-white/50 text-xs text-center">{selectedGroup.description}</div>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4">
+            {selectedGroup.variants.map((variant, idx) => (
+              <EngineVariantCard
+                key={idx}
+                variant={variant}
+                engineType={selectedGroup.type}
+                color={getTypeColor(selectedGroup.type)}
+                index={idx}
+              />
+            ))}
+          </div>
+
+          <div 
+            className="mt-6 p-4 rounded-xl"
+            style={{
+              background: `linear-gradient(135deg, ${getTypeColor(selectedGroup.type)}0D, ${getTypeColor(selectedGroup.type)}05)`,
+              border: `1px solid ${getTypeColor(selectedGroup.type)}30`
+            }}
+          >
+            <div className="flex items-start gap-3">
+              <Icon name="Info" className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: getTypeColor(selectedGroup.type) }} />
+              <div className="text-white/70 text-xs leading-relaxed">
+                <p className="mb-2"><strong className="text-white">Процесс 2-3 часа:</strong> диагностика, считывание прошивки через OBD, коррекция Stage 1, запись и тест-драйв.</p>
+                <p className="text-white/60 text-[10px]">Гарантия на работы. АИ-98 для бензина.</p>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+function ChipTuningDesktop() {
   const [selectedGroup, setSelectedGroup] = useState<EngineGroup | null>(null);
   const [generationFilter, setGenerationFilter] = useState<'all' | 'F' | 'G'>('all');
   const [typeFilter, setTypeFilter] = useState<'all' | 'petrol' | 'diesel'>('all');
@@ -104,5 +201,14 @@ export default function ChipTuning() {
         </>
       )}
     </div>
+  );
+}
+
+export default function ChipTuning() {
+  return (
+    <Adaptive
+      mobile={<ChipTuningMobile />}
+      desktop={<ChipTuningDesktop />}
+    />
   );
 }
