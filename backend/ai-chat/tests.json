@@ -1,0 +1,31 @@
+{
+  "tests": [
+    {
+      "name": "Test AI chat endpoint",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "message": "Что такое чип-тюнинг?"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "response": "string",
+        "message": "string"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Test empty message validation",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "message": ""
+      },
+      "expectedStatus": 400,
+      "expectedBody": {
+        "error": "Message is required"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

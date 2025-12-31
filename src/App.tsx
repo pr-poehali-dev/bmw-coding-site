@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import StickyContactButton from "@/components/StickyContactButton";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 import BurgerMenu from "@/components/BurgerMenu";
+import AIChatButton from "@/components/AIChatButton";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ const App = () => (
       <StickyContactButton />
       <ScrollToTopButton />
       <BurgerMenu />
+      <AIChatButton />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
