@@ -97,7 +97,7 @@ def handler(event: dict, context) -> dict:
         'parts': [{'text': user_message}]
     })
     
-    url = f'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key={api_key}'
+    url = f'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key={api_key}'
     
     payload = {
         'contents': contents,
