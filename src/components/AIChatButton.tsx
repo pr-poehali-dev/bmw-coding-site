@@ -21,10 +21,17 @@ export default function AIChatButton() {
   const [isLoading, setIsLoading] = useState(false);
   const [apiKey, setApiKey] = useState('');
   const [showApiKeyInput, setShowApiKeyInput] = useState(true);
+  const [vinContext, setVinContext] = useState<any>(null);
 
   const handleToggle = () => {
     vibrate(15);
     setIsOpen(!isOpen);
+    
+    // Проверяем localStorage на наличие VIN контекста
+    const savedVinContext = localStorage.getItem('vinContext');
+    if (savedVinContext && !vinContext) {
+      setVinContext(JSON.parse(savedVinContext));
+    }
   };
 
   const handleSend = async () => {
@@ -51,7 +58,8 @@ export default function AIChatButton() {
         body: JSON.stringify({ 
           message: userMessage.text,
           history: messages,
-          apiKey: apiKey
+          apiKey: apiKey,
+          vinContext: vinContext
         })
       });
 
@@ -126,6 +134,17 @@ export default function AIChatButton() {
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {showApiKeyInput && (
               <div className="bg-white/5 rounded-xl p-4 space-y-3">
+                {vinContext && (
+                  <div className="mb-3 p-3 bg-blue-500/10 rounded-lg border border-blue-500/20">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Icon name="Car" className="w-4 h-4 text-blue-400" />
+                      <span className="text-blue-400 text-xs font-medium">VIN загружен</span>
+                    </div>
+                    <div className="text-gray-300 text-xs">
+                      {vinContext.vehicle?.series} {vinContext.vehicle?.year}
+                    </div>
+                  </div>
+                )}
                 <div className="flex items-start gap-2">
                   <Icon name="Key" className="w-5 h-5 text-purple-400 flex-shrink-0 mt-0.5" />
                   <div className="flex-1">
