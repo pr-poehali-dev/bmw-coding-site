@@ -243,7 +243,7 @@ export default function VinDecoder() {
               </div>
 
               {/* Чип-тюнинг двигателя */}
-              {result.analysis.engine_tuning?.length > 0 && (
+              {false && (
                 <div className="bg-gradient-to-br from-orange-900/20 to-red-900/20 backdrop-blur-xl rounded-2xl border border-orange-500/20 p-6">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center">
@@ -279,7 +279,7 @@ export default function VinDecoder() {
               )}
 
               {/* Прошивка коробки передач */}
-              {result.analysis.transmission_tuning?.length > 0 && (
+              {false && (
                 <div className="bg-gradient-to-br from-cyan-900/20 to-blue-900/20 backdrop-blur-xl rounded-2xl border border-cyan-500/20 p-6">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center">
