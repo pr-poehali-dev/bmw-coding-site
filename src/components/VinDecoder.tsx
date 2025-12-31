@@ -33,9 +33,14 @@ interface CodingOption {
 }
 
 interface AnalysisResult {
-  current_capabilities: CodingOption[];
-  available_upgrades: CodingOption[];
-  recommendations: string[];
+  available_coding?: Array<{
+    category: string;
+    name: string;
+    description: string;
+    price: number;
+    duration: number;
+  }>;
+  total_available?: number;
 }
 
 interface VinResult {
