@@ -309,73 +309,9 @@ export default function VinDecoder() {
                 </div>
               )}
 
-              {/* Доступные кодировки */}
-              {Array.isArray(result.analysis.available_coding) && result.analysis.available_coding.length > 0 && (
-                <div className="bg-gradient-to-br from-green-900/20 to-emerald-900/20 backdrop-blur-xl rounded-2xl border border-green-500/20 p-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center">
-                      <Icon name="Code" className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-white text-xl font-semibold">Доступные кодировки для вашего авто</h3>
-                      <p className="text-gray-400 text-sm">Определено на основе установленного оборудования</p>
-                    </div>
-                  </div>
-                  
-                  {/* Группировка по категориям */}
-                  {Object.entries(
-                    result.analysis.available_coding.reduce((acc: any, coding: any) => {
-                      const cat = coding.category;
-                      if (!acc[cat]) acc[cat] = [];
-                      acc[cat].push(coding);
-                      return acc;
-                    }, {})
-                  ).map(([category, codings]: [string, any]) => (
-                    <div key={category} className="mb-6 last:mb-0">
-                      <div className="text-blue-400 font-medium text-sm mb-3 flex items-center gap-2">
-                        <Icon name="ChevronRight" className="w-4 h-4" />
-                        {category}
-                      </div>
-                      <div className="space-y-2">
-                        {codings.map((coding: any, idx: number) => (
-                          <div key={idx} className="bg-white/5 rounded-lg p-4 border border-green-500/10 hover:bg-white/10 transition-colors">
-                            <div className="flex items-start justify-between gap-3">
-                              <div className="flex-1">
-                                <div className="text-white font-medium mb-1">{coding.name}</div>
-                                <div className="text-gray-400 text-sm">{coding.description}</div>
-                              </div>
-                              <div className="text-right flex-shrink-0">
-                                <div className="text-green-400 font-semibold">{coding.price.toLocaleString()} ₽</div>
-                                <div className="text-gray-500 text-xs">{coding.duration} мин</div>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
 
-              {/* Рекомендации */}
-              {result.analysis.recommendations.length > 0 && (
-                <div className="bg-gradient-to-br from-blue-900/20 to-cyan-900/20 backdrop-blur-xl rounded-2xl border border-blue-500/20 p-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
-                      <Icon name="Lightbulb" className="w-5 h-5 text-white" />
-                    </div>
-                    <h3 className="text-white text-xl font-semibold">Рекомендации</h3>
-                  </div>
-                  <div className="space-y-2">
-                    {result.analysis.recommendations.map((rec, idx) => (
-                      <div key={idx} className="flex items-start gap-3 text-gray-300 text-sm">
-                        <Icon name="ChevronRight" className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
-                        <span>{rec}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
+
+
 
 
 
