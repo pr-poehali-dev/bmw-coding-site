@@ -31,21 +31,21 @@ def handler(event: dict, context) -> dict:
             'isBase64Encoded': False
         }
     
-    api_key = os.environ.get('GOOGLE_AI_API_KEY')
+    body = json.loads(event.get('body', '{}'))
+    user_message = body.get('message', '').strip()
+    history = body.get('history', [])
+    api_key = body.get('apiKey', '').strip() or os.environ.get('GOOGLE_AI_API_KEY')
+    
     if not api_key:
         return {
-            'statusCode': 500,
+            'statusCode': 400,
             'headers': {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
             },
-            'body': json.dumps({'error': 'API key not configured'}),
+            'body': json.dumps({'error': 'API key is required'}),
             'isBase64Encoded': False
         }
-    
-    body = json.loads(event.get('body', '{}'))
-    user_message = body.get('message', '').strip()
-    history = body.get('history', [])
     
     if not user_message:
         return {

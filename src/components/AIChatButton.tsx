@@ -19,6 +19,8 @@ export default function AIChatButton() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [apiKey, setApiKey] = useState('');
+  const [showApiKeyInput, setShowApiKeyInput] = useState(true);
 
   const handleToggle = () => {
     vibrate(15);
@@ -26,7 +28,7 @@ export default function AIChatButton() {
   };
 
   const handleSend = async () => {
-    if (!input.trim() || isLoading) return;
+    if (!input.trim() || isLoading || !apiKey) return;
 
     vibrate(10);
     const userMessage: Message = {
@@ -48,7 +50,8 @@ export default function AIChatButton() {
         },
         body: JSON.stringify({ 
           message: userMessage.text,
-          history: messages
+          history: messages,
+          apiKey: apiKey
         })
       });
 
@@ -109,10 +112,46 @@ export default function AIChatButton() {
               <h3 className="text-white font-semibold">AI Консультант</h3>
               <p className="text-white/80 text-xs">Спросите про ваш автомобиль</p>
             </div>
+            {!showApiKeyInput && apiKey && (
+              <button
+                onClick={() => { vibrate(5); setShowApiKeyInput(true); }}
+                className="text-white/60 hover:text-white transition-colors"
+                title="Изменить API ключ"
+              >
+                <Icon name="Settings" className="w-5 h-5" />
+              </button>
+            )}
           </div>
 
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
-            {messages.length === 0 && (
+            {showApiKeyInput && (
+              <div className="bg-white/5 rounded-xl p-4 space-y-3">
+                <div className="flex items-start gap-2">
+                  <Icon name="Key" className="w-5 h-5 text-purple-400 flex-shrink-0 mt-0.5" />
+                  <div className="flex-1">
+                    <p className="text-white text-sm font-medium mb-1">API Ключ Google AI</p>
+                    <p className="text-gray-400 text-xs mb-3">Получите на <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" className="text-purple-400 underline">aistudio.google.com</a></p>
+                    <input
+                      type="password"
+                      value={apiKey}
+                      onChange={(e) => setApiKey(e.target.value)}
+                      placeholder="AIzaSy..."
+                      className="w-full bg-white/10 text-white placeholder:text-gray-500 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/50"
+                    />
+                    {apiKey && (
+                      <button
+                        onClick={() => { vibrate(10); setShowApiKeyInput(false); }}
+                        className="mt-2 w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm py-2 rounded-lg hover:opacity-90 transition-opacity"
+                      >
+                        Сохранить
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            {messages.length === 0 && !showApiKeyInput && (
               <div className="text-center text-gray-400 mt-8">
                 <Icon name="MessageCircle" className="w-12 h-12 mx-auto mb-3 opacity-50" />
                 <p className="text-sm">Задайте вопрос о вашем авто</p>
