@@ -188,8 +188,96 @@ export default function VinDecoder() {
                     <div className="text-gray-400 text-sm mb-1">VIN</div>
                     <div className="text-white font-mono text-sm">{result.vin}</div>
                   </div>
+                  {result.equipment?.engine?.type && (
+                    <div>
+                      <div className="text-gray-400 text-sm mb-1">Двигатель</div>
+                      <div className="text-white font-medium">{result.equipment.engine.type} ({result.equipment.engine.power} л.с.)</div>
+                    </div>
+                  )}
+                  {result.equipment?.transmission?.name && (
+                    <div>
+                      <div className="text-gray-400 text-sm mb-1">Коробка передач</div>
+                      <div className="text-white font-medium">{result.equipment.transmission.name}</div>
+                    </div>
+                  )}
                 </div>
+                
+                {result.vehicle.mock_data && (
+                  <div className="mt-4 p-3 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
+                    <div className="flex items-center gap-2 text-yellow-400 text-sm">
+                      <Icon name="Info" className="w-4 h-4" />
+                      <span>Демо-режим: показаны примерные данные для BMW 340i 2017</span>
+                    </div>
+                  </div>
+                )}
               </div>
+
+              {/* Чип-тюнинг двигателя */}
+              {result.analysis.engine_tuning?.length > 0 && (
+                <div className="bg-gradient-to-br from-orange-900/20 to-red-900/20 backdrop-blur-xl rounded-2xl border border-orange-500/20 p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center">
+                      <Icon name="Zap" className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="text-white text-xl font-semibold">Чип-тюнинг двигателя</h3>
+                  </div>
+                  {result.analysis.engine_tuning.map((tune: any, idx: number) => (
+                    <div key={idx} className="bg-white/5 rounded-lg p-4 border border-orange-500/10">
+                      <div className="text-white font-medium mb-3">{tune.engine}</div>
+                      <div className="grid grid-cols-3 gap-4">
+                        <div className="text-center">
+                          <div className="text-gray-400 text-xs mb-1">Stock</div>
+                          <div className="text-white text-2xl font-bold">{tune.stock_hp}</div>
+                          <div className="text-gray-500 text-xs">л.с.</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-orange-400 text-xs mb-1">Stage 1</div>
+                          <div className="text-orange-400 text-2xl font-bold">{tune.stage1_hp}</div>
+                          <div className="text-gray-500 text-xs">л.с.</div>
+                          <div className="text-green-400 text-xs mt-1">+{tune.stage1_hp - tune.stock_hp} л.с.</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-red-400 text-xs mb-1">Stage 2</div>
+                          <div className="text-red-400 text-2xl font-bold">{tune.stage2_hp}</div>
+                          <div className="text-gray-500 text-xs">л.с.</div>
+                          <div className="text-green-400 text-xs mt-1">+{tune.stage2_hp - tune.stock_hp} л.с.</div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Прошивка коробки передач */}
+              {result.analysis.transmission_tuning?.length > 0 && (
+                <div className="bg-gradient-to-br from-cyan-900/20 to-blue-900/20 backdrop-blur-xl rounded-2xl border border-cyan-500/20 p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center">
+                      <Icon name="Settings" className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="text-white text-xl font-semibold">Прошивка коробки XHP</h3>
+                  </div>
+                  {result.analysis.transmission_tuning.map((tune: any, idx: number) => (
+                    <div key={idx} className="space-y-3">
+                      <div className="text-gray-400 text-sm mb-3">{tune.transmission}</div>
+                      <div className="grid gap-2">
+                        <div className="bg-white/5 rounded-lg p-3 border border-cyan-500/10">
+                          <div className="text-cyan-400 font-medium text-sm mb-1">XHP Stage 1</div>
+                          <div className="text-gray-300 text-xs">{tune.xhp_stage1}</div>
+                        </div>
+                        <div className="bg-white/5 rounded-lg p-3 border border-cyan-500/10">
+                          <div className="text-cyan-400 font-medium text-sm mb-1">XHP Stage 2</div>
+                          <div className="text-gray-300 text-xs">{tune.xhp_stage2}</div>
+                        </div>
+                        <div className="bg-white/5 rounded-lg p-3 border border-cyan-500/10">
+                          <div className="text-cyan-400 font-medium text-sm mb-1">XHP Stage 3</div>
+                          <div className="text-gray-300 text-xs">{tune.xhp_stage3}</div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
 
               {/* Доступные возможности */}
               {result.analysis.current_capabilities.length > 0 && (
