@@ -71,7 +71,7 @@ def handler(event: dict, context) -> dict:
 
 Важно: Ты консультируешь, но не заменяешь профессиональную диагностику в автосервисе."""
     
-    url = f'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}'
+    url = f'https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key={api_key}'
     
     contents = []
     
