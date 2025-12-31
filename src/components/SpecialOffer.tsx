@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import Icon from '@/components/ui/icon';
+import { Adaptive } from '@/components/ui/responsive';
+import ScrollIndicator from '@/components/ScrollIndicator';
 
 const offers = [
   {
@@ -69,7 +71,9 @@ const offers = [
   }
 ];
 
-export default function SpecialOffer() {
+import SpecialOfferMobile from './SpecialOfferMobile';
+
+function SpecialOfferDesktop() {
   const [currentOffer, setCurrentOffer] = useState(0);
   const [autoPlay, setAutoPlay] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -358,5 +362,14 @@ export default function SpecialOffer() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function SpecialOffer() {
+  return (
+    <Adaptive
+      mobile={<SpecialOfferMobile />}
+      desktop={<SpecialOfferDesktop />}
+    />
   );
 }

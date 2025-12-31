@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 import { Adaptive } from '@/components/ui/responsive';
+import ScrollIndicator from '@/components/ScrollIndicator';
 
 const services = [
   {
@@ -315,19 +316,21 @@ export default function ServicesGrid() {
     <Adaptive
       mobile={
         <div className="mb-12">
-          <div className="overflow-x-auto scrollbar-hide -mx-4">
-            <div className="flex gap-4 px-4 pb-4">
+          <div className="overflow-x-auto scrollbar-hide -mx-4 snap-x snap-mandatory">
+            <div className="flex gap-4 px-4 pb-2">
               {services.map((service, index) => (
-                <ServiceCardMobile
-                  key={service.id}
-                  service={service}
-                  index={index}
-                  isSelected={selectedService === service.id}
-                  onToggle={() => setSelectedService(selectedService === service.id ? null : service.id)}
-                />
+                <div key={service.id} className="snap-center">
+                  <ServiceCardMobile
+                    service={service}
+                    index={index}
+                    isSelected={selectedService === service.id}
+                    onToggle={() => setSelectedService(selectedService === service.id ? null : service.id)}
+                  />
+                </div>
               ))}
             </div>
           </div>
+          <ScrollIndicator totalItems={services.length} color="#00D4FF" />
         </div>
       }
       desktop={

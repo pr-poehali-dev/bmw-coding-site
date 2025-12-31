@@ -5,6 +5,7 @@ import { EngineGroup, engineGroups, getTypeColor } from './chiptuning/chipTuning
 import ChipTuningFilters from './chiptuning/ChipTuningFilters';
 import EngineGroupCard from './chiptuning/EngineGroupCard';
 import EngineVariantCard from './chiptuning/EngineVariantCard';
+import ScrollIndicator from '@/components/ScrollIndicator';
 
 function ChipTuningMobile() {
   const [selectedGroup, setSelectedGroup] = useState<EngineGroup | null>(null);
@@ -35,18 +36,22 @@ function ChipTuningMobile() {
       />
 
       {!selectedGroup ? (
-        <div className="overflow-x-auto scrollbar-hide -mx-4">
-          <div className="flex gap-4 px-4 pb-4">
-            {filteredGroups.map((group, idx) => (
-              <EngineGroupCard
-                key={group.name}
-                group={group}
-                index={idx}
-                onSelect={() => setSelectedGroup(group)}
-              />
-            ))}
+        <>
+          <div className="overflow-x-auto scrollbar-hide -mx-4 snap-x snap-mandatory">
+            <div className="flex gap-4 px-4 pb-2">
+              {filteredGroups.map((group, idx) => (
+                <div key={group.name} className="snap-center">
+                  <EngineGroupCard
+                    group={group}
+                    index={idx}
+                    onSelect={() => setSelectedGroup(group)}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+          <ScrollIndicator totalItems={filteredGroups.length} color="#FF6B35" />
+        </>
       ) : (
         <>
           <div className="flex flex-col gap-3 mb-6">
