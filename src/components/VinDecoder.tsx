@@ -304,63 +304,51 @@ export default function VinDecoder() {
                 </div>
               )}
 
-              {/* Доступные возможности */}
-              {result.analysis.current_capabilities.length > 0 && (
+              {/* Доступные кодировки */}
+              {result.analysis.available_coding?.length > 0 && (
                 <div className="bg-gradient-to-br from-green-900/20 to-emerald-900/20 backdrop-blur-xl rounded-2xl border border-green-500/20 p-6">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center">
-                      <Icon name="CheckCircle" className="w-5 h-5 text-white" />
+                      <Icon name="Code" className="w-5 h-5 text-white" />
                     </div>
-                    <h3 className="text-white text-xl font-semibold">Доступные функции</h3>
+                    <div>
+                      <h3 className="text-white text-xl font-semibold">Доступные кодировки для вашего авто</h3>
+                      <p className="text-gray-400 text-sm">Определено на основе установленного оборудования</p>
+                    </div>
                   </div>
-                  <div className="space-y-3">
-                    {result.analysis.current_capabilities.map((cap, idx) => (
-                      <div key={idx} className="bg-white/5 rounded-lg p-4 border border-green-500/10">
-                        <div className="flex items-start gap-3">
-                          <Icon name="Check" className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                          <div className="flex-1">
-                            <div className="text-white font-medium mb-1">{cap.feature}</div>
-                            <div className="text-gray-400 text-sm">{cap.description}</div>
-                          </div>
-                        </div>
+                  
+                  {/* Группировка по категориям */}
+                  {Object.entries(
+                    result.analysis.available_coding.reduce((acc: any, coding: any) => {
+                      const cat = coding.category;
+                      if (!acc[cat]) acc[cat] = [];
+                      acc[cat].push(coding);
+                      return acc;
+                    }, {})
+                  ).map(([category, codings]: [string, any]) => (
+                    <div key={category} className="mb-6 last:mb-0">
+                      <div className="text-blue-400 font-medium text-sm mb-3 flex items-center gap-2">
+                        <Icon name="ChevronRight" className="w-4 h-4" />
+                        {category}
                       </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Возможные апгрейды */}
-              {result.analysis.available_upgrades.length > 0 && (
-                <div className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 backdrop-blur-xl rounded-2xl border border-purple-500/20 p-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
-                      <Icon name="Sparkles" className="w-5 h-5 text-white" />
-                    </div>
-                    <h3 className="text-white text-xl font-semibold">Доступные апгрейды</h3>
-                  </div>
-                  <div className="space-y-3">
-                    {result.analysis.available_upgrades.map((upgrade, idx) => (
-                      <div key={idx} className="bg-white/5 rounded-lg p-4 border border-purple-500/10">
-                        <div className="flex items-start gap-3">
-                          <Icon name="ArrowUpCircle" className="w-5 h-5 text-purple-400 flex-shrink-0 mt-0.5" />
-                          <div className="flex-1">
-                            <div className="text-white font-medium mb-1">{upgrade.feature}</div>
-                            <div className="text-gray-400 text-sm mb-2">{upgrade.description}</div>
-                            {upgrade.missing_blocks && upgrade.missing_blocks.length > 0 && (
-                              <div className="flex items-center gap-2 text-xs">
-                                <span className="text-gray-500">Требуется блок:</span>
-                                {upgrade.missing_blocks.map((block, i) => (
-                                  <span key={i} className="bg-purple-500/20 text-purple-300 px-2 py-1 rounded font-mono">
-                                    {block}
-                                  </span>
-                                ))}
+                      <div className="space-y-2">
+                        {codings.map((coding: any, idx: number) => (
+                          <div key={idx} className="bg-white/5 rounded-lg p-4 border border-green-500/10 hover:bg-white/10 transition-colors">
+                            <div className="flex items-start justify-between gap-3">
+                              <div className="flex-1">
+                                <div className="text-white font-medium mb-1">{coding.name}</div>
+                                <div className="text-gray-400 text-sm">{coding.description}</div>
                               </div>
-                            )}
+                              <div className="text-right flex-shrink-0">
+                                <div className="text-green-400 font-semibold">{coding.price.toLocaleString()} ₽</div>
+                                <div className="text-gray-500 text-xs">{coding.duration} мин</div>
+                              </div>
+                            </div>
                           </div>
-                        </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  ))}
                 </div>
               )}
 
@@ -384,30 +372,7 @@ export default function VinDecoder() {
                 </div>
               )}
 
-              {/* HWEL Блоки */}
-              {result.blocks.length > 0 && (
-                <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl rounded-2xl border border-white/10 p-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-gray-600 to-gray-700 flex items-center justify-center">
-                      <Icon name="Cpu" className="w-5 h-5 text-white" />
-                    </div>
-                    <h3 className="text-white text-xl font-semibold">Совместимые HWEL блоки</h3>
-                  </div>
-                  <div className="grid sm:grid-cols-2 gap-3">
-                    {result.blocks.map((block, idx) => (
-                      <div key={idx} className="bg-white/5 rounded-lg p-4 border border-white/5">
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="bg-gray-700 text-white px-2 py-1 rounded font-mono text-sm">
-                            {block.hwel_code}
-                          </span>
-                          <span className="text-white font-medium text-sm">{block.block_name}</span>
-                        </div>
-                        <p className="text-gray-400 text-xs">{block.description}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
+
 
               {/* Калькулятор услуг */}
               <ServicesCalculator vinData={result} />

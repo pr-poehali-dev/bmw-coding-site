@@ -162,76 +162,232 @@ def decode_bmw_vin(vin: str) -> dict:
 
 
 def analyze_coding_options(vehicle_info: dict, available_blocks: list, equipment: dict) -> dict:
-    '''Анализ возможностей кодирования для конкретного авто'''
+    '''Анализ возможностей кодирования для конкретного авто на основе установленных опций'''
     
     analysis = {
-        'current_capabilities': [],
-        'available_upgrades': [],
-        'recommendations': [],
+        'available_coding': [],  # Доступные кодировки
         'engine_tuning': [],
-        'transmission_tuning': []
+        'transmission_tuning': [],
+        'recommendations': []
     }
     
-    # Примеры популярных опций и требования к HWEL блокам
-    popular_features = {
-        'carplay': {
-            'name': 'Apple CarPlay',
-            'required_blocks': ['26BB', '26BC'],
-            'description': 'Беспроводной CarPlay и Android Auto'
-        },
-        'hud': {
-            'name': 'Head-Up Display',
-            'required_blocks': ['26F0', '26F1'],
-            'description': 'Проекция информации на лобовое стекло'
-        },
-        'video_motion': {
-            'name': 'Видео в движении',
-            'required_blocks': ['26B9', '26BA', '26BB'],
-            'description': 'Просмотр видео на ходу (пассажир)'
-        },
-        'fullscreen_camera': {
+    # Определяем доступные кодировки на основе установленного оборудования
+    multimedia = equipment.get('multimedia', {})
+    options = equipment.get('options', [])
+    
+    # === МУЛЬТИМЕДИА КОДИРОВКИ ===
+    
+    # Если есть NBT Evo (609)
+    if multimedia.get('NBT Evo ID6 Navigation Professional'):
+        analysis['available_coding'].extend([
+            {
+                'category': 'Мультимедиа',
+                'name': 'Видео в движении',
+                'description': 'Пассажир может смотреть видео во время движения',
+                'price': 2000,
+                'duration': 30
+            },
+            {
+                'category': 'Мультимедиа',
+                'name': 'Apple CarPlay активация',
+                'description': 'Беспроводное подключение iPhone к мультимедиа',
+                'price': 8000,
+                'duration': 60
+            },
+            {
+                'category': 'Мультимедиа',
+                'name': 'Android Auto активация',
+                'description': 'Беспроводное подключение Android телефона',
+                'price': 8000,
+                'duration': 60
+            },
+            {
+                'category': 'Мультимедиа',
+                'name': 'Split-screen режим',
+                'description': 'Разделение экрана на 2 зоны одновременно',
+                'price': 2000,
+                'duration': 20
+            }
+        ])
+    
+    # Если есть камера заднего вида
+    if multimedia.get('camera'):
+        analysis['available_coding'].append({
+            'category': 'Мультимедиа',
             'name': 'Камера на весь экран',
-            'required_blocks': ['26B9', '26BA', '26BB'],
-            'description': 'Увеличенное изображение с камер'
+            'description': 'Увеличенное изображение камеры заднего вида',
+            'price': 2000,
+            'duration': 20
+        })
+    
+    # Если есть Top View камера
+    if multimedia.get('top_view'):
+        analysis['available_coding'].append({
+            'category': 'Мультимедиа',
+            'name': 'Top View на скорости',
+            'description': 'Круговой обзор 360° на скорости до 30 км/ч',
+            'price': 2500,
+            'duration': 25
+        })
+    
+    # Если есть HUD
+    if multimedia.get('Head-Up Display') or multimedia.get('BMW Head-Up Display'):
+        analysis['available_coding'].extend([
+            {
+                'category': 'Приборная панель',
+                'name': 'HUD расширенная информация',
+                'description': 'Дополнительные данные на проекции (температура, G-force)',
+                'price': 2000,
+                'duration': 30
+            },
+            {
+                'category': 'Приборная панель',
+                'name': 'HUD регулировка яркости',
+                'description': 'Увеличенный диапазон яркости проекции',
+                'price': 1500,
+                'duration': 15
+            }
+        ])
+    
+    # === ОСВЕЩЕНИЕ ===
+    
+    if 'Adaptive LED Headlights' in options:
+        analysis['available_coding'].extend([
+            {
+                'category': 'Освещение',
+                'name': 'Welcome Light Show',
+                'description': 'Анимация фар при открытии/закрытии автомобиля',
+                'price': 1500,
+                'duration': 20
+            },
+            {
+                'category': 'Освещение',
+                'name': 'Динамические поворотники',
+                'description': 'Бегущие указатели поворота',
+                'price': 3000,
+                'duration': 40
+            }
+        ])
+    
+    # Общие кодировки освещения
+    analysis['available_coding'].extend([
+        {
+            'category': 'Освещение',
+            'name': 'ДХО не гаснут с поворотниками',
+            'description': 'Дневные ходовые огни остаются активными при повороте',
+            'price': 1500,
+            'duration': 15
         },
-        'sport_displays': {
-            'name': 'Спортивные дисплеи',
-            'required_blocks': ['26B9'],
-            'description': 'G-meter, boost pressure, oil temp'
+        {
+            'category': 'Освещение',
+            'name': 'Отключение автоматического дальнего света',
+            'description': 'Фары всегда в режиме ближнего света',
+            'price': 1500,
+            'duration': 10
         }
-    }
+    ])
     
-    # Проверяем текущие блоки
-    current_blocks = [block['hwel_code'] for block in available_blocks]
+    # === КОМФОРТ ===
     
-    for feature_key, feature_info in popular_features.items():
-        has_all_blocks = all(block in current_blocks for block in feature_info['required_blocks'])
-        
-        if has_all_blocks:
-            analysis['current_capabilities'].append({
-                'feature': feature_info['name'],
-                'description': feature_info['description'],
-                'status': 'available'
-            })
-        else:
-            missing_blocks = [b for b in feature_info['required_blocks'] if b not in current_blocks]
-            analysis['available_upgrades'].append({
-                'feature': feature_info['name'],
-                'description': feature_info['description'],
-                'required_blocks': feature_info['required_blocks'],
-                'missing_blocks': missing_blocks,
-                'upgrade_needed': True
-            })
+    if 'Comfort Access' in options:
+        analysis['available_coding'].extend([
+            {
+                'category': 'Комфорт',
+                'name': 'Автозакрытие зеркал',
+                'description': 'Зеркала складываются при закрытии автомобиля',
+                'price': 1500,
+                'duration': 15
+            },
+            {
+                'category': 'Комфорт',
+                'name': 'Автозакрытие окон с брелока',
+                'description': 'Закрытие всех стёкол удержанием кнопки брелока',
+                'price': 2000,
+                'duration': 20
+            }
+        ])
     
-    # Генерация рекомендаций
-    if vehicle_info['year'] >= 2016:
-        analysis['recommendations'].append('Ваш автомобиль поддерживает большинство современных опций кодирования')
+    # Общие комфортные кодировки
+    analysis['available_coding'].extend([
+        {
+            'category': 'Комфорт',
+            'name': 'Двойное моргание аварийкой',
+            'description': 'Двойное мигание при закрытии автомобиля',
+            'price': 1000,
+            'duration': 10
+        },
+        {
+            'category': 'Комфорт',
+            'name': 'Отключение автостопа Start/Stop',
+            'description': 'Система всегда выключена по умолчанию',
+            'price': 2000,
+            'duration': 15
+        },
+        {
+            'category': 'Комфорт',
+            'name': 'Отключение звука ремня безопасности',
+            'description': 'Убрать назойливый звуковой сигнал непристёгнутого ремня',
+            'price': 1000,
+            'duration': 10
+        }
+    ])
     
-    if '26B9' in current_blocks:
-        analysis['recommendations'].append('NBT Evo: доступны расширенные функции мультимедиа')
+    # === ПРИБОРНАЯ ПАНЕЛЬ ===
     
-    if '26BB' not in current_blocks and vehicle_info['year'] >= 2017:
-        analysis['recommendations'].append('Рекомендуем апгрейд до NBT Evo ID6 (26BB) для CarPlay')
+    analysis['available_coding'].extend([
+        {
+            'category': 'Приборная панель',
+            'name': 'Цифровая скорость в приборке',
+            'description': 'Отображение скорости цифрами на панели',
+            'price': 1500,
+            'duration': 15
+        },
+        {
+            'category': 'Приборная панель',
+            'name': 'Sweep-анимация стрелок',
+            'description': 'Красивая анимация стрелок при запуске',
+            'price': 2000,
+            'duration': 20
+        },
+        {
+            'category': 'Приборная панель',
+            'name': 'M-режимы отображения',
+            'description': 'Спортивные режимы приборной панели',
+            'price': 3000,
+            'duration': 30
+        }
+    ])
+    
+    # === БЕЗОПАСНОСТЬ / ДРАЙВ ===
+    
+    if 'M Sport Package' in options:
+        analysis['available_coding'].extend([
+            {
+                'category': 'Безопасность',
+                'name': 'MDM режим (M Dynamic Mode)',
+                'description': 'Промежуточный режим стабилизации для дрифта',
+                'price': 2000,
+                'duration': 25
+            },
+            {
+                'category': 'Безопасность',
+                'name': 'Полное отключение DSC',
+                'description': 'Возможность полного выключения стабилизации',
+                'price': 1500,
+                'duration': 20
+            }
+        ])
+    
+    # Общие кодировки
+    analysis['available_coding'].extend([
+        {
+            'category': 'Безопасность',
+            'name': 'Отключение ограничения скорости',
+            'description': 'Снятие программного ограничения 250 км/ч',
+            'price': 2000,
+            'duration': 20
+        }
+    ])
     
     # Анализ возможностей чип-тюнинга двигателя
     engine = equipment.get('engine', {})
